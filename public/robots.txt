@@ -1,0 +1,30 @@
+# Cliffhanger — PLACEHOLDER domain: swap https://cliffhanger-gear.com for the real domain before deploy
+
+User-agent: *
+Allow: /
+
+# AI search retrieval bots — allow; they drive citations in ChatGPT / Perplexity / Copilot
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# AI training crawlers — left open (no proprietary/paywalled content on this page)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Known non-compliant scraper — block explicitly
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://cliffhanger-gear.com/sitemap.xml
