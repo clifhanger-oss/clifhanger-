@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import Home from "@/pages/home";
 
 // WebGL/Canvas can't run in jsdom — replace the Three.js background with a stub.
@@ -38,12 +38,15 @@ describe("Home", () => {
     expect(wa).toHaveAttribute("rel", expect.stringContaining("noopener"));
 
     const email = screen.getByRole("link", { name: /email/i });
-    expect(email).toHaveAttribute("href", "mailto:info@cliffhanger-gear.com");
+    expect(email).toHaveAttribute("href", "mailto:Cliffhangerleb@hotmail.com");
   });
 
-  it("product cards link to the contact section", () => {
+  it("opens the product detail dialog when a card is pressed", async () => {
     render(<Home />);
-    const harness = screen.getByRole("link", { name: /harnesses/i });
-    expect(harness).toHaveAttribute("href", "#contact");
+    // Belay Devices is the default category; "Jul 2" is one of its products.
+    fireEvent.click(screen.getByRole("button", { name: /view jul 2 details/i }));
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog).toBeInTheDocument();
+    expect(within(dialog).getByRole("heading", { name: /jul 2/i })).toBeInTheDocument();
   });
 });

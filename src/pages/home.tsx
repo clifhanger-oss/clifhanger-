@@ -1,18 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Phone, Mail, Instagram, Facebook, ArrowRight, MapPin, Menu, X } from "lucide-react";
 import { MountainBackground } from "@/components/mountain-background";
+import { ProductModal } from "@/components/product-modal";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CONTACT } from "@/lib/contact";
+import { PRODUCTS, CATEGORY_ORDER, type Product } from "@/lib/products";
 
 // Public asset — served from /public at the site root.
 const logo = "/logo.webp";
-
-const PRODUCTS = [
-  { id: "01", name: "Harnesses", image: "/images/harness.webp", rating: "CE EN 12277", status: "CRITICAL" },
-  { id: "02", name: "Carabiners", image: "/images/carabiners.webp", rating: "CE EN 12275 / UIAA", status: "PRIMARY" },
-  { id: "03", name: "Dynamic Ropes", image: "/images/ropes.webp", rating: "CE EN 892", status: "LIFELINE" },
-  { id: "04", name: "Protective Hardware", image: "/images/protective.webp", rating: "CE EN 12276", status: "ANCHOR" },
-];
 
 const NAV = [
   { href: "#about", label: "About" },
@@ -23,6 +18,8 @@ const NAV = [
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selected, setSelected] = useState<Product | null>(null);
+  const [activeCat, setActiveCat] = useState<string>(CATEGORY_ORDER[0]);
   const climberRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
@@ -326,21 +323,42 @@ export default function Home() {
                 </h2>
                 <div className="flex items-center gap-4 text-primary font-mono text-xs uppercase glass-card px-4 py-2 border border-border">
                   <span className="w-3 h-3 bg-primary animate-pulse" />
-                  All systems online
+                  {PRODUCTS.length} products online
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {PRODUCTS.map((product) => (
-                  <a
+              {/* Category filter */}
+              <div className="mb-12 flex flex-wrap gap-2">
+                {CATEGORY_ORDER.map((cat) => {
+                  const count = PRODUCTS.filter((p) => p.category === cat).length;
+                  if (!count) return null;
+                  const active = cat === activeCat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setActiveCat(cat)}
+                      className={`border px-4 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+                    >
+                      {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {PRODUCTS.filter((p) => p.category === activeCat).map((product) => (
+                  <button
                     key={product.id}
-                    href="#contact"
-                    aria-label={`${product.name} — ${product.rating}. Enquire`}
-                    className="group flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99]"
+                    type="button"
+                    onClick={() => setSelected(product)}
+                    aria-haspopup="dialog"
+                    aria-label={`View ${product.name} details`}
+                    className="group text-left flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99]"
                   >
                     <div className="relative aspect-square overflow-hidden bg-black/70 p-6 border-b border-border">
                       <div className="absolute top-4 left-4 text-gray-400 font-mono text-xs">{product.id}</div>
-                      <div className="absolute top-4 right-4 border border-border px-2 py-1 text-[10px] font-mono text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+                      <div className="absolute top-4 right-4 max-w-[55%] truncate border border-border px-2 py-1 text-[10px] font-mono text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
                         {product.status}
                       </div>
                       <img
@@ -359,8 +377,12 @@ export default function Home() {
                         <span className="font-mono text-xs text-gray-400">Rating</span>
                         <span className="font-mono text-xs text-white">{product.rating}</span>
                       </div>
+                      <span className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-primary transition-colors">
+                        View details
+                        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
+                      </span>
                     </div>
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
@@ -389,19 +411,23 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-4">
+                {/* Primary contact — one button, straight to WhatsApp */}
+                <a
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Contact us on WhatsApp"
+                  className="flex items-center justify-center gap-4 bg-primary text-black p-6 font-sans font-bold text-lg md:text-xl uppercase tracking-widest hover:bg-white focus-visible:bg-white transition-colors active:scale-[0.99]"
+                >
+                  <WhatsAppIcon className="w-7 h-7 shrink-0" />
+                  Contact us on WhatsApp
+                </a>
+
                 <a href={CONTACT.tel} className="flex items-center gap-5 border border-border glass-card p-6 hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99] group">
                   <Phone className="w-6 h-6 text-primary shrink-0" />
                   <span className="flex flex-col">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-gray-400">Call us</span>
                     <span className="font-sans font-bold text-xl tracking-tight group-hover:text-primary transition-colors">{CONTACT.phoneDisplay}</span>
-                  </span>
-                </a>
-
-                <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 border border-border glass-card p-6 hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99] group">
-                  <WhatsAppIcon className="w-6 h-6 text-primary shrink-0" />
-                  <span className="flex flex-col">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-gray-400">WhatsApp</span>
-                    <span className="font-sans font-bold text-xl tracking-tight group-hover:text-primary transition-colors">Message us directly</span>
                   </span>
                 </a>
 
@@ -469,6 +495,9 @@ export default function Home() {
           </div>
         </footer>
       </div>
+
+      {/* Product detail dialog */}
+      <ProductModal product={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

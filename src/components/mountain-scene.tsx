@@ -413,28 +413,20 @@ function Rig() {
   return null;
 }
 
-// Pauses the render loop when the tab is hidden OR the fixed background has been
-// scrolled fully out of view — saves battery/CPU with no visual change.
+// Pauses the render loop only when the tab is hidden. The background is
+// position:fixed and reads through the translucent panels for the ENTIRE page
+// (including the footer), so it must keep animating on every scroll position —
+// pausing on scroll would freeze the visible scene at the bottom.
 function RenderGate() {
   const set = useThree((s) => s.set);
   const invalidate = useThree((s) => s.invalidate);
   useEffect(() => {
-    let active = true;
-    const apply = (on: boolean) => {
-      if (on === active) return;
-      active = on;
-      set({ frameloop: on ? "always" : "never" });
-      if (on) invalidate();
+    const onVis = () => {
+      set({ frameloop: document.hidden ? "never" : "always" });
+      if (!document.hidden) invalidate();
     };
-    const onVis = () => apply(!document.hidden);
-    const onScroll = () => apply(!document.hidden && window.scrollY < window.innerHeight * 1.2);
     document.addEventListener("visibilitychange", onVis);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => {
-      document.removeEventListener("visibilitychange", onVis);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => document.removeEventListener("visibilitychange", onVis);
   }, [set, invalidate]);
   return null;
 }
