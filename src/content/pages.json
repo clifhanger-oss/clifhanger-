@@ -63,8 +63,7 @@
    {
     "heading": "Who We Are",
     "body": [
-     "Cliffhanger is a climbing-gear and outdoor-equipment retailer based in Lebanon, established in 2003.",
-     "Registered business details: [COMPANY LEGAL NAME], [REGISTERED ADDRESS]."
+     "Cliffhanger is a climbing-gear and outdoor-equipment retailer based in Lebanon, established in 2003."
     ],
     "bullets": []
    },
@@ -101,7 +100,7 @@
    {
     "heading": "Server Logs",
     "body": [
-     "Like most websites, this site is hosted by a third-party provider ([HOSTING PROVIDER]), which may automatically keep standard server access logs (such as IP address, date and time of access, and pages requested) for security and technical maintenance purposes. These logs are not used to identify individual visitors or to build profiles."
+     "Like most websites, this site is hosted by a third-party provider, which may automatically keep standard server access logs (such as IP address, date and time of access, and pages requested) for security and technical maintenance purposes. These logs are not used to identify individual visitors or to build profiles."
     ],
     "bullets": []
    },
@@ -115,7 +114,7 @@
    {
     "heading": "How Long We Keep Data",
     "body": [
-     "Messages and contact details sent to us via phone, WhatsApp, or email are kept only for as long as needed to handle your inquiry and for our general correspondence records, and are retained for [RETENTION PERIOD]. Server access logs held by our hosting provider are kept according to that provider's standard retention schedule."
+     "Messages and contact details sent to us via phone, WhatsApp, or email are kept only for as long as needed to handle your inquiry and for our general correspondence records. Server access logs held by our hosting provider are kept according to that provider's standard retention schedule."
     ],
     "bullets": []
    },
@@ -150,8 +149,8 @@
    {
     "heading": "Contact Us",
     "body": [
-     "If you have any questions about this Privacy Policy or wish to exercise your privacy rights, please contact us at [PRIVACY EMAIL/CONTACT], by phone at 03 276 938, via WhatsApp, or by email at Cliffhangerleb@hotmail.com.",
-     "Last updated: [DATE]"
+     "If you have any questions about this Privacy Policy or wish to exercise your privacy rights, please contact us by phone at 03 276 938, via WhatsApp, or by email at Cliffhangerleb@hotmail.com.",
+     "Last updated: July 8, 2026"
     ],
     "bullets": []
    }
@@ -161,7 +160,7 @@
  "terms": {
   "slug": "terms",
   "title": "Terms of Service",
-  "intro": "These Terms of Service (\"Terms\") govern your use of the Cliffhanger website (the \"Site\"), operated by Cliffhanger — Climbing Equipments & Outdoor Gears, [COMPANY LEGAL NAME] (\"Cliffhanger\", \"we\", \"us\"), a Lebanon-based retailer of climbing and outdoor gear since 2003. By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, please do not use the Site.",
+  "intro": "These Terms of Service (\"Terms\") govern your use of the Cliffhanger website (the \"Site\"), operated by Cliffhanger — Climbing Equipments & Outdoor Gears (\"Cliffhanger\", \"we\", \"us\"), a Lebanon-based retailer of climbing and outdoor gear since 2003. By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, please do not use the Site.",
   "sections": [
    {
     "heading": "1. Acceptance of Terms",
@@ -222,7 +221,7 @@
    {
     "heading": "8. Governing Law",
     "body": [
-     "These Terms are governed by and construed in accordance with the laws of Lebanon [confirm]. Any disputes arising from these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the competent courts of Lebanon [confirm]."
+     "These Terms are governed by and construed in accordance with the laws of Lebanon. Any disputes arising from these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the competent courts of Lebanon."
     ],
     "bullets": []
    },
@@ -239,14 +238,13 @@
      "If you have any questions about these Terms, or would like to enquire about a product's availability or price, please contact us."
     ],
     "bullets": [
-     "Phone: [PLACEHOLDER]",
-     "WhatsApp: [PLACEHOLDER]",
-     "Email: [PLACEHOLDER]",
-     "Address: [PLACEHOLDER], Lebanon"
+     "Phone: 03 276 938",
+     "WhatsApp: wa.me/9613276938",
+     "Email: Cliffhangerleb@hotmail.com"
     ]
    }
   ],
-  "disclaimer": "Last updated: [DATE]"
+  "disclaimer": "Last updated: July 8, 2026"
  },
  "returns": {
   "slug": "returns",
@@ -268,7 +266,7 @@
    {
     "heading": "Return Window & Condition Requirements",
     "body": [
-     "For non-safety-critical items, we accept returns or exchanges within [14 DAYS / PLACEHOLDER: RETURN WINDOW] of purchase, provided the item is unused, in its original condition, and in its original packaging with all tags and accessories included.",
+     "For non-safety-critical items, contact us as soon as possible after your purchase and we'll confirm whether a return or exchange is available, provided the item is unused, in its original condition, and in its original packaging with all tags and accessories included.",
      "A valid proof of purchase is required for all returns and exchanges."
     ],
     "bullets": []
@@ -292,14 +290,14 @@
    {
     "heading": "Refunds & Exchanges",
     "body": [
-     "Once we've confirmed your return or exchange is eligible, refunds and exchanges are issued via [PLACEHOLDER: REFUND METHOD — e.g. store credit, exchange for equal-value item, or original payment method]. Please allow [PLACEHOLDER: PROCESSING TIME] for your refund or exchange to be completed."
+     "Once we've confirmed your return or exchange is eligible, we'll agree on the best way to resolve it with you directly — whether that's store credit, an exchange for an equal-value item, or another arrangement — and confirm the timing when you reach out."
     ],
     "bullets": []
    },
    {
     "heading": "Return Shipping & Transport Costs",
     "body": [
-     "[PLACEHOLDER: WHO COVERS RETURN SHIPPING/TRANSPORT COSTS — e.g. the customer is responsible for delivering the item to the shop, or Cliffhanger arranges pickup at the customer's expense / at no charge]. If you're outside Beirut or unable to visit the shop in person, contact us and we'll discuss the best way to arrange your return."
+     "Return shipping and transport arrangements are agreed directly with our team when you contact us. If you're outside Beirut or unable to visit the shop in person, contact us and we'll discuss the best way to arrange your return."
     ],
     "bullets": []
    },
@@ -311,6 +309,6 @@
     "bullets": []
    }
   ],
-  "disclaimer": "Last updated: [PLACEHOLDER: DATE]"
+  "disclaimer": "Last updated: July 8, 2026"
  }
 }
