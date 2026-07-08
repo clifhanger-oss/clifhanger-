@@ -1,5 +1,6 @@
-// AUTO-GENERATED from the DWB 2026 catalogs (Sport / Work Safety / RC).
-// Regenerate via the catalog extraction pipeline; do not hand-edit rows.
+// AUTO-GENERATED from the DWB 2026 catalogs (Sport / Work Safety / RC) and
+// official TENDON product pages (mytendon.com). Regenerate via the catalog
+// extraction pipeline; do not hand-edit rows.
 
 export type ProductSpec = { label: string; value: string };
 export type ProductWeight = { length: string; weight: string };
@@ -27,7 +28,7 @@ export type Product = {
   origin?: string | null;
 };
 
-export const CATEGORY_ORDER: string[] = ["Belay Devices", "Carabiners & Quickdraws", "Pulleys", "Descenders & Rescue", "Hardware Accessories", "Spare Parts", "Climbing Shoes — High-End", "Climbing Shoes — Performance", "Chalk Bags", "Chalk & Accessories"];
+export const CATEGORY_ORDER: string[] = ["Belay Devices", "Carabiners & Quickdraws", "Ropes", "Pulleys", "Descenders & Rescue", "Hardware Accessories", "Spare Parts", "Climbing Shoes — High-End", "Climbing Shoes — Performance", "Chalk Bags", "Chalk & Accessories"];
 
 export const PRODUCTS: Product[] = [
   {
@@ -2923,6 +2924,214 @@ export const PRODUCTS: Product[] = [
     "weight": "380g",
     "certification": "EN 12492, UIAA 106",
     "origin": null
+  },
+  {
+    "id": "D100TA41S000C",
+    "code": "D100TA41S000C",
+    "name": "Ambition 10.0 - Red",
+    "title": "TENDON Ambition 10.0 - Red",
+    "category": "Ropes",
+    "articleNo": "D100TA41S000C",
+    "type": null,
+    "image": "/images/products/D100TA41S000C.webp",
+    "status": "TENDON",
+    "rating": "EN 892 / UIAA",
+    "available": true,
+    "description": "A rope made for beginners. Its sturdy design inspires confidence and rightly so, as it boasts a high number of falls and its durability is further enhanced by the SBS braid system, which ensures less friction and a smoother, but thanks to the larger diameter, slower passage in the belay. When climbing becomes a passion, there's no better choice. With rope you'll appreciate:",
+    "features": [
+      "High durability",
+      "SBS braid",
+      "Suitable for beginners"
+    ],
+    "specs": [
+      {
+        "label": "Rope diameter (mm)",
+        "value": "10"
+      },
+      {
+        "label": "Weight (g/m)",
+        "value": "67"
+      },
+      {
+        "label": "Number of UIAA falls",
+        "value": "9"
+      },
+      {
+        "label": "Max impact force (kN)",
+        "value": "8.9"
+      },
+      {
+        "label": "Sheath slippage (%)",
+        "value": "0.2"
+      },
+      {
+        "label": "Static elongation (%)",
+        "value": "5"
+      },
+      {
+        "label": "Dynamic elongation (%)",
+        "value": "33"
+      },
+      {
+        "label": "Knotability",
+        "value": "1"
+      },
+      {
+        "label": "Number of bobbins",
+        "value": "40"
+      },
+      {
+        "label": "Sheath mass",
+        "value": "38 %"
+      },
+      {
+        "label": "CE 1019",
+        "value": "yes"
+      },
+      {
+        "label": "EN 892",
+        "value": "yes"
+      }
+    ],
+    "attributes": [],
+    "colors": [],
+    "weights": [],
+    "weight": null,
+    "certification": "EN 892 / UIAA",
+    "origin": "TENDON — Czech Republic"
+  },
+  {
+    "id": "FR444032",
+    "code": "FR444032",
+    "name": "Fast Rope",
+    "title": "TENDON Fast Rope",
+    "category": "Ropes",
+    "articleNo": "FR444032",
+    "type": null,
+    "image": "/images/products/FR444032.webp",
+    "status": "TENDON",
+    "rating": "—",
+    "available": true,
+    "description": "In the production of the unique Fast Rope, special PA BCF fibres are used which give superior protection during descending, having high resistance to wear and rupture. The rope with a diameter of 44 mm and a unique construction offers the user good control during descending without additional belay. We are able to supply our key military clients in many countries with Fast Ropes also in diameters 40 mm and 32 mm. • spliced eye with high strength and resistance, for frequent straining and loading (e.g. in practising). • eye made of express slings (ST-short termination) – lightweight and especially short eye with high strenght. Easy examination of seams and express slings after removal of the protector. In emergency the rope may be simply cut at the termination. • eye with metal termination (MT-metal termination) for different types of metal connectors and hooks.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Rope diameter, pre-tensioned according to EN ISO 2307 (245 kg) (mm)",
+        "value": "44 / 40 / 32"
+      },
+      {
+        "label": "Rope diameter, loose (zero tension) (mm)",
+        "value": "50 / 46 / 38"
+      },
+      {
+        "label": "Rope weight, pre-tensioned according to EN 2307 (245 kg) (kg/100 m)",
+        "value": "77 / 60 / 42"
+      },
+      {
+        "label": "Rope weight, loose (zero tension) (kg/100 m)",
+        "value": "96 / 75 / 52"
+      },
+      {
+        "label": "Minimum rope strenght with spliced eye (kg)",
+        "value": "12000 / 10000 / 7500"
+      },
+      {
+        "label": "Minimum rope strenght with sewn loop with textile protection (kg)",
+        "value": "6000 / 6000 / 6000"
+      },
+      {
+        "label": "Minimum rope strenght with steel termination (kg)",
+        "value": "3000 / 3000 / -"
+      },
+      {
+        "label": "Minimum strenght of suspension sling (F.R.I.E.S.) (kg)",
+        "value": "2500 / 2500 / 2500"
+      },
+      {
+        "label": "Rope elongation, pre-tensioned according to EN ISO 2307 (245 kg) (%)",
+        "value": "25 / 25 / 25"
+      }
+    ],
+    "attributes": [],
+    "colors": [],
+    "weights": [],
+    "weight": null,
+    "certification": null,
+    "origin": "TENDON — Czech Republic"
+  },
+  {
+    "id": "D110TT42S000C",
+    "code": "D110TT42S000C",
+    "name": "Trust 11.0 - Yellow",
+    "title": "TENDON Trust 11.0 - Yellow",
+    "category": "Ropes",
+    "articleNo": "D110TT42S000C",
+    "type": null,
+    "image": "/images/products/D110TT42S000C.webp",
+    "status": "TENDON",
+    "rating": "EN 892 / UIAA",
+    "available": true,
+    "description": "The thickest rope in our portfolio of dynamic ropes. The mix of its parameters together creates a robust and safe rope with high durability and extremely long life. This rope is most often found in rope centres or other climbing schools. With this rope you will appreciate:",
+    "features": [
+      "Durability",
+      "Safety"
+    ],
+    "specs": [
+      {
+        "label": "Rope diameter (mm)",
+        "value": "11"
+      },
+      {
+        "label": "Weight (g/m)",
+        "value": "79"
+      },
+      {
+        "label": "Number of UIAA falls",
+        "value": "16"
+      },
+      {
+        "label": "Max impact force (kN)",
+        "value": "9.1"
+      },
+      {
+        "label": "Sheath slippage (%)",
+        "value": "0.4"
+      },
+      {
+        "label": "Static elongation (%)",
+        "value": "5.3"
+      },
+      {
+        "label": "Dynamic elongation (%)",
+        "value": "31"
+      },
+      {
+        "label": "Knotability",
+        "value": "1"
+      },
+      {
+        "label": "Number of bobbins",
+        "value": "48"
+      },
+      {
+        "label": "Sheath mass",
+        "value": "39,4 %"
+      },
+      {
+        "label": "CE 1019",
+        "value": "yes"
+      },
+      {
+        "label": "EN 892",
+        "value": "yes"
+      }
+    ],
+    "attributes": [],
+    "colors": [],
+    "weights": [],
+    "weight": null,
+    "certification": "EN 892 / UIAA",
+    "origin": "TENDON — Czech Republic"
   },
   {
     "id": "85401",
