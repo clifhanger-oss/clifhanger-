@@ -6,8 +6,9 @@ import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CONTACT } from "@/lib/contact";
 import { PRODUCTS, CATEGORY_ORDER, type Product } from "@/lib/products";
 
-// Public asset — served from /public at the site root.
-const logo = "/logo.webp";
+// Public assets — served from /public at the site root.
+const logo = "/logo.webp"; // white circular badge (original colors)
+const wordmark = "/logo-wordmark.webp"; // on-dark wordmark (lime CLIFF + white HANGER)
 
 const NAV = [
   { href: "#about", label: "About" },
@@ -93,19 +94,16 @@ export default function Home() {
       <div className="relative z-10">
         {/* HEADER */}
         <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-6 lg:px-12 py-3 md:py-4 flex justify-between items-center gap-3 bg-black/70 backdrop-blur-md border-b border-border/60">
-          <a href="#top" className="flex items-center gap-2.5 min-w-0">
+          <a href="#top" className="flex flex-col min-w-0 leading-none">
             <img
-              src={logo}
-              alt="Cliffhanger logo"
-              width={44}
-              height={44}
+              src={wordmark}
+              alt="Cliffhanger"
+              width={812}
+              height={184}
               decoding="async"
-              className="w-10 h-10 md:w-11 md:h-11 object-contain shrink-0 drop-shadow-[0_0_10px_hsl(75_100%_50%/0.25)]"
+              className="h-6 md:h-8 w-auto object-contain shrink-0 drop-shadow-[0_0_12px_hsl(75_100%_50%/0.15)]"
             />
-            <span className="flex flex-col leading-none min-w-0">
-              <span className="font-sans font-bold text-lg md:text-xl tracking-tighter uppercase truncate">Cliffhanger</span>
-              <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-primary mt-0.5">Since 2003</span>
-            </span>
+            <span className="font-mono text-[8px] md:text-[9px] tracking-[0.3em] uppercase text-primary mt-1 pl-0.5">Since 2003</span>
           </a>
 
           <nav aria-label="Primary" className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-300">
@@ -312,6 +310,27 @@ export default function Home() {
             </div>
           </section>
 
+          {/* PARTNERS */}
+          <section aria-label="Official partners" className="border-b border-border glass-panel py-12 px-6 lg:px-12">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex flex-col gap-1 text-center md:text-left">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Official Partners</span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-gray-400">
+                  Certified hardware &amp; ropes, straight from the source
+                </span>
+              </div>
+              <div className="flex items-center gap-8 md:gap-12">
+                <span className="font-sans font-bold text-3xl md:text-4xl uppercase tracking-tighter text-white hover:text-primary transition-colors cursor-default">
+                  Edelrid
+                </span>
+                <span className="w-2.5 h-2.5 bg-primary shrink-0" aria-hidden="true" />
+                <span className="font-sans font-bold text-3xl md:text-4xl uppercase tracking-tighter text-white hover:text-primary transition-colors cursor-default">
+                  Tendon
+                </span>
+              </div>
+            </div>
+          </section>
+
           {/* CATALOG */}
           <section id="catalog" className="py-32 px-6 lg:px-12 relative">
             <div className="max-w-6xl mx-auto">
@@ -456,17 +475,18 @@ export default function Home() {
         <footer className="border-t border-border glass-panel text-gray-400 font-mono text-xs uppercase py-12 px-6 lg:px-12">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <img src={logo} alt="Cliffhanger badge" width={36} height={36} loading="lazy" decoding="async" className="w-9 h-9 object-contain opacity-90" />
-                <span className="flex flex-col leading-none">
-                  <span className="font-sans font-bold text-lg tracking-tighter text-gray-200">Cliffhanger</span>
-                  <span className="text-[9px] tracking-[0.2em] text-primary mt-0.5">Made for the Vertical · Since 2003</span>
-                </span>
+              <div className="flex flex-col gap-2 mb-6">
+                <img src={wordmark} alt="Cliffhanger" width={812} height={184} loading="lazy" decoding="async" className="h-7 w-auto self-start object-contain opacity-95" />
+                <span className="text-[9px] tracking-[0.2em] text-primary">Made for the Vertical · Since 2003</span>
               </div>
-              <p className="max-w-sm leading-relaxed mb-6">
+              <p className="max-w-sm leading-relaxed mb-4">
                 Climbing equipments &amp; outdoor gears, engineered for extreme verticality.
                 Warning: Climbing is inherently dangerous. Users are responsible for their own
                 actions and decisions.
+              </p>
+              <p className="mb-6">
+                Official partner of <span className="text-gray-200">Edelrid</span> &amp;{" "}
+                <span className="text-gray-200">Tendon</span>
               </p>
               <a href={CONTACT.tel} className="text-gray-200 hover:text-primary transition-colors">{CONTACT.phoneDisplay}</a>
             </div>
