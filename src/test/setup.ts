@@ -17,4 +17,9 @@ Object.defineProperty(window, "matchMedia", {
   }),
 });
 
+// jsdom doesn't implement scrollIntoView — stub it (chip/grid auto-scroll effects call it).
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = vi.fn();
+}
+
 afterEach(() => cleanup());

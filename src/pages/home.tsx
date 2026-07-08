@@ -6,6 +6,8 @@ import { ProductModal } from "@/components/product-modal";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CONTACT } from "@/lib/contact";
 import { PRODUCTS, CATEGORY_ORDER, type Product } from "@/lib/products";
+import { useSEO } from "@/lib/use-seo";
+import { buildProductListJsonLd } from "@/lib/product-jsonld";
 
 // Public assets — served from /public at the site root.
 const logo = "/logo.webp"; // white circular badge (original colors)
@@ -23,8 +25,35 @@ export default function Home() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [activeCat, setActiveCat] = useState<string>(CATEGORY_ORDER[0]);
   const climberRef = useRef<HTMLDivElement>(null);
+  const chipRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const gridRef = useRef<HTMLDivElement>(null);
+  const didMountCat = useRef(false);
+  const [pastHero, setPastHero] = useState(false);
+
+  useSEO({
+    title: "Cliffhanger — Climbing Equipments & Outdoor Gears",
+    description: "Cliffhanger — technical climbing hardware and outdoor gear. Made for the vertical. Since 2003. Based in Lebanon.",
+    path: "/",
+  });
 
   useEffect(() => setMounted(true), []);
+
+  // Structured data for the full catalog — derived live from PRODUCTS so it can
+  // never drift out of sync with the actual categories/counts.
+  useEffect(() => {
+    const id = "product-list-jsonld";
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = id;
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(buildProductListJsonLd(PRODUCTS));
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, []);
 
   // Briefly reveal the climber silhouette as the About section scrolls past.
   // Opacity follows a bell curve (peak mid-section) and the climber "ascends".
@@ -77,6 +106,36 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
+  // Center the active chip in the mobile scroll strip, and (only on user-initiated
+  // changes, not the initial mount) bring the product grid into view — otherwise the
+  // grid sits below the chip row on phone with no indication it moved.
+  useEffect(() => {
+    chipRefs.current[activeCat]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (didMountCat.current) {
+      gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    didMountCat.current = true;
+  }, [activeCat]);
+
+  // Mobile-only floating WhatsApp button, shown once the visitor has scrolled past
+  // the hero's own CTAs so it doesn't compete with them above the fold.
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setPastHero(window.scrollY > window.innerHeight * 0.9);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const heroText = "MADE FOR THE VERTICAL";
 
   return (
@@ -128,7 +187,7 @@ export default function Home() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="md:hidden text-white p-2 -mr-2"
+              className="md:hidden text-white p-2 -mr-2 active:scale-90 transition-transform duration-100"
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -167,11 +226,11 @@ export default function Home() {
           {/* HERO */}
           <section id="top" className="relative min-h-[100dvh] flex flex-col justify-center pt-28 pb-12 px-6 lg:px-12">
             <div className="relative z-10 max-w-6xl mx-auto w-full">
-              <div className="mb-6 inline-block border border-primary px-3 py-1 text-primary font-mono text-xs uppercase tracking-[0.2em] bg-black/40 backdrop-blur-sm">
+              <div className="mb-6 inline-block border border-primary px-3 py-1 text-primary font-mono text-xs uppercase tracking-[0.1em] sm:tracking-[0.2em] bg-black/40 backdrop-blur-sm">
                 Climbing Equipments &amp; Outdoor Gears
               </div>
 
-              <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-bold leading-[0.85] tracking-tighter uppercase mb-8 flex flex-wrap gap-x-4 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
+              <h1 className="text-5xl min-[400px]:text-6xl md:text-8xl lg:text-[10rem] font-bold leading-[0.85] tracking-tighter uppercase mb-8 flex flex-wrap gap-x-4 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
                 {heroText.split(" ").map((word, wordIndex) => (
                   <span key={wordIndex} className="inline-flex overflow-hidden">
                     {word.split("").map((char, charIndex) => (
@@ -206,7 +265,7 @@ export default function Home() {
                   </a>
                   <a
                     href="#contact"
-                    className="font-mono text-xs uppercase tracking-widest text-gray-300 underline underline-offset-4 hover:text-primary transition-colors"
+                    className="inline-block py-3 -my-3 font-mono text-xs uppercase tracking-widest text-gray-300 underline underline-offset-4 hover:text-primary active:scale-95 transition-colors"
                   >
                     or talk to us
                   </a>
@@ -240,7 +299,7 @@ export default function Home() {
           </div>
 
           {/* ABOUT */}
-          <section id="about" className="py-32 px-6 lg:px-12 relative overflow-hidden border-b border-border glass-panel">
+          <section id="about" className="py-20 md:py-32 px-6 lg:px-12 relative overflow-hidden border-b border-border glass-panel">
             {/* Climber silhouette — briefly revealed as this section scrolls past */}
             <div
               ref={climberRef}
@@ -333,7 +392,7 @@ export default function Home() {
           </section>
 
           {/* CATALOG */}
-          <section id="catalog" className="py-32 px-6 lg:px-12 relative">
+          <section id="catalog" className="py-20 md:py-32 px-6 lg:px-12 relative">
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                 <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
@@ -347,26 +406,34 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Category filter */}
-              <div className="mb-12 flex flex-wrap gap-2">
-                {CATEGORY_ORDER.map((cat) => {
-                  const count = PRODUCTS.filter((p) => p.category === cat).length;
-                  if (!count) return null;
-                  const active = cat === activeCat;
-                  return (
-                    <button
-                      key={cat}
-                      type="button"
-                      onClick={() => setActiveCat(cat)}
-                      className={`border px-4 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
-                    >
-                      {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
-                    </button>
-                  );
-                })}
+              {/* Category filter — single-row scroll strip on phone (12 chips would otherwise
+                  wrap ~6 rows and bury the first product); reverts to wrap from sm: up. */}
+              <div className="relative mb-12 -mx-6 px-6 sm:mx-0 sm:px-0">
+                <div className="flex gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1 sm:flex-wrap sm:overflow-visible sm:snap-none">
+                  {CATEGORY_ORDER.map((cat) => {
+                    const count = PRODUCTS.filter((p) => p.category === cat).length;
+                    if (!count) return null;
+                    const active = cat === activeCat;
+                    return (
+                      <button
+                        key={cat}
+                        ref={(el) => {
+                          chipRefs.current[cat] = el;
+                        }}
+                        type="button"
+                        onClick={() => setActiveCat(cat)}
+                        className={`shrink-0 snap-start whitespace-nowrap border px-4 py-3 min-h-11 font-mono text-[11px] uppercase tracking-widest transition-colors active:scale-95 ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+                      >
+                        {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                {/* Right-edge fade signals horizontal scrollability on phone */}
+                <div className="pointer-events-none absolute right-0 top-0 bottom-1 w-8 bg-gradient-to-l from-black to-transparent sm:hidden" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PRODUCTS.filter((p) => p.category === activeCat).map((product) => (
                   <button
                     key={product.id}
@@ -383,7 +450,7 @@ export default function Home() {
                       </div>
                       <img
                         src={product.image}
-                        alt={product.name}
+                        alt={`${product.name} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
                         width={720}
                         height={720}
                         loading="lazy"
@@ -409,7 +476,7 @@ export default function Home() {
           </section>
 
           {/* CONTACT */}
-          <section id="contact" className="py-32 px-6 lg:px-12 relative border-t border-border glass-panel">
+          <section id="contact" className="py-20 md:py-32 px-6 lg:px-12 relative border-t border-border glass-panel">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div>
                 <div className="mb-6 inline-block border border-primary px-3 py-1 text-primary font-mono text-xs uppercase tracking-[0.2em]">
@@ -516,6 +583,20 @@ export default function Home() {
           </div>
         </footer>
       </div>
+
+      {/* Floating WhatsApp button — mobile only, appears once past the hero's own
+          CTAs so it doesn't compete with them, hidden while the product modal is open */}
+      {pastHero && !selected && (
+        <a
+          href={CONTACT.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contact us on WhatsApp"
+          className="sm:hidden fixed bottom-4 right-4 z-40 flex items-center justify-center w-14 h-14 bg-primary text-black border border-black active:scale-95 transition-transform shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+        >
+          <WhatsAppIcon className="w-7 h-7" />
+        </a>
+      )}
 
       {/* Product detail dialog */}
       <ProductModal product={selected} onClose={() => setSelected(null)} />

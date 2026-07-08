@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import pagesData from "@/content/pages.json";
 import { CONTACT } from "@/lib/contact";
+import { useSEO } from "@/lib/use-seo";
 
 const wordmark = "/logo-wordmark.webp";
 
@@ -22,11 +23,16 @@ export default function LegalPage({ slug }: { slug: string }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (page) document.title = `${page.title} — Cliffhanger`;
-    return () => {
-      document.title = "Cliffhanger — Climbing Equipments & Outdoor Gears";
-    };
   }, [page]);
+
+  useSEO({
+    title: page ? `${page.title} — Cliffhanger` : "Page Not Found — Cliffhanger",
+    description: page
+      ? (page.intro ?? page.title).replace(/\s+/g, " ").trim().slice(0, 155)
+      : "This page could not be found.",
+    path: page ? `/${page.slug}` : `/${slug}`,
+    noindex: !page,
+  });
 
   if (!page) {
     return (

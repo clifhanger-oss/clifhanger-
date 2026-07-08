@@ -36,33 +36,35 @@ export function ProductModal({
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-md p-4 sm:p-8"
+      className="fixed inset-0 z-[80] flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-md p-0 sm:p-8"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="product-modal-title"
     >
       <div
-        className="relative w-full max-w-3xl my-4 border border-border bg-[hsl(0_0%_4%/0.96)] backdrop-blur-xl"
+        className="relative w-full max-w-3xl min-h-[100dvh] sm:min-h-0 my-0 sm:my-4 border-0 sm:border border-border bg-[hsl(0_0%_4%/0.96)] backdrop-blur-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close */}
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-3 top-3 z-10 border border-border bg-black/60 p-2 text-gray-300 hover:border-primary hover:text-primary focus-visible:border-primary transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Close — sticky to the viewport (not the scrolling card) so it never scrolls out of reach on long products */}
+        <div className="sticky top-0 z-10 flex justify-end p-3 bg-[hsl(0_0%_4%/0.96)] backdrop-blur-xl border-b border-border sm:absolute sm:right-0 sm:top-0 sm:justify-start sm:border-0 sm:bg-transparent sm:backdrop-blur-none sm:p-3">
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="min-w-11 min-h-11 flex items-center justify-center border border-border bg-black/60 p-2 text-gray-300 hover:border-primary hover:text-primary focus-visible:border-primary active:scale-95 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
         {/* Image */}
         <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-black/70">
           <img
             src={product.image}
-            alt={heading}
-            className="h-full w-full object-contain p-8 filter contrast-125"
+            alt={`${heading} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
+            className="h-full w-full object-contain p-4 sm:p-8 filter contrast-125"
           />
           <div className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
             <span className="border border-primary px-2 py-1 text-primary">{product.status}</span>
