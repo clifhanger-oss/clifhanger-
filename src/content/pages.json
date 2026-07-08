@@ -1,0 +1,316 @@
+{
+ "certifications": {
+  "slug": "certifications",
+  "title": "Certifications & Compliance",
+  "intro": "Cliffhanger has supplied certified climbing and mountaineering equipment across Lebanon since 2003. Every product we sell is manufactured and certified by our official partners, and the exact certification for each item is listed on its individual product page.",
+  "sections": [
+   {
+    "heading": "Our Role as a Certified-Equipment Retailer",
+    "body": [
+     "Cliffhanger is a retailer and distributor of climbing, mountaineering, and rope-access equipment. We do not manufacture gear, and we do not perform independent testing or issue certifications ourselves.",
+     "The equipment we stock is manufactured and certified by our official partners, EDELRID (Germany) and TENDON (Czech Republic), both established international producers of personal protective equipment (PPE) for climbing and work-at-height use. The certifications described on this page belong to those manufacturers and are inherited by the specific products we import and sell.",
+     "We select our catalog specifically from manufacturers who maintain current CE and UIAA conformity assessments for their PPE lines, so that customers can be confident the gear on our shelves meets recognized safety standards."
+    ]
+   },
+   {
+    "heading": "What CE Marking Means",
+    "body": [
+     "CE marking indicates that a product has been assessed against the applicable European Union regulation for personal protective equipment (PPE Regulation (EU) 2016/425) and meets its essential health and safety requirements. For climbing hardware, textiles, and related safety equipment, this typically involves EU-type examination and quality-assurance procedures carried out by an independent notified body on behalf of the manufacturer.",
+     "CE marking is the baseline legal requirement for placing PPE on the market in the EU and EEA, and it is the standard our supplying manufacturers hold for the products we distribute."
+    ]
+   },
+   {
+    "heading": "What UIAA Certification Adds",
+    "body": [
+     "The UIAA (International Climbing and Mountaineering Federation) Safety Label is a voluntary certification that sits alongside CE marking. UIAA standards are developed specifically for climbing and mountaineering use, and in several cases they impose additional or more climbing-specific test criteria than the equivalent EN standard alone.",
+     "Where a product carries both a CE-relevant EN standard and a corresponding UIAA standard, this indicates the manufacturer has sought review against both the general European PPE framework and the sport-specific international benchmark."
+    ]
+   },
+   {
+    "heading": "Standards by Product Category",
+    "body": [
+     "The following standards commonly appear across our catalog. Each product page states the specific standard(s) that item is certified to; this list explains what those designations mean and is not a claim that every listed standard applies to every item in a category."
+    ],
+    "bullets": [
+     "Karabiners & connectors: EN 12275 (mountaineering connectors), often alongside UIAA 121, and EN 362 for connectors used in personal fall-protection systems",
+     "Harnesses: EN 12277 Type C (climbing harnesses) together with UIAA 105",
+     "Dynamic climbing ropes: EN 892, together with the corresponding UIAA rope standard",
+     "Slings: EN 566",
+     "Lanyards: EN 354 (personal fall-protection lanyards)",
+     "Anchor devices: EN 795 Type B (transportable/temporary anchor devices)",
+     "Pulleys: EN 12278",
+     "Rope clamps & ascenders: EN 567 and EN 12841-B (rope adjustment devices for work positioning, Type B)",
+     "Belay and braking-assistance devices: EN 15151-1 and EN 15151-2",
+     "Descenders: EN 341-2A (descender devices for rescue) and EN 12841-C (rope adjustment devices, Type C, for descent)",
+     "Helmets: EN 12492, together with UIAA 106",
+     "Via ferrata energy absorbers: EN 958"
+    ]
+   },
+   {
+    "heading": "Finding Certification Details for a Specific Product",
+    "body": [
+     "Because certification depends on the exact model, material, and manufacturer batch, we list the applicable EN and/or UIAA standard(s) directly on each product's page rather than on this general page. If you cannot locate the certification information for a specific item, contact us and we will confirm the relevant standard as documented by the manufacturer."
+    ]
+   }
+  ],
+  "disclaimer": "Climbing, mountaineering, and rope-access activities are inherently dangerous and can result in serious injury or death. Certification indicates that a product met defined test criteria at the time of manufacture; it is not a guarantee against misuse, damage, or improper inspection. Always read and follow the manufacturer's instructions for use, inspect equipment before each use, and retire gear according to manufacturer guidance. Users are solely responsible for selecting equipment appropriate to their activity and for its correct use, care, and inspection."
+ },
+ "privacy": {
+  "slug": "privacy",
+  "title": "Privacy Policy",
+  "intro": "Cliffhanger — Climbing Equipments & Outdoor Gears (\"Cliffhanger\", \"we\", \"us\") has been serving Lebanon's climbing community since 2003. This Privacy Policy explains, in plain language, what information this website collects, what it does not collect, and how any information you choose to share with us is used. This site is an informational catalogue of our products — it does not have online checkout, user accounts, or forms that store your data.",
+  "sections": [
+   {
+    "heading": "Who We Are",
+    "body": [
+     "Cliffhanger is a climbing-gear and outdoor-equipment retailer based in Lebanon, established in 2003.",
+     "Registered business details: [COMPANY LEGAL NAME], [REGISTERED ADDRESS]."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "What This Website Does Not Collect",
+    "body": [
+     "This website is a showcase catalogue only. It does not have online checkout or payment processing, does not require you to create an account or log in, and does not contain forms that store your information.",
+     "We do not use analytics or tracking cookies, and we do not run advertising pixels of any kind."
+    ],
+    "bullets": [
+     "No online checkout or payments",
+     "No user accounts or login",
+     "No data-storing contact forms",
+     "No analytics or tracking cookies",
+     "No advertising pixels"
+    ]
+   },
+   {
+    "heading": "Google Fonts",
+    "body": [
+     "This website uses Google Fonts to display text in our chosen typefaces. When a page loads, your browser requests these font files from Google's servers (fonts.googleapis.com and fonts.gstatic.com), which means your IP address is transmitted to Google as part of that standard request.",
+     "We do not control how Google handles this connection. If you would like to learn more, we encourage you to review Google's own privacy documentation."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Contacting Us (Phone, WhatsApp, Email)",
+    "body": [
+     "You can reach us by phone at 03 276 938, via WhatsApp, or by email at Cliffhangerleb@hotmail.com.",
+     "If you contact us through any of these channels, we process the contact details you provide (such as your name, phone number, or email address) and the content of your message, solely to respond to your inquiry and assist you. We do not use this information for marketing or share it with third parties beyond what is needed to reply (for example, our email or messaging provider that carries the message)."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Server Logs",
+    "body": [
+     "Like most websites, this site is hosted by a third-party provider ([HOSTING PROVIDER]), which may automatically keep standard server access logs (such as IP address, date and time of access, and pages requested) for security and technical maintenance purposes. These logs are not used to identify individual visitors or to build profiles."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Cookies",
+    "body": [
+     "This website does not use tracking or advertising cookies. Any cookies present, if any, are strictly functional and necessary for the site to display correctly — for example, remembering basic display preferences. We do not use cookies to track your browsing behavior."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "How Long We Keep Data",
+    "body": [
+     "Messages and contact details sent to us via phone, WhatsApp, or email are kept only for as long as needed to handle your inquiry and for our general correspondence records, and are retained for [RETENTION PERIOD]. Server access logs held by our hosting provider are kept according to that provider's standard retention schedule."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Who We Share Information With",
+    "body": [
+     "We do not sell, rent, or share your information with third parties for marketing purposes. The only parties involved are the messaging and email service providers (such as WhatsApp and our email provider) used to carry your message to us and our reply back to you, and our hosting provider, which may hold standard server logs as described above."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Your Rights",
+    "body": [
+     "You have the right to ask us what information we hold about you (if any), to request that we correct it, or to request that we delete it. Because this site does not store accounts or form submissions, this mainly concerns any correspondence you have sent us directly. To exercise these rights, simply contact us using the details below."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Children's Privacy",
+    "body": [
+     "This website is intended for a general audience and is not directed at children. We do not knowingly collect personal information from children through this site."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Changes to This Policy",
+    "body": [
+     "We may update this Privacy Policy from time to time to reflect changes to our website or practices. Any updates will be posted on this page with a revised \"Last updated\" date."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Contact Us",
+    "body": [
+     "If you have any questions about this Privacy Policy or wish to exercise your privacy rights, please contact us at [PRIVACY EMAIL/CONTACT], by phone at 03 276 938, via WhatsApp, or by email at Cliffhangerleb@hotmail.com.",
+     "Last updated: [DATE]"
+    ],
+    "bullets": []
+   }
+  ],
+  "disclaimer": ""
+ },
+ "terms": {
+  "slug": "terms",
+  "title": "Terms of Service",
+  "intro": "These Terms of Service (\"Terms\") govern your use of the Cliffhanger website (the \"Site\"), operated by Cliffhanger — Climbing Equipments & Outdoor Gears, [COMPANY LEGAL NAME] (\"Cliffhanger\", \"we\", \"us\"), a Lebanon-based retailer of climbing and outdoor gear since 2003. By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, please do not use the Site.",
+  "sections": [
+   {
+    "heading": "1. Acceptance of Terms",
+    "body": [
+     "By browsing or otherwise using this Site, you confirm that you have read, understood, and agree to these Terms. We may update these Terms from time to time, and your continued use of the Site after changes are posted constitutes acceptance of the revised Terms."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "2. Informational Site — Not an Online Store",
+    "body": [
+     "This Site is provided for informational purposes only. It displays our product catalogue and company information so you can browse the climbing and outdoor gear we carry.",
+     "This Site is not an online store and does not offer goods for sale directly. There is no checkout, no online payment, and no order placement functionality on the Site. Nothing displayed on the Site constitutes an offer to sell that can be accepted by simply using the Site.",
+     "All purchases, enquiries, reservations, and price or availability confirmations take place offline, directly with our team, by phone, WhatsApp, or email."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "3. Accuracy of Product Information",
+    "body": [
+     "Product descriptions, specifications, and images on the Site are provided in good faith, based on information supplied by our partner manufacturers. We make reasonable efforts to keep this information current and accurate, but it may contain errors, omissions, or outdated details, and may be updated or changed without notice.",
+     "Availability and pricing are not guaranteed by anything shown on the Site and must be confirmed directly with Cliffhanger at the time of your enquiry."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "4. Intellectual Property",
+    "body": [
+     "All content on this Site — including text, layout, graphics, and company information — is the property of Cliffhanger and protected by applicable intellectual property laws, unless otherwise stated.",
+     "Brand names, trademarks, logos, and product images belonging to Edelrid, Tendon, Red Chili, and other manufacturers remain the property of their respective owners and are used on this Site for informational and identification purposes only."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "5. Safety Disclaimer",
+    "body": [
+     "Climbing, mountaineering, and related outdoor activities are inherently dangerous and can result in serious injury or death, even when proper equipment and technique are used.",
+     "All climbing and safety equipment displayed on this Site must be used strictly in accordance with the manufacturer's instructions, and only by persons who have received appropriate training in its use. Equipment that is misused, improperly maintained, improperly inspected, or used beyond its intended purpose can fail and cause harm.",
+     "Cliffhanger provides product information for reference only and does not provide climbing instruction, training, or safety certification through this Site. Cliffhanger accepts no liability for injury, death, or damage arising from the misuse, improper selection, improper fitting, or improper maintenance of any equipment shown on the Site."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "6. Limitation of Liability",
+    "body": [
+     "To the fullest extent permitted by law, Cliffhanger shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of, or inability to use, this Site, or from reliance on any information contained on it.",
+     "The Site is provided \"as is\" and \"as available\" without warranties of any kind, whether express or implied, regarding its accuracy, completeness, or fitness for a particular purpose."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "7. External Links",
+    "body": [
+     "This Site may contain links to third-party websites, including manufacturer sites such as Edelrid and Tendon, for your convenience. Cliffhanger does not control and is not responsible for the content, accuracy, or practices of any linked external site. Visiting a linked site is at your own risk and subject to that site's own terms."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "8. Governing Law",
+    "body": [
+     "These Terms are governed by and construed in accordance with the laws of Lebanon [confirm]. Any disputes arising from these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the competent courts of Lebanon [confirm]."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "9. Changes to These Terms",
+    "body": [
+     "We may revise these Terms at any time by updating this page. Please review these Terms periodically. Continued use of the Site after any changes take effect constitutes your acceptance of the updated Terms."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "10. Contact Us",
+    "body": [
+     "If you have any questions about these Terms, or would like to enquire about a product's availability or price, please contact us."
+    ],
+    "bullets": [
+     "Phone: [PLACEHOLDER]",
+     "WhatsApp: [PLACEHOLDER]",
+     "Email: [PLACEHOLDER]",
+     "Address: [PLACEHOLDER], Lebanon"
+    ]
+   }
+  ],
+  "disclaimer": "Last updated: [DATE]"
+ },
+ "returns": {
+  "slug": "returns",
+  "title": "Returns & Exchanges",
+  "intro": "At Cliffhanger, we've been outfitting climbers and outdoor adventurers in Lebanon since 2003. Because your safety matters to us, we've kept our returns and exchanges policy straightforward and honest. Since our website doesn't process online orders, every purchase and every return is handled personally with our team — reach out and we'll take care of you.",
+  "sections": [
+   {
+    "heading": "How to Request a Return or Exchange",
+    "body": [
+     "All purchases at Cliffhanger are arranged directly with our shop, and returns or exchanges work the same way — no online checkout, no online return forms. Simply get in touch with us and we'll guide you through the next steps."
+    ],
+    "bullets": [
+     "Call or SMS us at 03 276 938",
+     "Message us on WhatsApp at 03 276 938",
+     "Email us at Cliffhangerleb@hotmail.com",
+     "Have your proof of purchase (receipt, invoice, or order confirmation) ready when you contact us"
+    ]
+   },
+   {
+    "heading": "Return Window & Condition Requirements",
+    "body": [
+     "For non-safety-critical items, we accept returns or exchanges within [14 DAYS / PLACEHOLDER: RETURN WINDOW] of purchase, provided the item is unused, in its original condition, and in its original packaging with all tags and accessories included.",
+     "A valid proof of purchase is required for all returns and exchanges."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Safety-Critical Climbing Equipment",
+    "body": [
+     "Climbing is a life-safety activity, and this shapes how we handle certain products. For hygiene and safety reasons, load-bearing and safety-critical equipment — including but not limited to ropes, harnesses, slings, helmets, and hardware (carabiners, belay devices, protection) — generally cannot be returned or exchanged once it has been used, opened, or if its packaging or seal has been compromised in a way that could affect its safety integrity.",
+     "This is standard practice across the climbing industry: once the safety history of a piece of gear can no longer be fully guaranteed, we cannot respectfully resell it or respectfully accept it back into stock. We appreciate your understanding — this policy exists to protect every climber who shops with us."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Manufacturing Defects & Manufacturer Warranty",
+    "body": [
+     "If an item shows a manufacturing defect, it is covered under the manufacturer's warranty (Edelrid, Tendon, and other brands we carry). Contact us with details and proof of purchase, and we'll help you process the warranty claim with the manufacturer.",
+     "Manufacturer warranties cover defects in materials or workmanship — they do not cover normal wear and tear, damage from misuse, or damage from improper care or storage."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Refunds & Exchanges",
+    "body": [
+     "Once we've confirmed your return or exchange is eligible, refunds and exchanges are issued via [PLACEHOLDER: REFUND METHOD — e.g. store credit, exchange for equal-value item, or original payment method]. Please allow [PLACEHOLDER: PROCESSING TIME] for your refund or exchange to be completed."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Return Shipping & Transport Costs",
+    "body": [
+     "[PLACEHOLDER: WHO COVERS RETURN SHIPPING/TRANSPORT COSTS — e.g. the customer is responsible for delivering the item to the shop, or Cliffhanger arranges pickup at the customer's expense / at no charge]. If you're outside Beirut or unable to visit the shop in person, contact us and we'll discuss the best way to arrange your return."
+    ],
+    "bullets": []
+   },
+   {
+    "heading": "Your Rights Are Protected",
+    "body": [
+     "Nothing in this policy affects your statutory consumer rights under Lebanese law. This policy describes how Cliffhanger handles returns and exchanges in addition to, not instead of, those rights."
+    ],
+    "bullets": []
+   }
+  ],
+  "disclaimer": "Last updated: [PLACEHOLDER: DATE]"
+ }
+}

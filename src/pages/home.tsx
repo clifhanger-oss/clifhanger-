@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import { Phone, Mail, Instagram, Facebook, ArrowRight, MapPin, Menu, X } from "lucide-react";
 import { MountainBackground } from "@/components/mountain-background";
 import { ProductModal } from "@/components/product-modal";
@@ -494,18 +495,18 @@ export default function Home() {
             <div>
               <h3 className="text-gray-200 font-bold mb-4 font-sans tracking-tight text-sm">Legal</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors inline-block">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors inline-block">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors inline-block">Return Policies</a></li>
+                <li><Link href="/privacy" className="hover:text-white transition-colors inline-block">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors inline-block">Terms of Service</Link></li>
+                <li><Link href="/returns" className="hover:text-white transition-colors inline-block">Returns &amp; Exchanges</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-gray-200 font-bold mb-4 font-sans tracking-tight text-sm">Compliance</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors inline-block">CE Declarations</a></li>
-                <li><a href="#" className="hover:text-white transition-colors inline-block">UIAA Certificates</a></li>
-                <li><a href="#" className="hover:text-white transition-colors inline-block">Inspection Logs</a></li>
+                <li><Link href="/certifications" className="hover:text-white transition-colors inline-block">Certifications</Link></li>
+                <li><Link href="/certifications" className="hover:text-white transition-colors inline-block">CE &amp; UIAA Standards</Link></li>
+                <li><a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-block">Product Enquiries</a></li>
               </ul>
             </div>
           </div>

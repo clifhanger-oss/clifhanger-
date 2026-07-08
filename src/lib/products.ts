@@ -1,6 +1,6 @@
-// AUTO-GENERATED from the DWB 2026 catalogs (Sport / Work Safety / RC) and
-// official TENDON product pages (mytendon.com). Categories follow the catalogs'
-// own section headers. Regenerate via the extraction pipeline; do not hand-edit.
+// AUTO-GENERATED. Products + categories per the client's authoritative catalog
+// list (Edelrid Sport / Work Safety + Red Chili shoes) plus TENDON ropes.
+// Regenerate via the extraction pipeline; do not hand-edit rows.
 
 export type ProductSpec = { label: string; value: string };
 export type ProductWeight = { length: string; weight: string };
@@ -28,7 +28,7 @@ export type Product = {
   origin?: string | null;
 };
 
-export const CATEGORY_ORDER: string[] = ["Belay Devices", "Carabiners & Quickdraws", "Ropes", "Pulleys", "Rope Clamps & Ascenders", "Descenders & Rescue", "Harnesses", "Helmets", "Via Ferrata", "Slings & Webbing", "Hardware Accessories", "Spare Parts", "Climbing Shoes — High-End", "Climbing Shoes — Performance", "Chalk Bags", "Chalk & Accessories", "Crash Pads"];
+export const CATEGORY_ORDER: string[] = ["Belay Devices", "Carabiners", "Ropes", "Pulleys", "Descenders & Rescue", "Hardware Accessories", "Spare Parts", "Helmets", "Climbing Shoes — High-End", "Climbing Shoes — Performance", "Chalk Bags", "Accessories"];
 
 export const PRODUCTS: Product[] = [
   {
@@ -86,57 +86,6 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "73742",
-    "code": "73742",
-    "name": "Giga Jul",
-    "title": "Giga Jul",
-    "category": "Belay Devices",
-    "articleNo": "73742",
-    "type": "ST",
-    "image": "/images/products/73742.webp",
-    "status": "BELAY",
-    "rating": "EN 15151-2",
-    "available": true,
-    "description": "The most versatile ever belay device. The GIGA JUL is a standard and assisted braking tuber in one. The assisted braking function which supports the braking force can be activated or disabled by an intelligent mechanism. For situation-dependent belaying and abseiling, especially in alpine terrain.",
-    "features": [
-      "Small eyelet for releasing unit with a carabiner when bringing up your partner",
-      "Suitable for 7.1–10.0 mm ropes",
-      "Intelligent hybrid design: body made of ultra-light aluminum, areas susceptible to abrasion made of robust stainless steel",
-      "Guide mode: simple and rapid abseiling and bringing up seconds plus comfortable belaying from a belay station as a doubled rope",
-      "Assisted braking guide mode: brake boost for catching falls in leader mode",
-      "Rope can be paid out faster in assisted braking guide mode by holding the device in the 'open' position with the thumb"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "EN 15151-2"
-      },
-      {
-        "label": "Material",
-        "value": "Steel, Polyamide"
-      },
-      {
-        "label": "Approved rope diameter",
-        "value": "7.1–10 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "121 g"
-      }
-    ],
-    "attributes": [
-      "Geometric",
-      "Manual"
-    ],
-    "colors": [
-      "slate 663"
-    ],
-    "weights": [],
-    "weight": "121 g",
-    "certification": "EN 15151-2",
-    "origin": null
-  },
-  {
     "id": "71832",
     "code": "71832",
     "name": "Jul 2",
@@ -185,58 +134,6 @@ export const PRODUCTS: Product[] = [
     ],
     "weights": [],
     "weight": "105 g",
-    "certification": "EN 15151-2",
-    "origin": "Made in Germany"
-  },
-  {
-    "id": "73831",
-    "code": "73831",
-    "name": "Mega Jul II",
-    "title": "Mega Jul II",
-    "category": "Belay Devices",
-    "articleNo": "73831",
-    "type": "ST",
-    "image": "/images/products/73831.webp",
-    "status": "BELAY",
-    "rating": "EN 15151-2",
-    "available": true,
-    "description": "Our versatile, lightweight, and durable stainless steel belay device and descender.",
-    "features": [
-      "Robust solid stainless steel construction",
-      "The increased braking effect of the new device geometry assists the belayer when arresting a fall as a leader",
-      "Faster rope payout when lead climbing thanks to the thumb-loop-based operation",
-      "Additional eyelet for unlocking the device in follower mode using a carabiner",
-      "Suitable for ropes with a diameter of 7.8 to 10.0 mm",
-      "Suitable for belaying a leader, bringing up one or two followers, and rappelling"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "EN 15151-2"
-      },
-      {
-        "label": "Material",
-        "value": "Steel"
-      },
-      {
-        "label": "Approved rope diameter",
-        "value": "7.8–10.0 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "75 g"
-      }
-    ],
-    "attributes": [
-      "Made in Germany",
-      "Geometric",
-      "Manual"
-    ],
-    "colors": [
-      "slate 663"
-    ],
-    "weights": [],
-    "weight": "75 g",
     "certification": "EN 15151-2",
     "origin": "Made in Germany"
   },
@@ -438,50 +335,11 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "73731",
-    "code": "73731",
-    "name": "Antitwist",
-    "title": "Antitwist",
-    "category": "Carabiners & Quickdraws",
-    "articleNo": "73731",
-    "type": "V10",
-    "image": "/images/products/73731.webp",
-    "status": "QUICKDRAW",
-    "rating": "—",
-    "available": true,
-    "description": "The ANTITWIST fixes the lower carabiner and sling preventing unwanted rotation of the biner during use. Available for webbing with a width of 11 and 16 mm. Package contents: 10 pcs.",
-    "features": [],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "TPU"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "night 017",
-      "oasis 138"
-    ],
-    "weights": [
-      {
-        "length": "11 MM",
-        "weight": "30g"
-      },
-      {
-        "length": "16 MM",
-        "weight": "30g"
-      }
-    ],
-    "weight": null,
-    "certification": null,
-    "origin": null
-  },
-  {
     "id": "88271",
     "code": "88271",
     "name": "Axiom",
     "title": "Axiom",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "88271",
     "type": "ST",
     "image": "/images/products/88271.webp",
@@ -556,7 +414,7 @@ export const PRODUCTS: Product[] = [
     "code": "88272",
     "name": "Axiom Slider",
     "title": "Axiom Slider",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "88272",
     "type": "ST",
     "image": "/images/products/88272.webp",
@@ -631,7 +489,7 @@ export const PRODUCTS: Product[] = [
     "code": "73811",
     "name": "Bulletproof Screw",
     "title": "Bulletproof Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73811",
     "type": "ST",
     "image": "/images/products/73811.webp",
@@ -707,7 +565,7 @@ export const PRODUCTS: Product[] = [
     "code": "73805",
     "name": "HMS Bruce Steel Screw FG II",
     "title": "HMS Bruce Steel Screw FG II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73805",
     "type": "ST",
     "image": "/images/products/73805.webp",
@@ -779,7 +637,7 @@ export const PRODUCTS: Product[] = [
     "code": "73807",
     "name": "HMS Bruce Steel Triple FG",
     "title": "HMS Bruce Steel Triple FG",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73807",
     "type": "ST",
     "image": "/images/products/73807.webp",
@@ -852,7 +710,7 @@ export const PRODUCTS: Product[] = [
     "code": "73760",
     "name": "HMS Bullet PermaLock",
     "title": "HMS Bullet PermaLock",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73760",
     "type": "ST",
     "image": "/images/products/73760.webp",
@@ -928,7 +786,7 @@ export const PRODUCTS: Product[] = [
     "code": "73816",
     "name": "HMS Bullet Screw",
     "title": "HMS Bullet Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73816",
     "type": "ST",
     "image": "/images/products/73816.webp",
@@ -1002,7 +860,7 @@ export const PRODUCTS: Product[] = [
     "code": "73763",
     "name": "HMS Bullet Screw RFID",
     "title": "HMS Bullet Screw RFID",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73763",
     "type": "ST",
     "image": "/images/products/73763.webp",
@@ -1076,7 +934,7 @@ export const PRODUCTS: Product[] = [
     "code": "73817",
     "name": "HMS Bullet Triple",
     "title": "HMS Bullet Triple",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73817",
     "type": "ST",
     "image": "/images/products/73817.webp",
@@ -1150,7 +1008,7 @@ export const PRODUCTS: Product[] = [
     "code": "73764",
     "name": "HMS Bullet Triple RFID",
     "title": "HMS Bullet Triple RFID",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73764",
     "type": "ST",
     "image": "/images/products/73764.webp",
@@ -1224,7 +1082,7 @@ export const PRODUCTS: Product[] = [
     "code": "73799",
     "name": "HMS Magnum Screw",
     "title": "HMS Magnum Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73799",
     "type": "ST",
     "image": "/images/products/73799.webp",
@@ -1299,7 +1157,7 @@ export const PRODUCTS: Product[] = [
     "code": "73818",
     "name": "HMS Magnum Triple",
     "title": "HMS Magnum Triple",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73818",
     "type": "ST",
     "image": "/images/products/73818.webp",
@@ -1377,7 +1235,7 @@ export const PRODUCTS: Product[] = [
     "code": "73800",
     "name": "HMS Magnum Twist",
     "title": "HMS Magnum Twist",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73800",
     "type": "ST",
     "image": "/images/products/73800.webp",
@@ -1454,7 +1312,7 @@ export const PRODUCTS: Product[] = [
     "code": "73772",
     "name": "HMS Strike Screw FG II",
     "title": "HMS Strike Screw FG II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73772",
     "type": "ST",
     "image": "/images/products/73772.webp",
@@ -1528,7 +1386,7 @@ export const PRODUCTS: Product[] = [
     "code": "73769",
     "name": "HMS Strike Screw II",
     "title": "HMS Strike Screw II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73769",
     "type": "ST",
     "image": "/images/products/73769.webp",
@@ -1603,7 +1461,7 @@ export const PRODUCTS: Product[] = [
     "code": "73774",
     "name": "HMS Strike Slider FG II",
     "title": "HMS Strike Slider FG II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73774",
     "type": "ST",
     "image": "/images/products/73774.webp",
@@ -1677,7 +1535,7 @@ export const PRODUCTS: Product[] = [
     "code": "73771",
     "name": "HMS Strike Slider II",
     "title": "HMS Strike Slider II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73771",
     "type": "ST",
     "image": "/images/products/73771.webp",
@@ -1753,7 +1611,7 @@ export const PRODUCTS: Product[] = [
     "code": "73773",
     "name": "HMS Strike Triple FG II",
     "title": "HMS Strike Triple FG II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73773",
     "type": "ST",
     "image": "/images/products/73773.webp",
@@ -1827,7 +1685,7 @@ export const PRODUCTS: Product[] = [
     "code": "73770",
     "name": "HMS Strike Triple II",
     "title": "HMS Strike Triple II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73770",
     "type": "ST",
     "image": "/images/products/73770.webp",
@@ -1901,7 +1759,7 @@ export const PRODUCTS: Product[] = [
     "code": "73819",
     "name": "HMS Strike Twist II",
     "title": "HMS Strike Twist II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73819",
     "type": "ST",
     "image": "/images/products/73819.webp",
@@ -1970,140 +1828,11 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "73826",
-    "code": "73826",
-    "name": "Jim Steel Set II",
-    "title": "Jim Steel Set II",
-    "category": "Carabiners & Quickdraws",
-    "articleNo": "73826",
-    "type": "V5",
-    "image": "/images/products/73826.webp",
-    "status": "QUICKDRAW",
-    "rating": "EN 566, EN 12275",
-    "available": true,
-    "description": "Extremely robust climbing gym quickdraw set with steel carabiner. Package contents: 5 pcs.",
-    "features": [
-      "Flat webbing of robust and durable polyester",
-      "Internal wear indicator made of red polyester",
-      "Rubber abrasion protector minimizes noise",
-      "Abrasion protector acts as a spacer and minimizes sling wear",
-      "Jim Steel Set with innovative hanger plate: minimizes wall wear, prevents trapped fingers, and reduces noise"
-    ],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Steel"
-      },
-      {
-        "label": "Closure",
-        "value": "Bent"
-      },
-      {
-        "label": "Fmax. major axis",
-        "value": "30 kN"
-      },
-      {
-        "label": "Fmax. open",
-        "value": "3 kN"
-      },
-      {
-        "label": "Fmax. minor axis",
-        "value": "10 kN"
-      },
-      {
-        "label": "Gate opening",
-        "value": "27 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "1750g"
-      }
-    ],
-    "attributes": [
-      "Made in Germany",
-      "Technologies"
-    ],
-    "colors": [
-      "night 017"
-    ],
-    "weights": [],
-    "weight": "1750g",
-    "certification": "EN 566, EN 12275",
-    "origin": "Made in Germany"
-  },
-  {
-    "id": "73827",
-    "code": "73827",
-    "name": "Jim Steel Wire Set II",
-    "title": "Jim Steel Wire Set II",
-    "category": "Carabiners & Quickdraws",
-    "articleNo": "73827",
-    "type": "V5",
-    "image": "/images/products/73827.webp",
-    "status": "QUICKDRAW",
-    "rating": "EN 566, EN 12275",
-    "available": true,
-    "description": "Extremely robust climbing gym quickdraw set with steel carabiner. Available with either a full gate or wire gate carabiner. Package contents: 5 pcs.",
-    "features": [
-      "Flat webbing of robust and durable polyester",
-      "Internal wear indicator made of red polyester",
-      "Rubber abrasion protector minimizes noise",
-      "Abrasion protector acts as a spacer and minimizes sling wear",
-      "Jim Steel Wire Set with 8 mm screw link"
-    ],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Steel"
-      },
-      {
-        "label": "Closure",
-        "value": "Wire"
-      },
-      {
-        "label": "Fmax. major axis",
-        "value": "30 kN"
-      },
-      {
-        "label": "Fmax. open",
-        "value": "10 kN"
-      },
-      {
-        "label": "Fmax. minor axis",
-        "value": "10 kN"
-      },
-      {
-        "label": "Gate opening",
-        "value": "27 mm"
-      }
-    ],
-    "attributes": [
-      "Made in Germany",
-      "Technologies"
-    ],
-    "colors": [
-      "night 017"
-    ],
-    "weights": [
-      {
-        "length": "10 CM",
-        "weight": "1150g"
-      },
-      {
-        "length": "18 CM",
-        "weight": "1210g"
-      }
-    ],
-    "weight": null,
-    "certification": "EN 566, EN 12275",
-    "origin": "Made in Germany"
-  },
-  {
     "id": "85214",
     "code": "85214",
     "name": "Kiwi Captive",
     "title": "Kiwi Captive",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "85214",
     "type": "ST",
     "image": "/images/products/85214.webp",
@@ -2127,7 +1856,7 @@ export const PRODUCTS: Product[] = [
     "code": "73765",
     "name": "Kiwi Screw",
     "title": "Kiwi Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73765",
     "type": "ST",
     "image": "/images/products/73765.webp",
@@ -2201,7 +1930,7 @@ export const PRODUCTS: Product[] = [
     "code": "73755",
     "name": "Kiwi Slider",
     "title": "Kiwi Slider",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73755",
     "type": "ST",
     "image": "/images/products/73755.webp",
@@ -2278,7 +2007,7 @@ export const PRODUCTS: Product[] = [
     "code": "73767",
     "name": "Kiwi Triple",
     "title": "Kiwi Triple",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73767",
     "type": "ST",
     "image": "/images/products/73767.webp",
@@ -2354,7 +2083,7 @@ export const PRODUCTS: Product[] = [
     "code": "73758",
     "name": "Mission Sixpack II",
     "title": "Mission Sixpack II",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73758",
     "type": "V6",
     "image": "/images/products/73758.webp",
@@ -2414,7 +2143,7 @@ export const PRODUCTS: Product[] = [
     "code": "71806",
     "name": "Nineteen G Sixpack",
     "title": "Nineteen G Sixpack",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "71806",
     "type": "V6",
     "image": "/images/products/71806.webp",
@@ -2485,7 +2214,7 @@ export const PRODUCTS: Product[] = [
     "code": "85203",
     "name": "Oval Power 2500 Permalock",
     "title": "Oval Power 2500 Permalock",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "85203",
     "type": "ST",
     "image": "/images/products/85203.webp",
@@ -2561,7 +2290,7 @@ export const PRODUCTS: Product[] = [
     "code": "85204",
     "name": "Oval Power 2500 Screw",
     "title": "Oval Power 2500 Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "85204",
     "type": "ST",
     "image": "/images/products/85204.webp",
@@ -2638,7 +2367,7 @@ export const PRODUCTS: Product[] = [
     "code": "85205",
     "name": "Oval Power 2500 Triple",
     "title": "Oval Power 2500 Triple",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "85205",
     "type": "ST",
     "image": "/images/products/85205.webp",
@@ -2715,7 +2444,7 @@ export const PRODUCTS: Product[] = [
     "code": "85217",
     "name": "Oval Power 2500 Triple NFC",
     "title": "Oval Power 2500 Triple NFC",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "85217",
     "type": "ST",
     "image": "/images/products/85217.webp",
@@ -2791,7 +2520,7 @@ export const PRODUCTS: Product[] = [
     "code": "73779",
     "name": "Pure Screw III",
     "title": "Pure Screw III",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73779",
     "type": "ST",
     "image": "/images/products/73779.webp",
@@ -2869,11 +2598,11 @@ export const PRODUCTS: Product[] = [
     "code": "73791",
     "name": "Pure Set Sixpack",
     "title": "Pure Set Sixpack",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73791",
     "type": "V6",
     "image": "/images/products/73791.webp",
-    "status": "QUICKDRAW",
+    "status": "CARABINER",
     "rating": "EN 566, EN 12275",
     "available": true,
     "description": "The robust PURE SET in a sixpack.",
@@ -2937,7 +2666,7 @@ export const PRODUCTS: Product[] = [
     "code": "73780",
     "name": "Pure Slider III",
     "title": "Pure Slider III",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73780",
     "type": "ST",
     "image": "/images/products/73780.webp",
@@ -3014,7 +2743,7 @@ export const PRODUCTS: Product[] = [
     "code": "73778",
     "name": "Pure Triple III",
     "title": "Pure Triple III",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73778",
     "type": "ST",
     "image": "/images/products/73778.webp",
@@ -3090,11 +2819,11 @@ export const PRODUCTS: Product[] = [
     "code": "73793",
     "name": "Pure Wire Set Sixpack",
     "title": "Pure Wire Set Sixpack",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "73793",
     "type": "V6",
     "image": "/images/products/73793.webp",
-    "status": "QUICKDRAW",
+    "status": "CARABINER",
     "rating": "EN 566, EN 12275",
     "available": true,
     "description": "The PURE WIRE SET in a sixpack.",
@@ -3154,133 +2883,11 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "73798",
-    "code": "73798",
-    "name": "Screwlink 10mm",
-    "title": "Screwlink 10mm",
-    "category": "Carabiners & Quickdraws",
-    "articleNo": "73798",
-    "type": "ST",
-    "image": "/images/products/73798.webp",
-    "status": "STEEL LINK",
-    "rating": "EN 12275, EN 362",
-    "available": true,
-    "description": "Certified oval steel screw link.",
-    "features": [],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Steel"
-      },
-      {
-        "label": "Closure",
-        "value": "Screw"
-      },
-      {
-        "label": "Carabiner shape",
-        "value": "Oval"
-      },
-      {
-        "label": "Fmax. major axis",
-        "value": "55 kN"
-      },
-      {
-        "label": "Fmax. open",
-        "value": "35 kN"
-      },
-      {
-        "label": "Fmax. minor axis",
-        "value": "10 kN"
-      },
-      {
-        "label": "Width",
-        "value": "45 mm"
-      },
-      {
-        "label": "Length",
-        "value": "90 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "137g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "silver 006"
-    ],
-    "weights": [],
-    "weight": "137g",
-    "certification": "EN 12275, EN 362",
-    "origin": null
-  },
-  {
-    "id": "73806",
-    "code": "73806",
-    "name": "Screwlink 8mm II",
-    "title": "Screwlink 8mm II",
-    "category": "Carabiners & Quickdraws",
-    "articleNo": "73806",
-    "type": "ST",
-    "image": "/images/products/73806.webp",
-    "status": "STEEL LINK",
-    "rating": "EN 12275, EN 362",
-    "available": true,
-    "description": "Certified oval steel screw link.",
-    "features": [],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Steel"
-      },
-      {
-        "label": "Closure",
-        "value": "Screw"
-      },
-      {
-        "label": "Carabiner shape",
-        "value": "Oval"
-      },
-      {
-        "label": "Fmax. major axis",
-        "value": "55 kN"
-      },
-      {
-        "label": "Fmax. open",
-        "value": "35 kN"
-      },
-      {
-        "label": "Fmax. minor axis",
-        "value": "10 kN"
-      },
-      {
-        "label": "Width",
-        "value": "36 mm"
-      },
-      {
-        "label": "Length",
-        "value": "73 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "77g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "silver 006"
-    ],
-    "weights": [],
-    "weight": "77g",
-    "certification": "EN 12275, EN 362",
-    "origin": null
-  },
-  {
     "id": "88291",
     "code": "88291",
     "name": "Steel HMS Screw",
     "title": "Steel HMS Screw",
-    "category": "Carabiners & Quickdraws",
+    "category": "Carabiners",
     "articleNo": "88291",
     "type": "ST",
     "image": "/images/products/88291.webp",
@@ -3917,81 +3524,15 @@ export const PRODUCTS: Product[] = [
     "origin": "Made in Germany"
   },
   {
-    "id": "85402",
-    "code": "85402",
-    "name": "Warp",
-    "title": "Warp",
-    "category": "Pulleys",
-    "articleNo": "85402",
-    "type": "ST",
-    "image": "/images/products/85402.webp",
-    "status": "PULLEY",
-    "rating": "EN 12278",
-    "available": true,
-    "description": "The WARP is a highly efficient, ball-bearing double pulley. Made from stainless steel, the wear-resistant rollers are optimized for use with steel ropes but also work perfectly in systems with fabric ropes. The large opening offers enough space for two carabiners. The connection point at the top enables use in a redundant system with double rope guidance. The WARP is primarily intended for use in adventure parks and on auxiliary cable cars.",
-    "features": [
-      "Stainless steel rollers",
-      "Ball-bearing double pulley for outstanding efficiency",
-      "Large attachment eyelet for two carabiners",
-      "Top eyelet enables double rope guidance as a redundant system"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "EN 12278"
-      },
-      {
-        "label": "Material",
-        "value": "Aluminium/Steel"
-      },
-      {
-        "label": "Width",
-        "value": "100 mm"
-      },
-      {
-        "label": "Height",
-        "value": "85 mm"
-      },
-      {
-        "label": "Efficiency",
-        "value": "92 %"
-      },
-      {
-        "label": "Working Load Limit",
-        "value": "1000 kg"
-      },
-      {
-        "label": "Approved rope diameter",
-        "value": "< 13 mm"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "32 kN"
-      },
-      {
-        "label": "Weight",
-        "value": "303g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "oasis 138"
-    ],
-    "weights": [],
-    "weight": "303g",
-    "certification": "EN 12278",
-    "origin": null
-  },
-  {
     "id": "88250",
     "code": "88250",
     "name": "Foot Cruiser right",
     "title": "Foot Cruiser right",
-    "category": "Rope Clamps & Ascenders",
+    "category": "Descenders & Rescue",
     "articleNo": "88250",
     "type": "ST",
     "image": "/images/products/88250.webp",
-    "status": "ASCENDER",
+    "status": "RESCUE",
     "rating": "—",
     "available": true,
     "description": "Sophisticated foot ascender that enables efficient and low-fatigue climbing on the rope. A pre-installed but removable rope safety device prevents unintentional release. The locking mechanism of the FOOT CRUISER is easy to operate - even with your feet. The ascent loop is fitted with an abrasion protector. The FOOT CRUISER is available for right or left feet.",
@@ -4022,90 +3563,6 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "105g",
     "certification": null,
-    "origin": null
-  },
-  {
-    "id": "88253",
-    "code": "88253",
-    "name": "Hand Cruiser Left",
-    "title": "Hand Cruiser Left",
-    "category": "Rope Clamps & Ascenders",
-    "articleNo": "88253",
-    "type": "ST",
-    "image": "/images/products/88253.webp",
-    "status": "ASCENDER",
-    "rating": "EN 12841-B; EN 567",
-    "available": true,
-    "description": "Ergonomically shaped hand ascender for a comfortable ascent on the rope. The curved design increases comfort and reduces friction in the system. A large eyelet allows several carabiners to be attached; a smaller eyelet slightly higher is ideal for setting up a directional anchor. Besides, the secondary hand can comfortably grasp the HAND CRUISER at the top during ascent.",
-    "features": [
-      "For 8.0–13.0 mm diameter kernmantle ropes",
-      "Right-hand/left-hand version in different colors for easy identification",
-      "Cams for optimal grip on iced or muddy ropes",
-      "The upper part of the ascender can be grasped with the other hand for two-handed ascents"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "EN 12841-B; EN 567"
-      },
-      {
-        "label": "Approved rope diameter",
-        "value": "8 - 13 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "200g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "silver 006"
-    ],
-    "weights": [],
-    "weight": "200g",
-    "certification": "EN 12841-B; EN 567",
-    "origin": null
-  },
-  {
-    "id": "88254",
-    "code": "88254",
-    "name": "Hand Cruiser Right",
-    "title": "Hand Cruiser Right",
-    "category": "Rope Clamps & Ascenders",
-    "articleNo": "88254",
-    "type": "ST",
-    "image": "/images/products/88254.webp",
-    "status": "ASCENDER",
-    "rating": "EN 12841-B; EN 567",
-    "available": true,
-    "description": "Ergonomically shaped hand ascender for a comfortable ascent on the rope. The curved design increases comfort and reduces friction in the system. A large eyelet allows several carabiners to be attached; a smaller eyelet slightly higher is ideal for setting up a directional anchor. Besides, the secondary hand can comfortably grasp the HAND CRUISER at the top during ascent.",
-    "features": [
-      "For 8.0–13.0 mm diameter kernmantle ropes",
-      "Right-hand/left-hand version in different colors for easy identification",
-      "Cams for optimal grip on iced or muddy ropes",
-      "The upper part of the ascender can be grasped with the other hand for two-handed ascents"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "EN 12841-B; EN 567"
-      },
-      {
-        "label": "Approved rope diameter",
-        "value": "8 - 13 mm"
-      },
-      {
-        "label": "Weight",
-        "value": "200g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "night 017"
-    ],
-    "weights": [],
-    "weight": "200g",
-    "certification": "EN 12841-B; EN 567",
     "origin": null
   },
   {
@@ -4164,6 +3621,53 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
+    "id": "88942",
+    "code": "88942",
+    "name": "Mini Rig",
+    "title": "Mini Rig",
+    "category": "Descenders & Rescue",
+    "articleNo": "88942",
+    "type": "ST",
+    "image": "/images/products/88942.webp",
+    "status": "RESCUE",
+    "rating": "CNB/P 11.114 PfE",
+    "available": true,
+    "description": "Small, lightweight aluminium rigging plate suitable for extending from one to three anchor points.",
+    "features": [
+      "Hole diameter: 20 mm",
+      "Central opening can take up to three carabiners",
+      "Wrought construction for optimum material utilisation. Low weight and high strength",
+      "6 mm thick",
+      "Maximum breaking strength: 36 kN"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "CNB/P 11.114 PfE"
+      },
+      {
+        "label": "Material",
+        "value": "Aluminium"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "30kN"
+      },
+      {
+        "label": "Weight",
+        "value": "62g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "orange 227"
+    ],
+    "weights": [],
+    "weight": "62g",
+    "certification": "CNB/P 11.114 PfE",
+    "origin": null
+  },
+  {
     "id": "88920",
     "code": "88920",
     "name": "Rescue 8",
@@ -4214,100 +3718,323 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "74942",
-    "code": "74942",
-    "name": "Joker III",
-    "title": "Joker III",
-    "category": "Harnesses",
-    "articleNo": "74942",
+    "id": "84037",
+    "code": "84037",
+    "name": "Cupid Swivel Mini",
+    "title": "Cupid Swivel Mini",
+    "category": "Hardware Accessories",
+    "articleNo": "84037",
     "type": "ST",
-    "image": "/images/products/74942.webp",
-    "status": "HARNESS",
-    "rating": "EN 12277 Typ C, UIAA 105",
+    "image": "/images/products/84037.webp",
+    "status": "HARDWARE",
+    "rating": "PPE-R/11.135",
     "available": true,
-    "description": "The JOKER is a highly adjustable sit harness with a polyamide central ring that is ideal for courses and rental usage. The harness is primarily made from polyester, which makes it particularly robust and durable. For enhanced safety during rental usage, the gear loop is made from load-bearing material.",
+    "description": "The ball-bearing-mounted swivel for connecting rope elements, slings, and metal components is ideal for rope bridges, directly tying in haul bags, and creating connections for uses where the shortest possible system length is required. The centering geometrics ensure that loads on the CUPID SWIVEL MINI are ideally positioned at all times.",
     "features": [
-      "Stitched webbing terminations designed so that straps cannot be completely unthreaded",
-      "Integrated RFID-Chip",
-      "Classic design made from 45 mm polyester webbing",
-      "Central ring made from polyamide",
-      "Slide Block buckles on the waist belt and leg loops offer infinite adjustability and make the harness easy to put on and take off",
-      "Right/left leg loop markings and replaceable, elasticated bum straps make it easier to put on the harness correctly",
-      "Red wear indicator in all load-bearing straps on the waist belt and leg loops",
-      "High-strength gear loop for additional safety in the rental sector"
+      "Small, ball-bearing-mounted swivel rotates reliably even under high loads"
     ],
     "specs": [
       {
-        "label": "Material",
-        "value": "Polyester"
+        "label": "Certification",
+        "value": "PPE-R/11.135"
       },
       {
-        "label": "Weight",
-        "value": "485g"
+        "label": "Material",
+        "value": "Aluminium"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "23 kN"
       }
     ],
-    "attributes": [
-      "UIAA",
-      "Indicator",
-      "Adjustable leg loops",
-      "Fair Wear",
-      "Technologies"
-    ],
+    "attributes": [],
     "colors": [
-      "night-oasis 219"
+      "icemint-night 377"
     ],
     "weights": [],
-    "weight": "485g",
-    "certification": "EN 12277 Typ C, UIAA 105",
+    "weight": null,
+    "certification": "PPE-R/11.135",
     "origin": null
   },
   {
-    "id": "74943",
-    "code": "74943",
-    "name": "Joker Junior III",
-    "title": "Joker Junior III",
-    "category": "Harnesses",
-    "articleNo": "74943",
+    "id": "88253",
+    "code": "88253",
+    "name": "Hand Cruiser Left",
+    "title": "Hand Cruiser Left",
+    "category": "Hardware Accessories",
+    "articleNo": "88253",
     "type": "ST",
-    "image": "/images/products/74943.webp",
-    "status": "HARNESS",
-    "rating": "EN 12277 Typ C, UIAA 105",
+    "image": "/images/products/88253.webp",
+    "status": "HARDWARE",
+    "rating": "EN 12841-B; EN 567",
     "available": true,
-    "description": "The JOKER JUNIOR is a highly adjustable sit harness with a polyamide central ring that is ideal for courses and rental usage. The harness is primarily made from polyester, which makes it particularly robust and durable. For enhanced safety during rental usage, the gear loop is made from load-bearing material.",
+    "description": "Ergonomically shaped hand ascender for a comfortable ascent on the rope. The curved design increases comfort and reduces friction in the system. A large eyelet allows several carabiners to be attached; a smaller eyelet slightly higher is ideal for setting up a directional anchor. Besides, the secondary hand can comfortably grasp the HAND CRUISER at the top during ascent.",
     "features": [
-      "Stitched webbing terminations designed so that straps cannot be completely unthreaded",
-      "Integrated RFID-Chip",
-      "Classic design made from 45 mm polyester webbing",
-      "Central ring made from polyamide",
-      "Slide Block buckles on the waist belt and leg loops offer infinite adjustability and make the harness easy to put on and take off",
-      "Right/left leg loop markings and replaceable, elasticated bum straps make it easier to put on the harness correctly",
-      "Red wear indicator in all load-bearing straps on the waist belt and leg loops",
-      "High-strength gear loop for additional safety in the rental sector"
+      "For 8.0–13.0 mm diameter kernmantle ropes",
+      "Right-hand/left-hand version in different colors for easy identification",
+      "Cams for optimal grip on iced or muddy ropes",
+      "The upper part of the ascender can be grasped with the other hand for two-handed ascents"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "EN 12841-B; EN 567"
+      },
+      {
+        "label": "Approved rope diameter",
+        "value": "8 - 13 mm"
+      },
+      {
+        "label": "Weight",
+        "value": "200g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "silver 006"
+    ],
+    "weights": [],
+    "weight": "200g",
+    "certification": "EN 12841-B; EN 567",
+    "origin": null
+  },
+  {
+    "id": "88254",
+    "code": "88254",
+    "name": "Hand Cruiser Right",
+    "title": "Hand Cruiser Right",
+    "category": "Hardware Accessories",
+    "articleNo": "88254",
+    "type": "ST",
+    "image": "/images/products/88254.webp",
+    "status": "HARDWARE",
+    "rating": "EN 12841-B; EN 567",
+    "available": true,
+    "description": "Ergonomically shaped hand ascender for a comfortable ascent on the rope. The curved design increases comfort and reduces friction in the system. A large eyelet allows several carabiners to be attached; a smaller eyelet slightly higher is ideal for setting up a directional anchor. Besides, the secondary hand can comfortably grasp the HAND CRUISER at the top during ascent.",
+    "features": [
+      "For 8.0–13.0 mm diameter kernmantle ropes",
+      "Right-hand/left-hand version in different colors for easy identification",
+      "Cams for optimal grip on iced or muddy ropes",
+      "The upper part of the ascender can be grasped with the other hand for two-handed ascents"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "EN 12841-B; EN 567"
+      },
+      {
+        "label": "Approved rope diameter",
+        "value": "8 - 13 mm"
+      },
+      {
+        "label": "Weight",
+        "value": "200g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "night 017"
+    ],
+    "weights": [],
+    "weight": "200g",
+    "certification": "EN 12841-B; EN 567",
+    "origin": null
+  },
+  {
+    "id": "71879",
+    "code": "71879",
+    "name": "Hudson Hammer",
+    "title": "Hudson Hammer",
+    "category": "Hardware Accessories",
+    "articleNo": "71879",
+    "type": "ST",
+    "image": "/images/products/71879.webp",
+    "status": "HARDWARE",
+    "rating": "—",
+    "available": true,
+    "description": "The perfect big wall hammer.",
+    "features": [
+      "Shock-absorbing hickory shaft",
+      "Well-weighted head with point for levering pegs",
+      "Hammer holster (sold separately)"
     ],
     "specs": [
       {
         "label": "Material",
-        "value": "100% Polyester"
+        "value": "Steel, Hickory"
       },
       {
         "label": "Weight",
-        "value": "410g"
+        "value": "670g"
       }
     ],
     "attributes": [
-      "UIAA",
-      "Indicator",
-      "Kids",
-      "Adjustable leg loops",
-      "Fair Wear",
-      "Technologies"
+      "Made in Germany"
     ],
     "colors": [
-      "night-icemint 749"
+      "no color 000"
     ],
     "weights": [],
-    "weight": "410g",
-    "certification": "EN 12277 Typ C, UIAA 105",
+    "weight": "670g",
+    "certification": null,
+    "origin": "Made in Germany"
+  },
+  {
+    "id": "85402",
+    "code": "85402",
+    "name": "Warp",
+    "title": "Warp",
+    "category": "Hardware Accessories",
+    "articleNo": "85402",
+    "type": "ST",
+    "image": "/images/products/85402.webp",
+    "status": "HARDWARE",
+    "rating": "EN 12278",
+    "available": true,
+    "description": "The WARP is a highly efficient, ball-bearing double pulley. Made from stainless steel, the wear-resistant rollers are optimized for use with steel ropes but also work perfectly in systems with fabric ropes. The large opening offers enough space for two carabiners. The connection point at the top enables use in a redundant system with double rope guidance. The WARP is primarily intended for use in adventure parks and on auxiliary cable cars.",
+    "features": [
+      "Stainless steel rollers",
+      "Ball-bearing double pulley for outstanding efficiency",
+      "Large attachment eyelet for two carabiners",
+      "Top eyelet enables double rope guidance as a redundant system"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "EN 12278"
+      },
+      {
+        "label": "Material",
+        "value": "Aluminium/Steel"
+      },
+      {
+        "label": "Width",
+        "value": "100 mm"
+      },
+      {
+        "label": "Height",
+        "value": "85 mm"
+      },
+      {
+        "label": "Efficiency",
+        "value": "92 %"
+      },
+      {
+        "label": "Working Load Limit",
+        "value": "1000 kg"
+      },
+      {
+        "label": "Approved rope diameter",
+        "value": "< 13 mm"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "32 kN"
+      },
+      {
+        "label": "Weight",
+        "value": "303g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "oasis 138"
+    ],
+    "weights": [],
+    "weight": "303g",
+    "certification": "EN 12278",
+    "origin": null
+  },
+  {
+    "id": "88943",
+    "code": "88943",
+    "name": "Master Rig II",
+    "title": "Master Rig II",
+    "category": "Spare Parts",
+    "articleNo": "88943",
+    "type": "ST",
+    "image": "/images/products/88943.webp",
+    "status": "SPARE",
+    "rating": "CNB/P 11.114 PfE",
+    "available": true,
+    "description": "Large, robust aluminium rigging plate for use in complex systems.",
+    "features": [
+      "7 mm thick",
+      "Hole diameter: 20 mm",
+      "Central opening can take up to three carabiners",
+      "Wrought construction for optimum material utilisation. Low weight and high strength",
+      "Dimensions: 98 x 149 x 7 mm"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "CNB/P 11.114 PfE"
+      },
+      {
+        "label": "Material",
+        "value": "Aluminium"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "40kN"
+      },
+      {
+        "label": "Weight",
+        "value": "165g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "night 017"
+    ],
+    "weights": [],
+    "weight": "165g",
+    "certification": "CNB/P 11.114 PfE",
+    "origin": null
+  },
+  {
+    "id": "84006",
+    "code": "84006",
+    "name": "Ring Alu",
+    "title": "Ring Alu",
+    "category": "Spare Parts",
+    "articleNo": "84006",
+    "type": "ST",
+    "image": "/images/products/84006.webp",
+    "status": "SPARE",
+    "rating": "CE",
+    "available": true,
+    "description": "Lightweight aluminum ring for rope bridges, for example on tree-care harnesses but also for installing anchor points.",
+    "features": [
+      "Outer diameter: 64 mm",
+      "Inner diameter: 40 mm"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "CE"
+      },
+      {
+        "label": "Material",
+        "value": "Aluminium"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "30kN"
+      },
+      {
+        "label": "Weight",
+        "value": "55g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "night 017",
+      "oasis 138"
+    ],
+    "weights": [],
+    "weight": "55g",
+    "certification": "CE",
     "origin": null
   },
   {
@@ -4361,342 +4088,6 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "380g",
     "certification": "EN 12492, UIAA 106",
-    "origin": null
-  },
-  {
-    "id": "74341",
-    "code": "74341",
-    "name": "Cable Kit VI",
-    "title": "Cable Kit VI",
-    "category": "Via Ferrata",
-    "articleNo": "74341",
-    "type": "ST",
-    "image": "/images/products/74341.webp",
-    "status": "VIA FERRATA",
-    "rating": "EN 958, EN 12275",
-    "available": true,
-    "description": "This EDELRID classic has a very compact design and wear-resistant, elasticated webbing arms. It conforms to the new European safety standard for via ferrata sets. The new, far more compact shock absorber enables pleasant handling.",
-    "features": [
-      "Rest loop situated directly at shock absorber",
-      "Elasticated webbing keeps carabiners close to hand",
-      "Optimized OneTouch II carabiners prevent fingers getting pinched between the carabiner gate and steel cable",
-      "Energy absorber conforms to EN 958: 2017: low impact force for all weight classes",
-      "Complies with EN standard 958: 2017, even in the event of 180° incorrect use",
-      "Includes practical packing bag for storage and stowing in the backpack"
-    ],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Aluminium, Steel, HMPE, Polyamide"
-      },
-      {
-        "label": "Carabiner type",
-        "value": "OneTouch II"
-      },
-      {
-        "label": "Weight Category",
-        "value": "40 - 120 kg"
-      },
-      {
-        "label": "Weight",
-        "value": "514g"
-      }
-    ],
-    "attributes": [
-      "Bypass-save",
-      "Made in Germany",
-      "Fair Wear",
-      "Technologies"
-    ],
-    "colors": [
-      "oasis 138"
-    ],
-    "weights": [],
-    "weight": "514g",
-    "certification": "EN 958, EN 12275",
-    "origin": "Made in Germany"
-  },
-  {
-    "id": "84506",
-    "code": "84506",
-    "name": "X-Tube 25mm Loop NFC",
-    "title": "X-Tube 25mm Loop NFC",
-    "category": "Slings & Webbing",
-    "articleNo": "84506",
-    "type": "ST",
-    "image": "/images/products/84506.webp",
-    "status": "SLING",
-    "rating": "EN 354, EN 566, EN 795 Typ B",
-    "available": true,
-    "description": "25 mm wide, sewn webbing sling with a sensational 30 kN breaking strength, available in various lengths.",
-    "features": [
-      "NFC inside"
-    ],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Polyamide"
-      },
-      {
-        "label": "Width",
-        "value": "25 mm"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "30 kN"
-      }
-    ],
-    "attributes": [
-      "Fair Wear",
-      "Technologies"
-    ],
-    "colors": [
-      "icemint 329",
-      "night 017",
-      "oasis 138",
-      "red 200"
-    ],
-    "weights": [
-      {
-        "length": "60 CM",
-        "weight": "57g"
-      },
-      {
-        "length": "80 CM",
-        "weight": "72g"
-      },
-      {
-        "length": "120 CM",
-        "weight": "108g"
-      },
-      {
-        "length": "150 CM",
-        "weight": "135g"
-      },
-      {
-        "length": "200 CM",
-        "weight": "180g"
-      }
-    ],
-    "weight": null,
-    "certification": "EN 354, EN 566, EN 795 Typ B",
-    "origin": null
-  },
-  {
-    "id": "84037",
-    "code": "84037",
-    "name": "Cupid Swivel Mini",
-    "title": "Cupid Swivel Mini",
-    "category": "Hardware Accessories",
-    "articleNo": "84037",
-    "type": "ST",
-    "image": "/images/products/84037.webp",
-    "status": "HARDWARE",
-    "rating": "PPE-R/11.135",
-    "available": true,
-    "description": "The ball-bearing-mounted swivel for connecting rope elements, slings, and metal components is ideal for rope bridges, directly tying in haul bags, and creating connections for uses where the shortest possible system length is required. The centering geometrics ensure that loads on the CUPID SWIVEL MINI are ideally positioned at all times.",
-    "features": [
-      "Small, ball-bearing-mounted swivel rotates reliably even under high loads"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "PPE-R/11.135"
-      },
-      {
-        "label": "Material",
-        "value": "Aluminium"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "23 kN"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "icemint-night 377"
-    ],
-    "weights": [],
-    "weight": null,
-    "certification": "PPE-R/11.135",
-    "origin": null
-  },
-  {
-    "id": "71879",
-    "code": "71879",
-    "name": "Hudson Hammer",
-    "title": "Hudson Hammer",
-    "category": "Hardware Accessories",
-    "articleNo": "71879",
-    "type": "ST",
-    "image": "/images/products/71879.webp",
-    "status": "HARDWARE",
-    "rating": "—",
-    "available": true,
-    "description": "The perfect big wall hammer.",
-    "features": [
-      "Shock-absorbing hickory shaft",
-      "Well-weighted head with point for levering pegs",
-      "Hammer holster (sold separately)"
-    ],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Steel, Hickory"
-      },
-      {
-        "label": "Weight",
-        "value": "670g"
-      }
-    ],
-    "attributes": [
-      "Made in Germany"
-    ],
-    "colors": [
-      "no color 000"
-    ],
-    "weights": [],
-    "weight": "670g",
-    "certification": null,
-    "origin": "Made in Germany"
-  },
-  {
-    "id": "88943",
-    "code": "88943",
-    "name": "Master Rig II",
-    "title": "Master Rig II",
-    "category": "Hardware Accessories",
-    "articleNo": "88943",
-    "type": "ST",
-    "image": "/images/products/88943.webp",
-    "status": "RIGGING",
-    "rating": "CNB/P 11.114 PfE",
-    "available": true,
-    "description": "Large, robust aluminium rigging plate for use in complex systems.",
-    "features": [
-      "7 mm thick",
-      "Hole diameter: 20 mm",
-      "Central opening can take up to three carabiners",
-      "Wrought construction for optimum material utilisation. Low weight and high strength",
-      "Dimensions: 98 x 149 x 7 mm"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "CNB/P 11.114 PfE"
-      },
-      {
-        "label": "Material",
-        "value": "Aluminium"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "40kN"
-      },
-      {
-        "label": "Weight",
-        "value": "165g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "night 017"
-    ],
-    "weights": [],
-    "weight": "165g",
-    "certification": "CNB/P 11.114 PfE",
-    "origin": null
-  },
-  {
-    "id": "88942",
-    "code": "88942",
-    "name": "Mini Rig",
-    "title": "Mini Rig",
-    "category": "Hardware Accessories",
-    "articleNo": "88942",
-    "type": "ST",
-    "image": "/images/products/88942.webp",
-    "status": "RIGGING",
-    "rating": "CNB/P 11.114 PfE",
-    "available": true,
-    "description": "Small, lightweight aluminium rigging plate suitable for extending from one to three anchor points.",
-    "features": [
-      "Hole diameter: 20 mm",
-      "Central opening can take up to three carabiners",
-      "Wrought construction for optimum material utilisation. Low weight and high strength",
-      "6 mm thick",
-      "Maximum breaking strength: 36 kN"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "CNB/P 11.114 PfE"
-      },
-      {
-        "label": "Material",
-        "value": "Aluminium"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "30kN"
-      },
-      {
-        "label": "Weight",
-        "value": "62g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "orange 227"
-    ],
-    "weights": [],
-    "weight": "62g",
-    "certification": "CNB/P 11.114 PfE",
-    "origin": null
-  },
-  {
-    "id": "84006",
-    "code": "84006",
-    "name": "Ring Alu",
-    "title": "Ring Alu",
-    "category": "Spare Parts",
-    "articleNo": "84006",
-    "type": "ST",
-    "image": "/images/products/84006.webp",
-    "status": "SPARE",
-    "rating": "CE",
-    "available": true,
-    "description": "Lightweight aluminum ring for rope bridges, for example on tree-care harnesses but also for installing anchor points.",
-    "features": [
-      "Outer diameter: 64 mm",
-      "Inner diameter: 40 mm"
-    ],
-    "specs": [
-      {
-        "label": "Certification",
-        "value": "CE"
-      },
-      {
-        "label": "Material",
-        "value": "Aluminium"
-      },
-      {
-        "label": "Minimum breaking strength",
-        "value": "30kN"
-      },
-      {
-        "label": "Weight",
-        "value": "55g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "night 017",
-      "oasis 138"
-    ],
-    "weights": [],
-    "weight": "55g",
-    "certification": "CE",
     "origin": null
   },
   {
@@ -5038,6 +4429,166 @@ export const PRODUCTS: Product[] = [
       {
         "length": "12",
         "weight": "630g"
+      }
+    ],
+    "weight": null,
+    "certification": null,
+    "origin": null
+  },
+  {
+    "id": "35739",
+    "code": "35739",
+    "name": "Voltage III",
+    "title": "Voltage III",
+    "category": "Climbing Shoes — High-End",
+    "articleNo": "35739",
+    "type": "PA",
+    "image": "/images/products/35739.webp",
+    "status": "HIGH-END",
+    "rating": "—",
+    "available": true,
+    "description": "The VOLTAGE is a high-end shoe that offers outstanding precision, maximum power transfer, and excellent sensitivity. Its wide, anatomically designed last shape offers plenty of toe room while aggressive pre-tensioning and asymmetry transmit impressive force to the toes. The tried-and-tested, anatomically shaped heel design of the VOLTAGE range enables rock-solid heel hooks. Just in case, the shoe also features a large toe patch. The fit can be adjusted using the two VCR straps, with the large, main strap holding the heel securely in place while the offset smaller strap enables a snug midfoot fit. The two-part elasticated material offers different levels of tension to make the shoe easier to put on and take off. The VOLTAGE is the perfect choice for advanced and professional climbers looking for a precise shoe for sport climbing and bouldering for demanding overhangs and highly technical routes.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Sole",
+        "value": "Vibram XS Grip"
+      },
+      {
+        "label": "Downturn",
+        "value": "aggressive"
+      },
+      {
+        "label": "Shoe shape",
+        "value": "strongly asymmetric"
+      },
+      {
+        "label": "Upper",
+        "value": "Microfiber 2,0mm"
+      },
+      {
+        "label": "Midsole",
+        "value": "RC-TENSION"
+      },
+      {
+        "label": "Last shape",
+        "value": "strongly asymmetric"
+      },
+      {
+        "label": "Closing System",
+        "value": "Double Velcro"
+      },
+      {
+        "label": "Midsole Material",
+        "value": "RC-TENSION"
+      },
+      {
+        "label": "Rubber front",
+        "value": "Vibram XS Grip 4,0mm"
+      },
+      {
+        "label": "Rubber back/heel",
+        "value": "RX-1 Allround 3,0mm"
+      },
+      {
+        "label": "Rubber rand",
+        "value": "RX-1 ALLROUND 2,0mm"
+      },
+      {
+        "label": "Toe patch",
+        "value": "RX-1 ALLROUND 2,0mm"
+      },
+      {
+        "label": "Footbed",
+        "value": "Suede leather"
+      },
+      {
+        "label": "Rubber",
+        "value": "Vibram XS Grip"
+      }
+    ],
+    "attributes": [
+      "Fair Wear"
+    ],
+    "colors": [
+      "topaz 094"
+    ],
+    "weights": [
+      {
+        "length": "3",
+        "weight": "501g"
+      },
+      {
+        "length": "3,5",
+        "weight": "508g"
+      },
+      {
+        "length": "4",
+        "weight": "515g"
+      },
+      {
+        "length": "4,5",
+        "weight": "522g"
+      },
+      {
+        "length": "5",
+        "weight": "529g"
+      },
+      {
+        "length": "5,5",
+        "weight": "536g"
+      },
+      {
+        "length": "6",
+        "weight": "543g"
+      },
+      {
+        "length": "6,5",
+        "weight": "550g"
+      },
+      {
+        "length": "7",
+        "weight": "557g"
+      },
+      {
+        "length": "7,5",
+        "weight": "564g"
+      },
+      {
+        "length": "8",
+        "weight": "571g"
+      },
+      {
+        "length": "8,5",
+        "weight": "578g"
+      },
+      {
+        "length": "9",
+        "weight": "585g"
+      },
+      {
+        "length": "9,5",
+        "weight": "592g"
+      },
+      {
+        "length": "10",
+        "weight": "599g"
+      },
+      {
+        "length": "10,5",
+        "weight": "606g"
+      },
+      {
+        "length": "11",
+        "weight": "613g"
+      },
+      {
+        "length": "11,5",
+        "weight": "620g"
+      },
+      {
+        "length": "12",
+        "weight": "627g"
       }
     ],
     "weight": null,
@@ -6317,166 +5868,6 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "35739",
-    "code": "35739",
-    "name": "Voltage III",
-    "title": "Voltage III",
-    "category": "Climbing Shoes — Performance",
-    "articleNo": "35739",
-    "type": "PA",
-    "image": "/images/products/35739.webp",
-    "status": "PERFORMANCE",
-    "rating": "—",
-    "available": true,
-    "description": "The VOLTAGE is a high-end shoe that offers outstanding precision, maximum power transfer, and excellent sensitivity. Its wide, anatomically designed last shape offers plenty of toe room while aggressive pre-tensioning and asymmetry transmit impressive force to the toes. The tried-and-tested, anatomically shaped heel design of the VOLTAGE range enables rock-solid heel hooks. Just in case, the shoe also features a large toe patch. The fit can be adjusted using the two VCR straps, with the large, main strap holding the heel securely in place while the offset smaller strap enables a snug midfoot fit. The two-part elasticated material offers different levels of tension to make the shoe easier to put on and take off. The VOLTAGE is the perfect choice for advanced and professional climbers looking for a precise shoe for sport climbing and bouldering for demanding overhangs and highly technical routes.",
-    "features": [],
-    "specs": [
-      {
-        "label": "Sole",
-        "value": "Vibram XS Grip"
-      },
-      {
-        "label": "Downturn",
-        "value": "aggressive"
-      },
-      {
-        "label": "Shoe shape",
-        "value": "strongly asymmetric"
-      },
-      {
-        "label": "Upper",
-        "value": "Microfiber 2,0mm"
-      },
-      {
-        "label": "Midsole",
-        "value": "RC-TENSION"
-      },
-      {
-        "label": "Last shape",
-        "value": "strongly asymmetric"
-      },
-      {
-        "label": "Closing System",
-        "value": "Double Velcro"
-      },
-      {
-        "label": "Midsole Material",
-        "value": "RC-TENSION"
-      },
-      {
-        "label": "Rubber front",
-        "value": "Vibram XS Grip 4,0mm"
-      },
-      {
-        "label": "Rubber back/heel",
-        "value": "RX-1 Allround 3,0mm"
-      },
-      {
-        "label": "Rubber rand",
-        "value": "RX-1 ALLROUND 2,0mm"
-      },
-      {
-        "label": "Toe patch",
-        "value": "RX-1 ALLROUND 2,0mm"
-      },
-      {
-        "label": "Footbed",
-        "value": "Suede leather"
-      },
-      {
-        "label": "Rubber",
-        "value": "Vibram XS Grip"
-      }
-    ],
-    "attributes": [
-      "Fair Wear"
-    ],
-    "colors": [
-      "topaz 094"
-    ],
-    "weights": [
-      {
-        "length": "3",
-        "weight": "501g"
-      },
-      {
-        "length": "3,5",
-        "weight": "508g"
-      },
-      {
-        "length": "4",
-        "weight": "515g"
-      },
-      {
-        "length": "4,5",
-        "weight": "522g"
-      },
-      {
-        "length": "5",
-        "weight": "529g"
-      },
-      {
-        "length": "5,5",
-        "weight": "536g"
-      },
-      {
-        "length": "6",
-        "weight": "543g"
-      },
-      {
-        "length": "6,5",
-        "weight": "550g"
-      },
-      {
-        "length": "7",
-        "weight": "557g"
-      },
-      {
-        "length": "7,5",
-        "weight": "564g"
-      },
-      {
-        "length": "8",
-        "weight": "571g"
-      },
-      {
-        "length": "8,5",
-        "weight": "578g"
-      },
-      {
-        "length": "9",
-        "weight": "585g"
-      },
-      {
-        "length": "9,5",
-        "weight": "592g"
-      },
-      {
-        "length": "10",
-        "weight": "599g"
-      },
-      {
-        "length": "10,5",
-        "weight": "606g"
-      },
-      {
-        "length": "11",
-        "weight": "613g"
-      },
-      {
-        "length": "11,5",
-        "weight": "620g"
-      },
-      {
-        "length": "12",
-        "weight": "627g"
-      }
-    ],
-    "weight": null,
-    "certification": null,
-    "origin": null
-  },
-  {
     "id": "72177",
     "code": "72177",
     "name": "Boulder Bag Herkules",
@@ -6880,48 +6271,15 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
-    "id": "72703",
-    "code": "72703",
-    "name": "Chalk Block II",
-    "title": "Chalk Block II",
-    "category": "Chalk & Accessories",
-    "articleNo": "72703",
-    "type": "V8",
-    "image": "/images/products/72703.webp",
-    "status": "ACCESSORY",
-    "rating": "—",
-    "available": true,
-    "description": "High-quality magnesium carbonate block for top performance at the crag or in the gym. The chalk blocks are delivered in a box, which can be used as a counter display. Package contents: 8 pcs.",
-    "features": [],
-    "specs": [
-      {
-        "label": "Material",
-        "value": "Magnesium Carbonate"
-      },
-      {
-        "label": "Weight",
-        "value": "448g"
-      }
-    ],
-    "attributes": [],
-    "colors": [
-      "snow 047"
-    ],
-    "weights": [],
-    "weight": "448g",
-    "certification": null,
-    "origin": null
-  },
-  {
     "id": "72190",
     "code": "72190",
     "name": "Liquid Chalk II",
     "title": "Liquid Chalk II",
-    "category": "Chalk & Accessories",
+    "category": "Chalk Bags",
     "articleNo": "72190",
     "type": "ST",
     "image": "/images/products/72190.webp",
-    "status": "ACCESSORY",
+    "status": "CHALK",
     "rating": "—",
     "available": true,
     "description": "Liquid chalk for heroics at the crag or in the gym.",
@@ -6952,11 +6310,11 @@ export const PRODUCTS: Product[] = [
     "code": "72025",
     "name": "Rescue Canyoning Knife",
     "title": "Rescue Canyoning Knife",
-    "category": "Chalk & Accessories",
+    "category": "Chalk Bags",
     "articleNo": "72025",
     "type": "ST",
     "image": "/images/products/72025.webp",
-    "status": "ACCESSORY",
+    "status": "CHALK",
     "rating": "—",
     "available": true,
     "description": "Rescue and rope knife for cutting rope and webbing when using personal fall protection equipment.",
@@ -6991,11 +6349,11 @@ export const PRODUCTS: Product[] = [
     "code": "73470",
     "name": "Rope Tooth Einhandmesser",
     "title": "Rope Tooth Einhandmesser",
-    "category": "Chalk & Accessories",
+    "category": "Chalk Bags",
     "articleNo": "73470",
     "type": "ST",
     "image": "/images/products/73470.webp",
-    "status": "ACCESSORY",
+    "status": "CHALK",
     "rating": "—",
     "available": true,
     "description": "High-quality stainless steel knife.",
@@ -7027,11 +6385,11 @@ export const PRODUCTS: Product[] = [
     "code": "72207",
     "name": "Sit Start III",
     "title": "Sit Start III",
-    "category": "Crash Pads",
+    "category": "Chalk Bags",
     "articleNo": "72207",
     "type": "ST",
     "image": "/images/products/72207.webp",
-    "status": "CRASH PAD",
+    "status": "CHALK",
     "rating": "—",
     "available": true,
     "description": "The EDELRID start pad with integrated foot mat for tricky sit starts or supplementing larger pads.",
@@ -7075,6 +6433,545 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "720 g",
     "certification": null,
+    "origin": null
+  },
+  {
+    "id": "73731",
+    "code": "73731",
+    "name": "Antitwist",
+    "title": "Antitwist",
+    "category": "Accessories",
+    "articleNo": "73731",
+    "type": "V10",
+    "image": "/images/products/73731.webp",
+    "status": "ACCESSORY",
+    "rating": "—",
+    "available": true,
+    "description": "The ANTITWIST fixes the lower carabiner and sling preventing unwanted rotation of the biner during use. Available for webbing with a width of 11 and 16 mm. Package contents: 10 pcs.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "TPU"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "night 017",
+      "oasis 138"
+    ],
+    "weights": [
+      {
+        "length": "11 MM",
+        "weight": "30g"
+      },
+      {
+        "length": "16 MM",
+        "weight": "30g"
+      }
+    ],
+    "weight": null,
+    "certification": null,
+    "origin": null
+  },
+  {
+    "id": "74341",
+    "code": "74341",
+    "name": "Cable Kit VI",
+    "title": "Cable Kit VI",
+    "category": "Accessories",
+    "articleNo": "74341",
+    "type": "ST",
+    "image": "/images/products/74341.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 958, EN 12275",
+    "available": true,
+    "description": "This EDELRID classic has a very compact design and wear-resistant, elasticated webbing arms. It conforms to the new European safety standard for via ferrata sets. The new, far more compact shock absorber enables pleasant handling.",
+    "features": [
+      "Rest loop situated directly at shock absorber",
+      "Elasticated webbing keeps carabiners close to hand",
+      "Optimized OneTouch II carabiners prevent fingers getting pinched between the carabiner gate and steel cable",
+      "Energy absorber conforms to EN 958: 2017: low impact force for all weight classes",
+      "Complies with EN standard 958: 2017, even in the event of 180° incorrect use",
+      "Includes practical packing bag for storage and stowing in the backpack"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Aluminium, Steel, HMPE, Polyamide"
+      },
+      {
+        "label": "Carabiner type",
+        "value": "OneTouch II"
+      },
+      {
+        "label": "Weight Category",
+        "value": "40 - 120 kg"
+      },
+      {
+        "label": "Weight",
+        "value": "514g"
+      }
+    ],
+    "attributes": [
+      "Bypass-save",
+      "Made in Germany",
+      "Fair Wear",
+      "Technologies"
+    ],
+    "colors": [
+      "oasis 138"
+    ],
+    "weights": [],
+    "weight": "514g",
+    "certification": "EN 958, EN 12275",
+    "origin": "Made in Germany"
+  },
+  {
+    "id": "72703",
+    "code": "72703",
+    "name": "Chalk Block II",
+    "title": "Chalk Block II",
+    "category": "Accessories",
+    "articleNo": "72703",
+    "type": "V8",
+    "image": "/images/products/72703.webp",
+    "status": "ACCESSORY",
+    "rating": "—",
+    "available": true,
+    "description": "High-quality magnesium carbonate block for top performance at the crag or in the gym. The chalk blocks are delivered in a box, which can be used as a counter display. Package contents: 8 pcs.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Magnesium Carbonate"
+      },
+      {
+        "label": "Weight",
+        "value": "448g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "snow 047"
+    ],
+    "weights": [],
+    "weight": "448g",
+    "certification": null,
+    "origin": null
+  },
+  {
+    "id": "73826",
+    "code": "73826",
+    "name": "Jim Steel Set II",
+    "title": "Jim Steel Set II",
+    "category": "Accessories",
+    "articleNo": "73826",
+    "type": "V5",
+    "image": "/images/products/73826.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 566, EN 12275",
+    "available": true,
+    "description": "Extremely robust climbing gym quickdraw set with steel carabiner. Package contents: 5 pcs.",
+    "features": [
+      "Flat webbing of robust and durable polyester",
+      "Internal wear indicator made of red polyester",
+      "Rubber abrasion protector minimizes noise",
+      "Abrasion protector acts as a spacer and minimizes sling wear",
+      "Jim Steel Set with innovative hanger plate: minimizes wall wear, prevents trapped fingers, and reduces noise"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Steel"
+      },
+      {
+        "label": "Closure",
+        "value": "Bent"
+      },
+      {
+        "label": "Fmax. major axis",
+        "value": "30 kN"
+      },
+      {
+        "label": "Fmax. open",
+        "value": "3 kN"
+      },
+      {
+        "label": "Fmax. minor axis",
+        "value": "10 kN"
+      },
+      {
+        "label": "Gate opening",
+        "value": "27 mm"
+      },
+      {
+        "label": "Weight",
+        "value": "1750g"
+      }
+    ],
+    "attributes": [
+      "Made in Germany",
+      "Technologies"
+    ],
+    "colors": [
+      "night 017"
+    ],
+    "weights": [],
+    "weight": "1750g",
+    "certification": "EN 566, EN 12275",
+    "origin": "Made in Germany"
+  },
+  {
+    "id": "73827",
+    "code": "73827",
+    "name": "Jim Steel Wire Set II",
+    "title": "Jim Steel Wire Set II",
+    "category": "Accessories",
+    "articleNo": "73827",
+    "type": "V5",
+    "image": "/images/products/73827.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 566, EN 12275",
+    "available": true,
+    "description": "Extremely robust climbing gym quickdraw set with steel carabiner. Available with either a full gate or wire gate carabiner. Package contents: 5 pcs.",
+    "features": [
+      "Flat webbing of robust and durable polyester",
+      "Internal wear indicator made of red polyester",
+      "Rubber abrasion protector minimizes noise",
+      "Abrasion protector acts as a spacer and minimizes sling wear",
+      "Jim Steel Wire Set with 8 mm screw link"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Steel"
+      },
+      {
+        "label": "Closure",
+        "value": "Wire"
+      },
+      {
+        "label": "Fmax. major axis",
+        "value": "30 kN"
+      },
+      {
+        "label": "Fmax. open",
+        "value": "10 kN"
+      },
+      {
+        "label": "Fmax. minor axis",
+        "value": "10 kN"
+      },
+      {
+        "label": "Gate opening",
+        "value": "27 mm"
+      }
+    ],
+    "attributes": [
+      "Made in Germany",
+      "Technologies"
+    ],
+    "colors": [
+      "night 017"
+    ],
+    "weights": [
+      {
+        "length": "10 CM",
+        "weight": "1150g"
+      },
+      {
+        "length": "18 CM",
+        "weight": "1210g"
+      }
+    ],
+    "weight": null,
+    "certification": "EN 566, EN 12275",
+    "origin": "Made in Germany"
+  },
+  {
+    "id": "74942",
+    "code": "74942",
+    "name": "Joker III",
+    "title": "Joker III",
+    "category": "Accessories",
+    "articleNo": "74942",
+    "type": "ST",
+    "image": "/images/products/74942.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 12277 Typ C, UIAA 105",
+    "available": true,
+    "description": "The JOKER is a highly adjustable sit harness with a polyamide central ring that is ideal for courses and rental usage. The harness is primarily made from polyester, which makes it particularly robust and durable. For enhanced safety during rental usage, the gear loop is made from load-bearing material.",
+    "features": [
+      "Stitched webbing terminations designed so that straps cannot be completely unthreaded",
+      "Integrated RFID-Chip",
+      "Classic design made from 45 mm polyester webbing",
+      "Central ring made from polyamide",
+      "Slide Block buckles on the waist belt and leg loops offer infinite adjustability and make the harness easy to put on and take off",
+      "Right/left leg loop markings and replaceable, elasticated bum straps make it easier to put on the harness correctly",
+      "Red wear indicator in all load-bearing straps on the waist belt and leg loops",
+      "High-strength gear loop for additional safety in the rental sector"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Polyester"
+      },
+      {
+        "label": "Weight",
+        "value": "485g"
+      }
+    ],
+    "attributes": [
+      "UIAA",
+      "Indicator",
+      "Adjustable leg loops",
+      "Fair Wear",
+      "Technologies"
+    ],
+    "colors": [
+      "night-oasis 219"
+    ],
+    "weights": [],
+    "weight": "485g",
+    "certification": "EN 12277 Typ C, UIAA 105",
+    "origin": null
+  },
+  {
+    "id": "74943",
+    "code": "74943",
+    "name": "Joker Junior III",
+    "title": "Joker Junior III",
+    "category": "Accessories",
+    "articleNo": "74943",
+    "type": "ST",
+    "image": "/images/products/74943.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 12277 Typ C, UIAA 105",
+    "available": true,
+    "description": "The JOKER JUNIOR is a highly adjustable sit harness with a polyamide central ring that is ideal for courses and rental usage. The harness is primarily made from polyester, which makes it particularly robust and durable. For enhanced safety during rental usage, the gear loop is made from load-bearing material.",
+    "features": [
+      "Stitched webbing terminations designed so that straps cannot be completely unthreaded",
+      "Integrated RFID-Chip",
+      "Classic design made from 45 mm polyester webbing",
+      "Central ring made from polyamide",
+      "Slide Block buckles on the waist belt and leg loops offer infinite adjustability and make the harness easy to put on and take off",
+      "Right/left leg loop markings and replaceable, elasticated bum straps make it easier to put on the harness correctly",
+      "Red wear indicator in all load-bearing straps on the waist belt and leg loops",
+      "High-strength gear loop for additional safety in the rental sector"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "100% Polyester"
+      },
+      {
+        "label": "Weight",
+        "value": "410g"
+      }
+    ],
+    "attributes": [
+      "UIAA",
+      "Indicator",
+      "Kids",
+      "Adjustable leg loops",
+      "Fair Wear",
+      "Technologies"
+    ],
+    "colors": [
+      "night-icemint 749"
+    ],
+    "weights": [],
+    "weight": "410g",
+    "certification": "EN 12277 Typ C, UIAA 105",
+    "origin": null
+  },
+  {
+    "id": "73798",
+    "code": "73798",
+    "name": "Screwlink 10mm",
+    "title": "Screwlink 10mm",
+    "category": "Accessories",
+    "articleNo": "73798",
+    "type": "ST",
+    "image": "/images/products/73798.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 12275, EN 362",
+    "available": true,
+    "description": "Certified oval steel screw link.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Steel"
+      },
+      {
+        "label": "Closure",
+        "value": "Screw"
+      },
+      {
+        "label": "Carabiner shape",
+        "value": "Oval"
+      },
+      {
+        "label": "Fmax. major axis",
+        "value": "55 kN"
+      },
+      {
+        "label": "Fmax. open",
+        "value": "35 kN"
+      },
+      {
+        "label": "Fmax. minor axis",
+        "value": "10 kN"
+      },
+      {
+        "label": "Width",
+        "value": "45 mm"
+      },
+      {
+        "label": "Length",
+        "value": "90 mm"
+      },
+      {
+        "label": "Weight",
+        "value": "137g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "silver 006"
+    ],
+    "weights": [],
+    "weight": "137g",
+    "certification": "EN 12275, EN 362",
+    "origin": null
+  },
+  {
+    "id": "73806",
+    "code": "73806",
+    "name": "Screwlink 8mm II",
+    "title": "Screwlink 8mm II",
+    "category": "Accessories",
+    "articleNo": "73806",
+    "type": "ST",
+    "image": "/images/products/73806.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 12275, EN 362",
+    "available": true,
+    "description": "Certified oval steel screw link.",
+    "features": [],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Steel"
+      },
+      {
+        "label": "Closure",
+        "value": "Screw"
+      },
+      {
+        "label": "Carabiner shape",
+        "value": "Oval"
+      },
+      {
+        "label": "Fmax. major axis",
+        "value": "55 kN"
+      },
+      {
+        "label": "Fmax. open",
+        "value": "35 kN"
+      },
+      {
+        "label": "Fmax. minor axis",
+        "value": "10 kN"
+      },
+      {
+        "label": "Width",
+        "value": "36 mm"
+      },
+      {
+        "label": "Length",
+        "value": "73 mm"
+      },
+      {
+        "label": "Weight",
+        "value": "77g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "silver 006"
+    ],
+    "weights": [],
+    "weight": "77g",
+    "certification": "EN 12275, EN 362",
+    "origin": null
+  },
+  {
+    "id": "84506",
+    "code": "84506",
+    "name": "X-Tube 25mm Loop NFC",
+    "title": "X-Tube 25mm Loop NFC",
+    "category": "Accessories",
+    "articleNo": "84506",
+    "type": "ST",
+    "image": "/images/products/84506.webp",
+    "status": "ACCESSORY",
+    "rating": "EN 354, EN 566, EN 795 Typ B",
+    "available": true,
+    "description": "25 mm wide, sewn webbing sling with a sensational 30 kN breaking strength, available in various lengths.",
+    "features": [
+      "NFC inside"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Polyamide"
+      },
+      {
+        "label": "Width",
+        "value": "25 mm"
+      },
+      {
+        "label": "Minimum breaking strength",
+        "value": "30 kN"
+      }
+    ],
+    "attributes": [
+      "Fair Wear",
+      "Technologies"
+    ],
+    "colors": [
+      "icemint 329",
+      "night 017",
+      "oasis 138",
+      "red 200"
+    ],
+    "weights": [
+      {
+        "length": "60 CM",
+        "weight": "57g"
+      },
+      {
+        "length": "80 CM",
+        "weight": "72g"
+      },
+      {
+        "length": "120 CM",
+        "weight": "108g"
+      },
+      {
+        "length": "150 CM",
+        "weight": "135g"
+      },
+      {
+        "length": "200 CM",
+        "weight": "180g"
+      }
+    ],
+    "weight": null,
+    "certification": "EN 354, EN 566, EN 795 Typ B",
     "origin": null
   }
 ];
