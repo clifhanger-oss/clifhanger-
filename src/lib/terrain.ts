@@ -36,6 +36,15 @@ function ridgedFbm(x: number, y: number): number {
 }
 
 /**
+ * Cheap per-point hash in [0,1), independent of the fbm octaves above.
+ * Used for fine-grained, non-repeating surface variation (rock/snow grain)
+ * that shouldn't line up with the ridge structure itself.
+ */
+export function grain(x: number, z: number): number {
+  return hash(x * 3.1 + 4.7, z * 3.1 - 8.2);
+}
+
+/**
  * Terrain height in world units for a given planar coordinate.
  * Combines a broad ridge structure with fine rocky detail and carves a
  * central "route corridor" so the camera has technical faces to zoom into.
