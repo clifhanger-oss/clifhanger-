@@ -25,7 +25,6 @@ export default function Home() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [activeCat, setActiveCat] = useState<string>(CATEGORY_ORDER[0]);
   const climberRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const [pastHero, setPastHero] = useState(false);
 
   useSEO({
@@ -103,17 +102,6 @@ export default function Home() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
-
-  // Center the tapped chip in the mobile scroll strip and bring the product grid
-  // into view. Triggered directly from the chip's onClick (not a useEffect keyed
-  // on activeCat) so it only ever runs on a real user interaction — an effect-based
-  // "skip on mount" guard is fragile under StrictMode's dev-only double-invoke,
-  // which defeats a ref flag with no cleanup and caused an unwanted scroll on load.
-  function selectCategory(cat: string, chipEl: HTMLButtonElement | null) {
-    setActiveCat(cat);
-    chipEl?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   // Mobile-only floating WhatsApp button, shown once the visitor has scrolled past
   // the hero's own CTAs so it doesn't compete with them above the fold.
@@ -404,31 +392,28 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Category filter — single-row scroll strip on phone (12 chips would otherwise
-                  wrap ~6 rows and bury the first product); reverts to wrap from sm: up. */}
-              <div className="relative mb-12 -mx-6 px-6 sm:mx-0 sm:px-0">
-                <div className="flex gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1 sm:flex-wrap sm:overflow-visible sm:snap-none">
-                  {CATEGORY_ORDER.map((cat) => {
-                    const count = PRODUCTS.filter((p) => p.category === cat).length;
-                    if (!count) return null;
-                    const active = cat === activeCat;
-                    return (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={(e) => selectCategory(cat, e.currentTarget)}
-                        className={`shrink-0 snap-start whitespace-nowrap border px-4 py-3 min-h-11 font-mono text-[11px] uppercase tracking-widest transition-colors active:scale-95 ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
-                      >
-                        {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-                {/* Right-edge fade signals horizontal scrollability on phone */}
-                <div className="pointer-events-none absolute right-0 top-0 bottom-1 w-8 bg-gradient-to-l from-black to-transparent sm:hidden" />
+              {/* Category filter — a tap-to-choose block on phone (2-col grid, all 12
+                  categories visible at once, no swipe needed); reverts to inline wrap
+                  from sm: up. */}
+              <div className="mb-12 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+                {CATEGORY_ORDER.map((cat) => {
+                  const count = PRODUCTS.filter((p) => p.category === cat).length;
+                  if (!count) return null;
+                  const active = cat === activeCat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setActiveCat(cat)}
+                      className={`border px-4 py-3 min-h-11 font-mono text-[11px] uppercase tracking-widest text-center sm:text-left transition-colors active:scale-95 ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+                    >
+                      {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
+                    </button>
+                  );
+                })}
               </div>
 
-              <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PRODUCTS.filter((p) => p.category === activeCat).map((product) => (
                   <button
                     key={product.id}

@@ -113,10 +113,6 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
-/* Hide scrollbar on the mobile category-chip strip while keeping it scrollable */
-.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
-.no-scrollbar::-webkit-scrollbar { display: none; }
-
 /* Marquee band from the original Vertical-Gear-Vault design */
 @keyframes marquee {
   0% { transform: translateX(0%); }
