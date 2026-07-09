@@ -113,6 +113,11 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* Hide scrollbar on swipeable strips (category chips, color gallery) while
+   keeping them scrollable via touch/drag/keyboard. */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
 /* Marquee band from the original Vertical-Gear-Vault design */
 @keyframes marquee {
   0% { transform: translateX(0%); }

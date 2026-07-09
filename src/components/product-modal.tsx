@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
+import { ColorGallery } from "@/components/color-gallery";
 import { CONTACT } from "@/lib/contact";
 
 export function ProductModal({
@@ -59,13 +60,18 @@ export function ProductModal({
           </button>
         </div>
 
-        {/* Image */}
+        {/* Image — a swipeable per-color gallery when the catalog printed
+            distinct photos per colorway, otherwise the single product photo */}
         <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-black/70">
-          <img
-            src={product.image}
-            alt={`${heading} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
-            className="h-full w-full object-contain p-4 sm:p-8 filter contrast-125"
-          />
+          {product.colorImages && product.colorImages.length > 1 ? (
+            <ColorGallery images={product.colorImages} productName={heading} />
+          ) : (
+            <img
+              src={product.image}
+              alt={`${heading} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
+              className="h-full w-full object-contain p-4 sm:p-8 filter contrast-125"
+            />
+          )}
           <div className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
             <span className="border border-primary px-2 py-1 text-primary">{product.status}</span>
             {product.articleNo && (

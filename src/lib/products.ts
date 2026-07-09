@@ -4,6 +4,7 @@
 
 export type ProductSpec = { label: string; value: string };
 export type ProductWeight = { length: string; weight: string };
+export type ProductColorImage = { color: string; image: string };
 
 export type Product = {
   id: string;
@@ -18,6 +19,11 @@ export type Product = {
   articleNo?: string;
   type?: string | null;
   image: string;
+  // Verified per-color catalog photos (only present when the source catalog
+  // printed a distinct photo per colorway) — drives the swipeable color
+  // gallery in the product modal. Absent for most products; falls back to
+  // the single `image` above.
+  colorImages?: ProductColorImage[];
   status: string;
   rating: string;
   available: boolean;
@@ -4148,7 +4154,21 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "380g",
     "certification": "EN 12492, UIAA 106",
-    "origin": null
+    "origin": null,
+    "colorImages": [
+      {
+        "color": "icemint 329",
+        "image": "/images/products/72050.webp"
+      },
+      {
+        "color": "red 200",
+        "image": "/images/products/72050-red.webp"
+      },
+      {
+        "color": "snow 047",
+        "image": "/images/products/72050-snow.webp"
+      }
+    ]
   },
   {
     "id": "35707",
