@@ -152,19 +152,33 @@ export function ProductModal({
             </section>
           )}
 
-          {/* Colours + weight table */}
+          {/* Available colors — shown for every product that has them, independent
+              of whether it also has a length/weight table (colors used to be
+              hidden for the 79 products without one). */}
+          {product.colors && product.colors.length > 0 && (
+            <section className="mb-8">
+              <h3 className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4">
+                Available Colors
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {product.colors.map((c) => (
+                  <span
+                    key={c}
+                    className="border border-border px-3 py-1.5 font-mono text-xs text-gray-200"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Weight table (rope lengths / product variants) */}
           {product.weights && product.weights.length > 0 && (
             <section className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-mono text-xs uppercase tracking-widest text-gray-500">
-                  Lengths &amp; weight
-                </h3>
-                {product.colors && (
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
-                    {product.colors.join(" · ")}
-                  </span>
-                )}
-              </div>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4">
+                Lengths &amp; weight
+              </h3>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-px bg-border border border-border">
                 {product.weights.map((w) => (
                   <div key={w.length} className="bg-black/70 p-3 text-center">

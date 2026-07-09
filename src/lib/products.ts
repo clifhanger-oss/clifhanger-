@@ -11,6 +11,10 @@ export type Product = {
   name: string;
   title?: string;
   category: string;
+  // Secondary categories this product should ALSO appear under in the catalog
+  // filter (e.g. a pulley-like accessory listed under both Hardware Accessories
+  // and Pulleys) — the product is not duplicated, just cross-listed.
+  alsoInCategories?: string[];
   articleNo?: string;
   type?: string | null;
   image: string;
@@ -3943,7 +3947,10 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "303g",
     "certification": "EN 12278",
-    "origin": null
+    "origin": null,
+    "alsoInCategories": [
+      "Pulleys"
+    ]
   },
   {
     "id": "88943",
@@ -4035,6 +4042,59 @@ export const PRODUCTS: Product[] = [
     "weights": [],
     "weight": "55g",
     "certification": "CE",
+    "origin": null
+  },
+  {
+    "id": "72045",
+    "code": "72045",
+    "name": "Kids Shield II",
+    "title": "Kids Shield II",
+    "category": "Helmets",
+    "articleNo": "72045",
+    "type": "ST",
+    "image": "/images/products/72045.webp",
+    "status": "HELMET",
+    "rating": "EN 12492 / UIAA 106",
+    "available": true,
+    "description": "Our popular softshell helmet with a stylish design perfect for children and teenagers.",
+    "features": [
+      "Lightweight In-Mold construction with expanded polystyrene foam core and tough polycarbonate shell",
+      "Fully adjustable chin strap with closure system positioned under the ear for greater comfort",
+      "Airflow system with large vents for continual air exchange",
+      "Four robust head torch clips",
+      "Overhauled Wing Fit system with rear adjustment dial fits all head shapes",
+      "Ergonomically-shaped interior with removable, washable padding",
+      "Side/front/back impact tested according to EN 12492",
+      "Helmets with orange opening mechanism and orange Wing-Fit system also comply with EN 1078 for bicycle helmets"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "EN 12492 / UIAA 106"
+      },
+      {
+        "label": "Material",
+        "value": "EPS, Polycarbonate, Polyamide, POM, Polyester"
+      },
+      {
+        "label": "Head size",
+        "value": "48 - 56"
+      },
+      {
+        "label": "Weight",
+        "value": "262g"
+      }
+    ],
+    "attributes": [
+      "Kids Wing Fit system"
+    ],
+    "colors": [
+      "jade-petrol 872",
+      "sahara-oasis 810"
+    ],
+    "weights": [],
+    "weight": "262g",
+    "certification": "EN 12492 / UIAA 106",
     "origin": null
   },
   {

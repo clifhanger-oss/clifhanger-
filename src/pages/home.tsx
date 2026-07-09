@@ -19,6 +19,13 @@ const NAV = [
   { href: "#contact", label: "Contact" },
 ];
 
+// A product belongs to a category if it's the primary category or one of the
+// product's secondary cross-listed categories (e.g. Warp is a Hardware
+// Accessory that's also listed under Pulleys) — no data duplication needed.
+function inCategory(product: Product, cat: string) {
+  return product.category === cat || product.alsoInCategories?.includes(cat) === true;
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -397,7 +404,7 @@ export default function Home() {
                   from sm: up. */}
               <div className="mb-12 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                 {CATEGORY_ORDER.map((cat) => {
-                  const count = PRODUCTS.filter((p) => p.category === cat).length;
+                  const count = PRODUCTS.filter((p) => inCategory(p, cat)).length;
                   if (!count) return null;
                   const active = cat === activeCat;
                   return (
@@ -414,7 +421,7 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {PRODUCTS.filter((p) => p.category === activeCat).map((product) => (
+                {PRODUCTS.filter((p) => inCategory(p, activeCat)).map((product) => (
                   <button
                     key={product.id}
                     type="button"
