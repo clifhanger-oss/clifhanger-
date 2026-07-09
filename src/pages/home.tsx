@@ -25,9 +25,7 @@ export default function Home() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [activeCat, setActiveCat] = useState<string>(CATEGORY_ORDER[0]);
   const climberRef = useRef<HTMLDivElement>(null);
-  const chipRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const gridRef = useRef<HTMLDivElement>(null);
-  const didMountCat = useRef(false);
   const [pastHero, setPastHero] = useState(false);
 
   useSEO({
@@ -106,16 +104,16 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
-  // Center the active chip in the mobile scroll strip, and (only on user-initiated
-  // changes, not the initial mount) bring the product grid into view — otherwise the
-  // grid sits below the chip row on phone with no indication it moved.
-  useEffect(() => {
-    chipRefs.current[activeCat]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    if (didMountCat.current) {
-      gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    didMountCat.current = true;
-  }, [activeCat]);
+  // Center the tapped chip in the mobile scroll strip and bring the product grid
+  // into view. Triggered directly from the chip's onClick (not a useEffect keyed
+  // on activeCat) so it only ever runs on a real user interaction — an effect-based
+  // "skip on mount" guard is fragile under StrictMode's dev-only double-invoke,
+  // which defeats a ref flag with no cleanup and caused an unwanted scroll on load.
+  function selectCategory(cat: string, chipEl: HTMLButtonElement | null) {
+    setActiveCat(cat);
+    chipEl?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   // Mobile-only floating WhatsApp button, shown once the visitor has scrolled past
   // the hero's own CTAs so it doesn't compete with them above the fold.
@@ -417,11 +415,8 @@ export default function Home() {
                     return (
                       <button
                         key={cat}
-                        ref={(el) => {
-                          chipRefs.current[cat] = el;
-                        }}
                         type="button"
-                        onClick={() => setActiveCat(cat)}
+                        onClick={(e) => selectCategory(cat, e.currentTarget)}
                         className={`shrink-0 snap-start whitespace-nowrap border px-4 py-3 min-h-11 font-mono text-[11px] uppercase tracking-widest transition-colors active:scale-95 ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
                       >
                         {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
