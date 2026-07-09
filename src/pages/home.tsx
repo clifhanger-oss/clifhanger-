@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Phone, Mail, Instagram, Facebook, ArrowRight, MapPin, Menu, X } from "lucide-react";
 import { MountainBackground } from "@/components/mountain-background";
 import { ProductModal } from "@/components/product-modal";
+import { ColorGallery } from "@/components/color-gallery";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CONTACT } from "@/lib/contact";
 import { PRODUCTS, CATEGORY_ORDER, type Product } from "@/lib/products";
@@ -421,30 +422,34 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {PRODUCTS.filter((p) => inCategory(p, activeCat)).map((product) => (
-                  <button
-                    key={product.id}
-                    type="button"
-                    onClick={() => setSelected(product)}
-                    aria-haspopup="dialog"
-                    aria-label={`View ${product.name} details`}
-                    className="group text-left flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99]"
-                  >
+                {PRODUCTS.filter((p) => inCategory(p, activeCat)).map((product) => {
+                  const hasGallery = !!(product.colorImages && product.colorImages.length > 1);
+
+                  const imageBlock = (
                     <div className="relative aspect-square overflow-hidden bg-black/70 p-6 border-b border-border">
-                      <div className="absolute top-4 left-4 text-gray-400 font-mono text-xs">{product.id}</div>
-                      <div className="absolute top-4 right-4 max-w-[55%] truncate border border-border px-2 py-1 text-[10px] font-mono text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+                      <div className="absolute top-4 left-4 z-10 pointer-events-none text-gray-400 font-mono text-xs">
+                        {product.id}
+                      </div>
+                      <div className="absolute top-4 right-4 z-10 pointer-events-none max-w-[55%] truncate border border-border px-2 py-1 text-[10px] font-mono text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
                         {product.status}
                       </div>
-                      <img
-                        src={product.image}
-                        alt={`${product.name} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
-                        width={720}
-                        height={720}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-contain filter contrast-125 group-hover:scale-110 transition-transform duration-500 ease-out"
-                      />
+                      {hasGallery ? (
+                        <ColorGallery images={product.colorImages!} productName={product.name} compact />
+                      ) : (
+                        <img
+                          src={product.image}
+                          alt={`${product.name} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
+                          width={720}
+                          height={720}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-contain filter contrast-125 group-hover:scale-110 transition-transform duration-500 ease-out"
+                        />
+                      )}
                     </div>
+                  );
+
+                  const detailsFooter = (
                     <div className="p-6 flex flex-col justify-between flex-grow">
                       <h3 className="text-xl font-bold uppercase tracking-tight mb-4">{product.name}</h3>
                       <div className="flex items-center justify-between border-t border-border/50 pt-4 mt-auto">
@@ -456,8 +461,46 @@ export default function Home() {
                         <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
                       </span>
                     </div>
-                  </button>
-                ))}
+                  );
+
+                  // Gallery products: the image is its own swipeable region (never
+                  // opens the modal, so browsing colors never risks triggering it) —
+                  // only the footer is a button. Everything else keeps the original
+                  // whole-card button, unchanged.
+                  if (hasGallery) {
+                    return (
+                      <div
+                        key={product.id}
+                        className="group flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-within:border-primary transition-colors"
+                      >
+                        {imageBlock}
+                        <button
+                          type="button"
+                          onClick={() => setSelected(product)}
+                          aria-haspopup="dialog"
+                          aria-label={`View ${product.name} details`}
+                          className="text-left flex flex-col justify-between flex-grow active:scale-[0.99] transition-transform"
+                        >
+                          {detailsFooter}
+                        </button>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <button
+                      key={product.id}
+                      type="button"
+                      onClick={() => setSelected(product)}
+                      aria-haspopup="dialog"
+                      aria-label={`View ${product.name} details`}
+                      className="group text-left flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99]"
+                    >
+                      {imageBlock}
+                      {detailsFooter}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </section>
