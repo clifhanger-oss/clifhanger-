@@ -65,8 +65,12 @@ the overview pages. 20 products moved, including:
 Site now has 17 categories mirroring the catalogs' structure.
 
 ## Open items for the client
-- 3 products named without article codes (see sheet 2 of catalog-review.xlsx):
-  Chalk Loose III, Chalk Balls II, Ultralight III.
+- 2 products named without article codes (see sheet 2 of catalog-review.xlsx):
+  Chalk Loose III, Chalk Balls II.
   **Resolved 2026-07-09**: Kids Shield II confirmed as code 72045 (Helmets) —
   found in DWB_Sport_2026_EN-1.pdf p.80, added with full real data + image.
+  **Resolved 2026-07-09**: Ultralight III confirmed as code 72049 (Helmets) —
+  same page as Ultralight Junior III (p.82-83), added with full real data +
+  all 7 colorway photos (granita/icemint/night/oasis/orange/red/snow) as a
+  swipeable gallery, same treatment as its Junior sibling.
 - Hi-res imagery: request Edelrid's dealer media pack (catalog photos are print-res crops).

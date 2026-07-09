@@ -4104,6 +4104,90 @@ export const PRODUCTS: Product[] = [
     "origin": null
   },
   {
+    "id": "72049",
+    "code": "72049",
+    "name": "Ultralight III",
+    "title": "Ultralight III",
+    "category": "Helmets",
+    "articleNo": "72049",
+    "type": "ST",
+    "image": "/images/products/72049.webp",
+    "status": "HELMET",
+    "rating": "EN 12492 / UIAA 106",
+    "available": true,
+    "description": "Our popular classic has now been updated. The new ULTRALIGHT has a modern design, improved ventilation, and a new replaceable and washable head and chin strap. The extremely robust structure has been retained. The ultimate helmet for commercial facilities like climbing schools and adventure parks.",
+    "features": [
+      "Extremely robust and impact-resistant polypropylene shell",
+      "Headlamp attachment option",
+      "One size: fits a head circumference of 54–60 cm",
+      "Fully adjustable, replaceable, and washable head and chin strap for optimum fit",
+      "Various vents for continuous air exchange",
+      "Comfortably padded carrying system with antibacterial webbing"
+    ],
+    "specs": [
+      {
+        "label": "Certification",
+        "value": "EN 12492 / UIAA 106"
+      },
+      {
+        "label": "Material",
+        "value": "EPS, Polypropylen, Polyamide, PU leather"
+      },
+      {
+        "label": "Head size",
+        "value": "54 - 60"
+      },
+      {
+        "label": "Weight",
+        "value": "380g"
+      }
+    ],
+    "attributes": [],
+    "colors": [
+      "granita 278",
+      "icemint 329",
+      "night 017",
+      "oasis 138",
+      "orange 227",
+      "red 200",
+      "snow 047"
+    ],
+    "colorImages": [
+      {
+        "color": "granita 278",
+        "image": "/images/products/72049-granita.webp"
+      },
+      {
+        "color": "icemint 329",
+        "image": "/images/products/72049-icemint.webp"
+      },
+      {
+        "color": "night 017",
+        "image": "/images/products/72049-night.webp"
+      },
+      {
+        "color": "oasis 138",
+        "image": "/images/products/72049.webp"
+      },
+      {
+        "color": "orange 227",
+        "image": "/images/products/72049-orange.webp"
+      },
+      {
+        "color": "red 200",
+        "image": "/images/products/72049-red.webp"
+      },
+      {
+        "color": "snow 047",
+        "image": "/images/products/72049-snow.webp"
+      }
+    ],
+    "weights": [],
+    "weight": "380g",
+    "certification": "EN 12492 / UIAA 106",
+    "origin": null
+  },
+  {
     "id": "72050",
     "code": "72050",
     "name": "Ultralight Junior III",
