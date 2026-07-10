@@ -1,11 +1,11 @@
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect, lazy, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { terrainHeight, grain } from "@/lib/terrain";
+
+// Its own chunk: EffectComposer/UnrealBloomPass are only ever mounted on the
+// high-tier (desktop) path, so low-tier devices never fetch or parse them.
+const Bloom = lazy(() => import("./bloom-pass"));
 
 // ---------------------------------------------------------------------------
 // Scroll helper — reads document scroll progress (0..1) without React renders.
@@ -39,6 +39,9 @@ type Tier = {
   // pass chain on top of the base render, gated alongside shadows to the same
   // capable-hardware tier.
   bloom: boolean;
+  // Segment resolution for the hazy background ridge (DistantRidge) — separate
+  // from the main terrain's `segments` since it's already blurred/low-opacity.
+  ridgeSegments: number;
 };
 
 function detectTier(): Tier {
@@ -48,10 +51,11 @@ function detectTier(): Tier {
     window.matchMedia("(max-width: 768px)").matches || /Mobi|Android/i.test(navigator.userAgent);
   if (mobile || mem <= 4 || cores <= 4) {
     return {
-      snow: 150,
-      dust: 150,
+      snow: 100,
+      dust: 100,
       stars: 300,
-      segments: 120,
+      segments: 80,
+      ridgeSegments: 60,
       dpr: [1, 1.25],
       antialias: false,
       shadows: false,
@@ -62,7 +66,8 @@ function detectTier(): Tier {
     snow: 400,
     dust: 400,
     stars: 700,
-    segments: 256,
+    segments: 160,
+    ridgeSegments: 90,
     dpr: [1, 1.75],
     antialias: true,
     shadows: true,
@@ -208,9 +213,9 @@ function Terrain({ segments = 220, shadows = false }: { segments?: number; shado
 }
 
 // A darker, hazier ridge far behind the main massif for aerial-perspective depth.
-function DistantRidge() {
+function DistantRidge({ segX = 120 }: { segX?: number }) {
   const geometry = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(280, 90, 120, 40);
+    const geo = new THREE.PlaneGeometry(280, 90, segX, Math.round(segX / 3));
     geo.rotateX(-Math.PI / 2);
     const pos = geo.attributes.position as THREE.BufferAttribute;
     for (let i = 0; i < pos.count; i++) {
@@ -221,7 +226,7 @@ function DistantRidge() {
     }
     geo.computeVertexNormals();
     return geo;
-  }, []);
+  }, [segX]);
 
   return (
     <mesh geometry={geometry} position={[0, -6, -120]}>
@@ -629,83 +634,6 @@ function RenderGate() {
   return null;
 }
 
-// Cinematic bloom on the brightest/emissive parts of the frame only — the
-// chartreuse rim catching the rock, the aurora, the moon, star highlights, and
-// the glowing route waypoint. Gated to the same high-performance tier as
-// shadows and never mounted on the reduced-motion/no-WebGL poster path (that
-// path never mounts <MountainScene/> at all).
-//
-// This takes over rendering via a *positive r3f render priority*
-// (`useFrame(cb, 1)`), which is the documented, supported way to hand a frame
-// to an EffectComposer — it runs inside r3f's own rAF-driven loop and simply
-// tells r3f to skip its one built-in `gl.render(scene, camera)` call, rather
-// than starting a second, independent `requestAnimationFrame` loop that would
-// fight the Canvas's own loop (a classic cause of the double-render/hang class
-// of bug). Every other useFrame in this file keeps its default priority (0)
-// and keeps firing exactly as before.
-//
-// Composer + all passes are created *and* disposed inside a single effect
-// (not split across useMemo-for-creation / useEffect-for-cleanup) so React
-// StrictMode's dev-only mount→cleanup→mount double-invoke can't leave a memoized
-// composer instance pointing at render targets that a stray cleanup already
-// disposed — the second mount always builds a fresh composer from scratch.
-function Bloom() {
-  const { gl, scene, camera } = useThree();
-  const composerRef = useRef<EffectComposer | null>(null);
-
-  useEffect(() => {
-    const size = gl.getSize(new THREE.Vector2());
-    const composer = new EffectComposer(gl);
-    const renderPass = new RenderPass(scene, camera);
-    // Subtle, high threshold: only genuinely bright/additive elements (moon,
-    // aurora, route glow, sun-struck snow under the rim light) cross it — the
-    // general terrain/UI-legibility-critical background stays untouched.
-    const bloomPass = new UnrealBloomPass(size, 0.32, 0.45, 0.82);
-    const outputPass = new OutputPass();
-    composer.addPass(renderPass);
-    composer.addPass(bloomPass);
-    composer.addPass(outputPass);
-
-    // UnrealBloomPass's own docs require tone mapping to be enabled: three only
-    // applies tone mapping / color-space encoding when the active render target
-    // is the screen (or XR), so the offscreen scene pass stays fully linear —
-    // this only changes how the FINAL composited frame is graded, and is
-    // restored on cleanup so the low-tier (no-Bloom) path never sees it.
-    const prevToneMapping = gl.toneMapping;
-    const prevExposure = gl.toneMappingExposure;
-    gl.toneMapping = THREE.ACESFilmicToneMapping;
-    gl.toneMappingExposure = 1.1;
-
-    composerRef.current = composer;
-
-    return () => {
-      composerRef.current = null;
-      bloomPass.dispose();
-      outputPass.dispose();
-      composer.dispose();
-      gl.toneMapping = prevToneMapping;
-      gl.toneMappingExposure = prevExposure;
-    };
-  }, [gl, scene, camera]);
-
-  // EffectComposer's render targets don't auto-track the renderer's size/DPR —
-  // this has to be driven explicitly on every resize (viewport resize, monitor/
-  // DPR change) or the composer silently keeps rendering at a stale resolution.
-  const size = useThree((s) => s.size);
-  useEffect(() => {
-    const composer = composerRef.current;
-    if (!composer) return;
-    composer.setPixelRatio(gl.getPixelRatio());
-    composer.setSize(size.width, size.height);
-  }, [size, gl]);
-
-  useFrame((_, delta) => {
-    composerRef.current?.render(delta);
-  }, 1);
-
-  return null;
-}
-
 export default function MountainScene() {
   const [tier] = useState(detectTier);
   return (
@@ -729,14 +657,18 @@ export default function MountainScene() {
       <Stars count={tier.stars} />
       <Moon />
       <Aurora />
-      <DistantRidge />
+      <DistantRidge segX={tier.ridgeSegments} />
       <Terrain segments={tier.segments} shadows={tier.shadows} />
       <Route />
       <Dust count={tier.dust} />
       <Snow count={tier.snow} />
       <Rig />
       <RenderGate />
-      {tier.bloom && <Bloom />}
+      {tier.bloom && (
+        <Suspense fallback={null}>
+          <Bloom />
+        </Suspense>
+      )}
     </Canvas>
   );
 }

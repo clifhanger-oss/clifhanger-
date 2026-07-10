@@ -25,7 +25,9 @@ function ridgedFbm(x: number, y: number): number {
   let amp = 0.5;
   let freq = 1;
   let sum = 0;
-  for (let i = 0; i < 6; i++) {
+  // 4 octaves, not 6 — each further octave halves in amplitude, so #5/#6
+  // contributed <5% of the total signal for 33% more cost. Cut for perf.
+  for (let i = 0; i < 4; i++) {
     const n = smoothNoise(x * freq, y * freq);
     const ridge = 1 - Math.abs(2 * n - 1);
     sum += amp * ridge * ridge;
