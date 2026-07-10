@@ -545,6 +545,21 @@ function Route() {
 // Subtle life in the lighting — the chartreuse rim breathes.
 function Lights({ shadows = false }: { shadows?: boolean }) {
   const rim = useRef<THREE.DirectionalLight>(null);
+  const { gl } = useThree();
+
+  // The shadow-casting key light and the terrain it shadows are both static —
+  // only the rim light (non-shadow-casting) and the camera move. Three.js's
+  // default `shadowMap.autoUpdate` re-renders the whole shadow depth pass every
+  // frame regardless, which is pure waste for a shadow that never changes.
+  // Render it once and freeze it: setting `needsUpdate` renders exactly one more
+  // shadow pass, then three.js resets it to false on its own since autoUpdate
+  // is off, so this doesn't need a cleanup/reset.
+  useEffect(() => {
+    if (!shadows) return;
+    gl.shadowMap.autoUpdate = false;
+    gl.shadowMap.needsUpdate = true;
+  }, [shadows, gl]);
+
   useFrame((state) => {
     if (rim.current) rim.current.intensity = 1.4 + Math.sin(state.clock.elapsedTime * 0.6) * 0.4;
   });
