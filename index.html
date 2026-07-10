@@ -37,9 +37,11 @@
     <meta name="keywords" content="climbing equipment Lebanon, climbing gear Lebanon, Edelrid Lebanon, Tendon ropes, carabiners, belay devices, climbing shoes, chalk bags, outdoor gear" />
 
     <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Self-hosted fonts (see @font-face in src/index.css). Preload only the
+         latin Bricolage subset — it renders the hero headline, the LCP element,
+         so fetching it early shortens LCP. font-src is same-origin now; the
+         crossorigin attr is still required (fonts are always CORS-fetched). -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Structured data. PLACEHOLDER domain + social handles — swap for real values before deploy. -->
     <script type="application/ld+json">
