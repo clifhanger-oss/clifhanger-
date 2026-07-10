@@ -7,3 +7,6 @@ dist-ssr
 
 # TS incremental build cache
 *.tsbuildinfo
+
+# Catalog exports — kept locally for reference, not tracked (large binaries)
+docs/*.xlsx
