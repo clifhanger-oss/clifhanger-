@@ -1,4 +1,4 @@
-# Cliffhanger — PLACEHOLDER domain: swap https://cliffhanger-gear.com for the real domain before deploy
+# Cliffhanger
 
 User-agent: *
 Allow: /
@@ -27,4 +27,4 @@ Allow: /
 User-agent: Bytespider
 Disallow: /
 
-Sitemap: https://cliffhanger-gear.com/sitemap.xml
+Sitemap: https://www.cliffhangerleb.com/sitemap.xml

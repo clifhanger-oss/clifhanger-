@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
-// PLACEHOLDER DOMAIN: swap for the real production domain before deploy —
-// see index.html and public/robots.txt / sitemap.xml for the other occurrences.
-const SITE_URL = "https://cliffhanger-gear.com";
+const SITE_URL = "https://www.cliffhangerleb.com";
 
 type SeoMeta = {
   title: string;
