@@ -91,8 +91,8 @@ function writeRoute(path, title, description, body, schemas = []) {
   document = replaceMeta(document, /<meta name="twitter:title"[^>]*>/, title);
   document = replaceMeta(document, /<meta name="twitter:description"[^>]*>/, description);
   document = document.replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />`);
-  document = document.replace("<div id=\"root\"></div>", `<div id="root">${body}</div>`);
-  document = document.replace(/<noscript>[\s\S]*?<\/noscript>/, "");
+  document = document.replace("<div id=\"root\"></div>", `<div id="root"><div class="prerender-fallback">${body}</div></div>`);
+  document = document.replace(/<noscript>[\s\S]*?<\/noscript>/, "<noscript><style>#root > .prerender-fallback { display: block; }</style></noscript>");
   document = document.replace("</head>", `${schemas.map((schema) => `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>`).join("")}\n  </head>`);
   const directory = new URL(path === "/" ? "../dist/" : `../dist${path}/`, import.meta.url);
   mkdirSync(directory, { recursive: true });
