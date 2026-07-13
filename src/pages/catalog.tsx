@@ -1,5 +1,5 @@
-import { useEffect, type ReactNode } from "react";
-import { Link } from "wouter";
+import { useEffect, useMemo, type ReactNode } from "react";
+import { Link, useSearchParams } from "wouter";
 import { ArrowLeft, ArrowRight, Check, MessageCircle } from "lucide-react";
 import { CONTACT } from "@/lib/contact";
 import {
@@ -38,9 +38,10 @@ function JsonLd({ value }: { value: object }) {
 function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-primary selection:text-black">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:bg-primary focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest focus:text-black">Skip to content</a>
       <header className="sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-border bg-black/90 backdrop-blur-md px-4 md:px-8 py-4">
-        <Link href="/" className="flex items-center"><img src={wordmark} alt="Cliffhanger" width={812} height={184} className="h-6 md:h-7 w-auto object-contain" /></Link>
-        <Link href="/products" className="font-mono text-[11px] uppercase tracking-widest text-gray-300 hover:text-primary transition-colors">Browse all gear</Link>
+        <Link href="/" className="flex min-h-11 items-center"><img src={wordmark} alt="Cliffhanger" width={812} height={184} className="h-6 md:h-7 w-auto object-contain" /></Link>
+        <Link href="/products" className="inline-flex min-h-11 items-center px-2 font-mono text-[11px] uppercase tracking-widest text-gray-300 hover:text-primary transition-colors">Browse all gear</Link>
       </header>
       {children}
       <footer className="border-t border-border px-6 py-8 text-center font-mono text-[10px] uppercase tracking-widest text-gray-500">
@@ -67,48 +68,84 @@ function ProductCard({ product }: { product: Product }) {
 function CategorySwitcher({ activeCategory }: { activeCategory?: string }) {
   const categories = CATEGORY_ORDER.filter((category) => productsInCategory(category).length);
   return (
-    <nav aria-label="Switch product category" className="sticky top-[57px] z-40 mt-10 -mx-6 overflow-x-auto border-y border-border bg-black/95 px-6 py-3 shadow-[0_8px_18px_hsl(0_0%_0%/0.6)] backdrop-blur-md sm:top-[65px] sm:mx-0 sm:px-0">
-      <ul className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
-        {categories.map((category) => {
-          const active = category === activeCategory;
-          return (
-            <li key={category}>
+    <nav aria-label="Switch product category" className="sticky top-[57px] z-40 mt-10 -mx-6 border-y border-border bg-black/95 py-3 shadow-[0_8px_18px_hsl(0_0%_0%/0.6)] backdrop-blur-md sm:top-[65px] sm:mx-0">
+      <div className="relative">
+        <div className="overflow-x-auto px-6 sm:px-0">
+          <ul className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+            <li>
               <Link
-                href={`/categories/${categorySlug(category)}`}
-                aria-current={active ? "page" : undefined}
-                className={`flex min-h-11 items-center border px-4 py-2 font-mono text-[11px] uppercase tracking-wide transition-colors ${active ? "border-primary bg-primary text-black" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+                href="/products"
+                aria-current={!activeCategory ? "page" : undefined}
+                className={`flex min-h-11 items-center border px-4 py-2 font-mono text-[11px] uppercase tracking-wide transition-colors ${!activeCategory ? "border-primary bg-primary text-black" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
               >
-                {category} <span className={`ml-2 ${active ? "text-black/60" : "text-gray-500"}`}>{productsInCategory(category).length}</span>
+                All gear <span className={`ml-2 ${!activeCategory ? "text-black/60" : "text-gray-500"}`}>{PRODUCTS.length}</span>
               </Link>
             </li>
-          );
-        })}
-      </ul>
+            {categories.map((category) => {
+              const active = category === activeCategory;
+              return (
+                <li key={category}>
+                  <Link
+                    href={`/categories/${categorySlug(category)}`}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex min-h-11 items-center border px-4 py-2 font-mono text-[11px] uppercase tracking-wide transition-colors ${active ? "border-primary bg-primary text-black" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+                  >
+                    {category} <span className={`ml-2 ${active ? "text-black/60" : "text-gray-500"}`}>{productsInCategory(category).length}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/95 to-transparent sm:hidden" />
+        <span className="sr-only">Swipe horizontally to browse more categories.</span>
+      </div>
     </nav>
   );
 }
 
 export function ProductsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+  const filteredProducts = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    if (!normalizedQuery) return PRODUCTS;
+    return PRODUCTS.filter((product) =>
+      [product.name, product.title, product.category, product.description, ...product.features]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase()
+        .includes(normalizedQuery),
+    );
+  }, [query]);
+
+  const updateQuery = (value: string) => {
+    const next = new URLSearchParams(searchParams);
+    if (value) next.set("q", value);
+    else next.delete("q");
+    setSearchParams(next, { replace: true });
+  };
+
   useSEO({ title: "Climbing Equipment & Outdoor Gear | Cliffhanger", description: `Browse ${PRODUCTS.length} climbing products in Lebanon: ropes, carabiners, belay devices, helmets, shoes and certified outdoor gear.`, path: "/products" });
   const schema = { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${SITE_URL}/products#webpage`, name: "Cliffhanger climbing equipment catalog", url: `${SITE_URL}/products`, mainEntity: { "@type": "ItemList", numberOfItems: PRODUCTS.length, itemListElement: PRODUCTS.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
-  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger catalog</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">Climbing equipment<br />& outdoor gear</h1><p className="mt-7 max-w-3xl font-mono text-sm leading-relaxed text-gray-300">Browse {PRODUCTS.length} certified climbing and outdoor products selected for climbers in Lebanon. Choose a category or open any product for specifications and an enquiry link.</p><CategorySwitcher /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{PRODUCTS.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
+  return <Layout><JsonLd value={schema} /><main id="main" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-16 md:py-24"><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger catalog</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">Climbing equipment<br />& outdoor gear</h1><p className="mt-7 max-w-3xl font-mono text-sm leading-relaxed text-gray-300">Browse {PRODUCTS.length} certified climbing and outdoor products selected for climbers in Lebanon. Choose a category or open any product for specifications and an enquiry link.</p><CategorySwitcher /><div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><label className="flex max-w-md flex-1 flex-col gap-2 font-mono text-xs uppercase tracking-widest text-gray-300">Search gear<input type="search" value={query} onChange={(event) => updateQuery(event.target.value)} placeholder="e.g. rope, helmet, belay" className="min-h-11 border border-border bg-black px-4 font-mono text-sm normal-case tracking-normal text-white placeholder:text-gray-500 focus:border-primary" /></label><p role="status" aria-live="polite" className="font-mono text-xs uppercase tracking-widest text-primary">Showing {filteredProducts.length} of {PRODUCTS.length} products</p></div><div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{filteredProducts.map((product) => <ProductCard key={product.id} product={product} />)}</div>{filteredProducts.length === 0 && <p className="mt-10 border border-border p-6 font-mono text-sm text-gray-300">No gear matches “{query}”. Try a product type, category, or feature.</p>}</main></Layout>;
 }
 
 export function CategoryPage({ slug }: { slug: string }) {
   const category = getCategoryBySlug(slug);
   const products = category ? productsInCategory(category) : [];
   useSEO({ title: category ? `${category} | Climbing Gear | Cliffhanger` : "Category Not Found | Cliffhanger", description: category ? `Browse ${products.length} ${category.toLowerCase()} products from Cliffhanger, Lebanon's climbing equipment specialist.` : "This product category could not be found.", path: `/categories/${slug}`, noindex: !category });
-  if (!category) return <Layout><main className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Category not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
+  if (!category) return <Layout><main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Category not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
   const schema = { "@context": "https://schema.org", "@type": "CollectionPage", name: `${category} | Cliffhanger`, url: `${SITE_URL}/categories/${slug}`, mainEntity: { "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
-  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><Link href="/products" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-primary"><ArrowLeft className="h-4 w-4" /> All gear</Link><p className="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger category</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">{category}</h1><p className="mt-6 max-w-2xl font-mono text-sm leading-relaxed text-gray-300">{products.length} {category.toLowerCase()} products currently listed by Cliffhanger. Review each product page for its manufacturer specifications, certification details, and availability enquiry.</p><CategorySwitcher activeCategory={category} /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
+  return <Layout><JsonLd value={schema} /><main id="main" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-16 md:py-24"><Link href="/products" className="inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-primary"><ArrowLeft className="h-4 w-4" /> All gear</Link><p className="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger category</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">{category}</h1><p role="status" aria-live="polite" className="mt-6 max-w-2xl font-mono text-sm leading-relaxed text-gray-300">Showing {products.length} {category.toLowerCase()} products. Review each product page for its manufacturer specifications, certification details, and availability enquiry.</p><CategorySwitcher activeCategory={category} /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
 }
 
 export function ProductPage({ slug }: { slug: string }) {
   const product = getProductBySlug(slug);
   const title = product?.title ?? product?.name;
   useSEO({ title: product ? `${title} ${product.category} | Cliffhanger` : "Product Not Found | Cliffhanger", description: product ? `${title}: ${product.description}`.slice(0, 155) : "This product could not be found.", path: `/products/${slug}`, noindex: !product });
-  if (!product || !title) return <Layout><main className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Product not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
+  if (!product || !title) return <Layout><main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Product not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
   const schema = { "@context": "https://schema.org", "@type": "Product", "@id": `${SITE_URL}/products/${slug}#product`, name: title, sku: product.code, category: product.category, description: product.description, image: `${SITE_URL}${product.image}`, additionalProperty: [...product.specs.map((spec) => ({ "@type": "PropertyValue", name: spec.label, value: spec.value })), ...(product.certification ? [{ "@type": "PropertyValue", name: "Certification", value: product.certification }] : [])], seller: { "@id": `${SITE_URL}/#organization` } };
   const waHref = `${CONTACT.whatsapp}?text=${encodeURIComponent(`Hi Cliffhanger, I'm interested in the ${title}. Is it available?`)}`;
-  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-6xl px-6 py-12 md:py-20"><nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-widest text-gray-400"><Link href="/products" className="hover:text-primary">Gear</Link><span className="mx-2">/</span><Link href={`/categories/${categorySlug(product.category)}`} className="hover:text-primary">{product.category}</Link></nav><div className="mt-10 grid gap-10 lg:grid-cols-2"><div className="aspect-square border border-border bg-[hsl(0_0%_4%)] p-8"><img src={product.image} alt={`${title} — ${product.category}`} width={900} height={900} className="h-full w-full object-contain" /></div><div><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{product.category}</p><h1 className="mt-3 text-5xl font-bold uppercase tracking-tighter md:text-6xl">{title}</h1><p className="mt-6 font-mono text-sm leading-relaxed text-gray-300">{product.description}</p><a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-black hover:bg-white"><MessageCircle className="h-5 w-5" /> Ask about availability</a></div></div>{product.features.length > 0 && <section className="mt-16 max-w-3xl"><h2 className="text-2xl font-bold uppercase">Key features</h2><ul className="mt-6 grid gap-3">{product.features.map((feature) => <li key={feature} className="flex gap-3 font-mono text-sm text-gray-300"><Check className="h-4 w-4 shrink-0 text-primary" />{feature}</li>)}</ul></section>}<section className="mt-16"><h2 className="text-2xl font-bold uppercase">Technical information</h2><dl className="mt-6 grid border-t border-border sm:grid-cols-2">{product.specs.map((spec) => <div key={spec.label} className="flex justify-between gap-4 border-b border-border px-1 py-4 font-mono text-sm"><dt className="text-gray-400">{spec.label}</dt><dd className="text-right">{spec.value}</dd></div>)}</dl></section></main></Layout>;
+  return <Layout><JsonLd value={schema} /><main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-6 py-12 md:py-20"><nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-widest text-gray-400"><Link href="/products" className="hover:text-primary">Gear</Link><span className="mx-2">/</span><Link href={`/categories/${categorySlug(product.category)}`} className="hover:text-primary">{product.category}</Link></nav><div className="mt-10 grid gap-10 lg:grid-cols-2"><div className="aspect-square border border-border bg-[hsl(0_0%_4%)] p-8"><img src={product.image} alt={`${title} — ${product.category}`} width={900} height={900} className="h-full w-full object-contain" /></div><div><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{product.category}</p><h1 className="mt-3 text-5xl font-bold uppercase tracking-tighter md:text-6xl">{title}</h1><p className="mt-6 font-mono text-sm leading-relaxed text-gray-300">{product.description}</p><a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-black hover:bg-white"><MessageCircle className="h-5 w-5" /> Ask about availability</a></div></div>{product.features.length > 0 && <section className="mt-16 max-w-3xl"><h2 className="text-2xl font-bold uppercase">Key features</h2><ul className="mt-6 grid gap-3">{product.features.map((feature) => <li key={feature} className="flex gap-3 font-mono text-sm text-gray-300"><Check className="h-4 w-4 shrink-0 text-primary" />{feature}</li>)}</ul></section>}<section className="mt-16"><h2 className="text-2xl font-bold uppercase">Technical information</h2><dl className="mt-6 grid border-t border-border sm:grid-cols-2">{product.specs.map((spec) => <div key={spec.label} className="flex justify-between gap-4 border-b border-border px-1 py-4 font-mono text-sm"><dt className="text-gray-400">{spec.label}</dt><dd className="text-right">{spec.value}</dd></div>)}</dl></section></main></Layout>;
 }

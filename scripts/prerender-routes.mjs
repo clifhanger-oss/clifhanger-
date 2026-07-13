@@ -43,7 +43,7 @@ function productListSchema(list, path, name) {
 }
 
 function categorySwitcher(activeCategory) {
-  return `<nav aria-label="Switch product category"><ul>${categories.map((category) => `<li><a href="${categoryPath(category)}"${category === activeCategory ? " aria-current=\"page\"" : ""}>${escape(category)} (${productsInCategory(category).length})</a></li>`).join("")}</ul></nav>`;
+  return `<nav aria-label="Switch product category"><ul><li><a href="/products"${!activeCategory ? " aria-current=\"page\"" : ""}>All gear (${products.length})</a></li>${categories.map((category) => `<li><a href="${categoryPath(category)}"${category === activeCategory ? " aria-current=\"page\"" : ""}>${escape(category)} (${productsInCategory(category).length})</a></li>`).join("")}</ul></nav>`;
 }
 
 function productMarkup(product) {
@@ -100,7 +100,8 @@ function writeRoute(path, title, description, body, schemas = []) {
 }
 
 const catalogBody = `<main><h1>Climbing Equipment &amp; Outdoor Gear</h1><p>Browse ${products.length} certified climbing and outdoor products from Cliffhanger in Lebanon.</p>${categorySwitcher()}<ul>${products.map((product) => `<li><a href="${productPath(product)}">${escape(product.title ?? product.name)}</a> — ${escape(product.category)}</li>`).join("")}</ul></main>`;
-writeRoute("/", "Cliffhanger — Climbing Equipments & Outdoor Gears", "Cliffhanger — technical climbing hardware and outdoor gear. Made for the vertical. Since 2003. Based in Lebanon.", catalogBody, [productListSchema(products, "/", "Cliffhanger Product Catalog")]);
+const homeBody = `<main><h1>Cliffhanger — Made for the Vertical</h1><p>Technical climbing hardware and outdoor gear for climbers in Lebanon. Cliffhanger has served the climbing community since 2003 as an official partner of Edelrid and Tendon.</p><p><a href="/products">Explore climbing gear</a></p><section><h2>Official partners</h2><p>Edelrid climbing equipment and Tendon ropes.</p><p><a href="/partners">Meet our partners</a></p></section><section><h2>Contact Cliffhanger</h2><p><a href="https://wa.me/9613276938">Message us on WhatsApp</a> or call <a href="tel:+9613276938">03 276 938</a>.</p><p><a href="/contact">Contact details</a></p></section></main>`;
+writeRoute("/", "Cliffhanger — Climbing Equipments & Outdoor Gears", "Cliffhanger — technical climbing hardware and outdoor gear. Made for the vertical. Since 2003. Based in Lebanon.", homeBody, [productListSchema(products, "/", "Cliffhanger Product Catalog")]);
 writeRoute("/products", "Climbing Equipment & Outdoor Gear | Cliffhanger", `Browse ${products.length} climbing products in Lebanon: ropes, carabiners, belay devices, helmets, shoes and certified outdoor gear.`, catalogBody, [productListSchema(products, "/products", "Cliffhanger climbing equipment catalog")]);
 
 for (const category of categories) {
@@ -129,4 +130,4 @@ for (const [path, [title, description, body]] of Object.entries(staticPages)) {
   writeRoute(path, title, description, `<main><h1>${escape(title)}</h1><p>${escape(body)}</p></main>`);
 }
 
-console.log(`Prerendered ${1 + categories.length + products.length + Object.keys(staticPages).length} crawlable route documents.`);
+console.log(`Prerendered ${2 + categories.length + products.length + Object.keys(staticPages).length} crawlable route documents.`);

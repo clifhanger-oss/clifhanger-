@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 
 // Heavy Three.js scene is code-split so first paint isn't blocked on it.
 const MountainScene = lazy(() => import("@/components/mountain-scene"));
@@ -23,13 +23,26 @@ function webglSupported() {
 function StaticPoster() {
   return (
     <div
-      className="size-full"
+      data-testid="mountain-static-poster"
+      className="size-full bg-cover bg-[62%_center]"
       style={{
-        background:
-          "radial-gradient(120% 80% at 70% 10%, #12141a 0%, #0a0b0e 45%, #050506 100%)",
+        backgroundImage:
+          "linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.08) 100%), url('/images/hero-climber.webp')",
       }}
     />
   );
+}
+
+class SceneErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
 }
 
 export function MountainBackground() {
@@ -43,9 +56,11 @@ export function MountainBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 h-screen w-full" aria-hidden="true">
       {mode === "live" ? (
-        <Suspense fallback={<StaticPoster />}>
-          <MountainScene />
-        </Suspense>
+        <SceneErrorBoundary fallback={<StaticPoster />}>
+          <Suspense fallback={<StaticPoster />}>
+            <MountainScene fallback={<StaticPoster />} onContextLost={() => setMode("poster")} />
+          </Suspense>
+        </SceneErrorBoundary>
       ) : (
         <StaticPoster />
       )}

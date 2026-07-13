@@ -132,7 +132,7 @@ export default function Home() {
 
           <nav aria-label="Primary" className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-300">
             {NAV.map((item) => (
-              <a key={item.href} href={item.href} className="hover:text-primary transition-colors">
+              <a key={item.href} href={item.href} className="inline-flex min-h-11 items-center hover:text-primary transition-colors">
                 {item.label}
               </a>
             ))}
@@ -141,7 +141,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="hidden sm:inline-block shrink-0 whitespace-nowrap bg-primary text-black px-4 md:px-6 py-2 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-white transition-colors active:scale-95 transform duration-100"
+              className="hidden min-h-11 sm:inline-flex items-center shrink-0 whitespace-nowrap bg-primary text-black px-4 md:px-6 py-2 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-white transition-colors active:scale-95 transform duration-100"
             >
               Get in Touch
             </a>
@@ -151,7 +151,7 @@ export default function Home() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="md:hidden text-white p-2 -mr-2 active:scale-90 transition-transform duration-100"
+              className="md:hidden min-h-11 min-w-11 text-white p-2 -mr-2 active:scale-90 transition-transform duration-100"
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -186,7 +186,7 @@ export default function Home() {
           </nav>
         </div>
 
-        <main id="main">
+        <main id="main" tabIndex={-1}>
           {/* HERO */}
           <section id="top" className="relative min-h-[100dvh] flex flex-col justify-center pt-28 pb-12 px-6 lg:px-12">
             <div className="relative z-10 max-w-6xl mx-auto w-full">

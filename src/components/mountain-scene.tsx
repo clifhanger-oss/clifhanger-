@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect, lazy, Suspense } from "react";
+import { useMemo, useRef, useState, useEffect, lazy, Suspense, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { terrainHeight, grain } from "@/lib/terrain";
@@ -42,6 +42,7 @@ type Tier = {
   // Segment resolution for the hazy background ridge (DistantRidge) — separate
   // from the main terrain's `segments` since it's already blurred/low-opacity.
   ridgeSegments: number;
+  powerPreference: WebGLPowerPreference;
 };
 
 function detectTier(): Tier {
@@ -60,6 +61,7 @@ function detectTier(): Tier {
       antialias: false,
       shadows: false,
       bloom: false,
+      powerPreference: "low-power",
     };
   }
   return {
@@ -72,6 +74,7 @@ function detectTier(): Tier {
     antialias: true,
     shadows: true,
     bloom: true,
+    powerPreference: "high-performance",
   };
 }
 
@@ -649,14 +652,32 @@ function RenderGate() {
   return null;
 }
 
-export default function MountainScene() {
+function ContextLossHandler({ onContextLost }: { onContextLost?: () => void }) {
+  const { gl } = useThree();
+
+  useEffect(() => {
+    if (!onContextLost) return;
+    const canvas = gl.domElement;
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      onContextLost();
+    };
+    canvas.addEventListener("webglcontextlost", handleContextLost, { once: true });
+    return () => canvas.removeEventListener("webglcontextlost", handleContextLost);
+  }, [gl, onContextLost]);
+
+  return null;
+}
+
+export default function MountainScene({ fallback, onContextLost }: { fallback?: ReactNode; onContextLost?: () => void }) {
   const [tier] = useState(detectTier);
   return (
     <Canvas
       dpr={tier.dpr}
       camera={{ position: [0, 18, 40], fov: 55, near: 0.1, far: 400 }}
-      gl={{ antialias: tier.antialias, powerPreference: "high-performance" }}
+      gl={{ antialias: tier.antialias, powerPreference: tier.powerPreference }}
       shadows={tier.shadows}
+      fallback={fallback}
     >
       <color attach="background" args={["#0a0d13"]} />
       {/* Exponential fog (rather than the old linear 90-260 falloff, which left
@@ -679,6 +700,7 @@ export default function MountainScene() {
       <Snow count={tier.snow} />
       <Rig />
       <RenderGate />
+      <ContextLossHandler onContextLost={onContextLost} />
       {tier.bloom && (
         <Suspense fallback={null}>
           <Bloom />
