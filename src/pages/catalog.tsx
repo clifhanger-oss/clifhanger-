@@ -2,6 +2,7 @@ import { useEffect, useMemo, type ReactNode } from "react";
 import { Link, useSearchParams } from "wouter";
 import { ArrowLeft, ArrowRight, Check, MessageCircle } from "lucide-react";
 import { CONTACT } from "@/lib/contact";
+import { ColorGallery } from "@/components/color-gallery";
 import {
   CATEGORY_ORDER,
   PRODUCTS,
@@ -52,15 +53,56 @@ function Layout({ children }: { children: ReactNode }) {
 }
 
 function ProductCard({ product }: { product: Product }) {
-  return (
-    <Link href={`/products/${productSlug(product)}`} className="group flex flex-col overflow-hidden border border-border bg-[hsl(0_0%_4%)] hover:border-primary transition-colors">
-      <div className="aspect-square bg-black p-6"><img src={product.image} alt={`${product.name} climbing gear`} width={720} height={720} loading="lazy" decoding="async" className="h-full w-full object-contain group-hover:scale-105 transition-transform" /></div>
-      <div className="border-t border-border p-5">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-primary">{product.category}</p>
-        <h2 className="mt-2 text-xl font-bold uppercase tracking-tight">{product.name}</h2>
-        <p className="mt-3 font-mono text-xs text-gray-400">{product.certification ?? product.rating}</p>
-        <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gray-300 group-hover:text-primary">Product details <ArrowRight className="h-3.5 w-3.5" /></span>
+  const href = `/products/${productSlug(product)}`;
+  const hasGallery = !!(product.colorImages && product.colorImages.length > 1);
+
+  const imageBlock = (
+    <div className="aspect-square bg-black p-6">
+      {hasGallery ? (
+        <ColorGallery images={product.colorImages!} productName={product.name} compact />
+      ) : (
+        <img
+          src={product.image}
+          alt={`${product.name} climbing gear`}
+          width={720}
+          height={720}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-contain group-hover:scale-105 transition-transform"
+        />
+      )}
+    </div>
+  );
+
+  const detailsFooter = (
+    <div className="border-t border-border p-5">
+      <p className="font-mono text-[10px] uppercase tracking-widest text-primary">{product.category}</p>
+      <h2 className="mt-2 text-xl font-bold uppercase tracking-tight">{product.name}</h2>
+      <p className="mt-3 font-mono text-xs text-gray-400">{product.certification ?? product.rating}</p>
+      <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gray-300 group-hover:text-primary">
+        Product details <ArrowRight className="h-3.5 w-3.5" />
+      </span>
+    </div>
+  );
+
+  // Gallery products: the image is its own swipeable region (a Link can't
+  // wrap it — the gallery's dot indicators are buttons, and a button inside
+  // an anchor is invalid/inaccessible), so only the footer is the link.
+  if (hasGallery) {
+    return (
+      <div className="group flex flex-col overflow-hidden border border-border bg-[hsl(0_0%_4%)] hover:border-primary transition-colors">
+        {imageBlock}
+        <Link href={href} className="contents">
+          {detailsFooter}
+        </Link>
       </div>
+    );
+  }
+
+  return (
+    <Link href={href} className="group flex flex-col overflow-hidden border border-border bg-[hsl(0_0%_4%)] hover:border-primary transition-colors">
+      {imageBlock}
+      {detailsFooter}
     </Link>
   );
 }
@@ -143,9 +185,147 @@ export function CategoryPage({ slug }: { slug: string }) {
 export function ProductPage({ slug }: { slug: string }) {
   const product = getProductBySlug(slug);
   const title = product?.title ?? product?.name;
-  useSEO({ title: product ? `${title} ${product.category} | Cliffhanger` : "Product Not Found | Cliffhanger", description: product ? `${title}: ${product.description}`.slice(0, 155) : "This product could not be found.", path: `/products/${slug}`, noindex: !product });
-  if (!product || !title) return <Layout><main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Product not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
-  const schema = { "@context": "https://schema.org", "@type": "Product", "@id": `${SITE_URL}/products/${slug}#product`, name: title, sku: product.code, category: product.category, description: product.description, image: `${SITE_URL}${product.image}`, additionalProperty: [...product.specs.map((spec) => ({ "@type": "PropertyValue", name: spec.label, value: spec.value })), ...(product.certification ? [{ "@type": "PropertyValue", name: "Certification", value: product.certification }] : [])], seller: { "@id": `${SITE_URL}/#organization` } };
+  useSEO({
+    title: product ? `${title} ${product.category} | Cliffhanger` : "Product Not Found | Cliffhanger",
+    description: product ? `${title}: ${product.description}`.slice(0, 155) : "This product could not be found.",
+    path: `/products/${slug}`,
+    noindex: !product,
+  });
+
+  if (!product || !title) {
+    return (
+      <Layout>
+        <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-24">
+          <h1 className="text-4xl font-bold uppercase">Product not found</h1>
+          <Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary">
+            <ArrowLeft className="h-4 w-4" /> Browse catalog
+          </Link>
+        </main>
+      </Layout>
+    );
+  }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${SITE_URL}/products/${slug}#product`,
+    name: title,
+    sku: product.code,
+    category: product.category,
+    description: product.description,
+    image: `${SITE_URL}${product.image}`,
+    additionalProperty: [
+      ...product.specs.map((spec) => ({ "@type": "PropertyValue", name: spec.label, value: spec.value })),
+      ...(product.certification ? [{ "@type": "PropertyValue", name: "Certification", value: product.certification }] : []),
+    ],
+    seller: { "@id": `${SITE_URL}/#organization` },
+  };
   const waHref = `${CONTACT.whatsapp}?text=${encodeURIComponent(`Hi Cliffhanger, I'm interested in the ${title}. Is it available?`)}`;
-  return <Layout><JsonLd value={schema} /><main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-6 py-12 md:py-20"><nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-widest text-gray-400"><Link href="/products" className="hover:text-primary">Gear</Link><span className="mx-2">/</span><Link href={`/categories/${categorySlug(product.category)}`} className="hover:text-primary">{product.category}</Link></nav><div className="mt-10 grid gap-10 lg:grid-cols-2"><div className="aspect-square border border-border bg-[hsl(0_0%_4%)] p-8"><img src={product.image} alt={`${title} — ${product.category}`} width={900} height={900} className="h-full w-full object-contain" /></div><div><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{product.category}</p><h1 className="mt-3 text-5xl font-bold uppercase tracking-tighter md:text-6xl">{title}</h1><p className="mt-6 font-mono text-sm leading-relaxed text-gray-300">{product.description}</p><a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-black hover:bg-white"><MessageCircle className="h-5 w-5" /> Ask about availability</a></div></div>{product.features.length > 0 && <section className="mt-16 max-w-3xl"><h2 className="text-2xl font-bold uppercase">Key features</h2><ul className="mt-6 grid gap-3">{product.features.map((feature) => <li key={feature} className="flex gap-3 font-mono text-sm text-gray-300"><Check className="h-4 w-4 shrink-0 text-primary" />{feature}</li>)}</ul></section>}<section className="mt-16"><h2 className="text-2xl font-bold uppercase">Technical information</h2><dl className="mt-6 grid border-t border-border sm:grid-cols-2">{product.specs.map((spec) => <div key={spec.label} className="flex justify-between gap-4 border-b border-border px-1 py-4 font-mono text-sm"><dt className="text-gray-400">{spec.label}</dt><dd className="text-right">{spec.value}</dd></div>)}</dl></section></main></Layout>;
+  const hasGallery = !!(product.colorImages && product.colorImages.length > 1);
+
+  return (
+    <Layout>
+      <JsonLd value={schema} />
+      <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-6 py-12 md:py-20">
+        <nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-widest text-gray-400">
+          <Link href="/products" className="hover:text-primary">Gear</Link>
+          <span className="mx-2">/</span>
+          <Link href={`/categories/${categorySlug(product.category)}`} className="hover:text-primary">{product.category}</Link>
+        </nav>
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-2">
+          <div className="relative aspect-square border border-border bg-[hsl(0_0%_4%)] p-8">
+            {hasGallery ? (
+              <ColorGallery images={product.colorImages!} productName={title} />
+            ) : (
+              <img src={product.image} alt={`${title} — ${product.category}`} width={900} height={900} className="h-full w-full object-contain" />
+            )}
+            <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
+              <span className="border border-primary bg-black/60 px-2 py-1 text-primary">{product.status}</span>
+              {product.articleNo && <span className="border border-border bg-black/60 px-2 py-1 text-gray-400">Art. {product.articleNo}</span>}
+            </div>
+          </div>
+
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{product.category}</p>
+            <h1 className="mt-3 text-5xl font-bold uppercase tracking-tighter md:text-6xl">{title}</h1>
+            <p className="mt-6 font-mono text-sm leading-relaxed text-gray-300">{product.description}</p>
+
+            {!product.available && (
+              <div className="mt-6 border border-border bg-black/40 p-4 font-mono text-xs uppercase tracking-widest text-gray-400">
+                Full product details are being prepared — message us for current availability.
+              </div>
+            )}
+
+            {product.attributes.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {product.attributes.map((attribute) => (
+                  <span key={attribute} className="border border-border px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-gray-300">{attribute}</span>
+                ))}
+              </div>
+            )}
+
+            <a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 bg-primary px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-black hover:bg-white">
+              <MessageCircle className="h-5 w-5" /> Ask about availability
+            </a>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+              <span>Rating · {product.rating}</span>
+              {product.origin && <span className="text-gray-300">{product.origin}</span>}
+            </div>
+          </div>
+        </div>
+
+        {product.features.length > 0 && (
+          <section className="mt-16 max-w-3xl">
+            <h2 className="text-2xl font-bold uppercase">Key features</h2>
+            <ul className="mt-6 grid gap-3">
+              {product.features.map((feature) => (
+                <li key={feature} className="flex gap-3 font-mono text-sm text-gray-300">
+                  <Check className="h-4 w-4 shrink-0 text-primary" />{feature}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold uppercase">Technical information</h2>
+          <dl className="mt-6 grid border-t border-border sm:grid-cols-2">
+            {product.specs.map((spec) => (
+              <div key={spec.label} className="flex justify-between gap-4 border-b border-border px-1 py-4 font-mono text-sm">
+                <dt className="text-gray-400">{spec.label}</dt>
+                <dd className="text-right">{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        {product.colors.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold uppercase">Available colors</h2>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {product.colors.map((color) => (
+                <span key={color} className="border border-border px-3 py-1.5 font-mono text-xs text-gray-200">{color}</span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {product.weights.length > 0 && (
+          <section className="mt-16 max-w-3xl">
+            <h2 className="text-2xl font-bold uppercase">Lengths &amp; weight</h2>
+            <div className="mt-6 grid grid-cols-3 gap-px border border-border bg-border sm:grid-cols-4">
+              {product.weights.map((weight) => (
+                <div key={weight.length} className="bg-black/70 p-3 text-center">
+                  <div className="font-sans text-sm font-bold text-white">{weight.length}</div>
+                  <div className="mt-1 font-mono text-[11px] text-gray-400">{weight.weight}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
+    </Layout>
+  );
 }

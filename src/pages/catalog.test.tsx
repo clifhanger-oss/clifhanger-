@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { CATEGORY_ORDER } from "@/lib/products";
-import { categorySlug, productsInCategory } from "@/lib/catalog";
-import { CategoryPage, ProductsPage } from "@/pages/catalog";
+import { categorySlug, productSlug, productsInCategory } from "@/lib/catalog";
+import { CategoryPage, ProductPage, ProductsPage } from "@/pages/catalog";
 
 describe("CategoryPage", () => {
   it("shows every category and marks the current category without requiring a return to the catalog", () => {
@@ -44,5 +44,34 @@ describe("ProductsPage", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Showing 1 of 98 products");
     expect(screen.getByRole("heading", { name: "Bud" })).toBeInTheDocument();
     expect(window.location.search).toBe("?q=Bud");
+  });
+
+  it("lets visitors swipe a gallery product's colors from the catalog card without opening details", () => {
+    render(<ProductsPage />);
+    fireEvent.change(screen.getByRole("searchbox", { name: /search gear/i }), { target: { value: "Ultralight III" } });
+
+    expect(screen.getByRole("status")).toHaveTextContent("Showing 1 of 98 products");
+    // Color-swatch dot buttons live in the image area, independent of the
+    // "view details" link — swiping colors must not be gated behind a click-through.
+    expect(screen.getAllByRole("button", { name: /^Show / }).length).toBeGreaterThan(1);
+  });
+});
+
+describe("ProductPage", () => {
+  const gallery = productsInCategory("Helmets").find((product) => product.colorImages && product.colorImages.length > 1)!;
+
+  it("shows the full spec sheet that used to live in the product modal (attributes, colors, weights, rating)", () => {
+    const rope = productsInCategory("Ropes")[0];
+    render(<ProductPage slug={productSlug(rope)} />);
+
+    if (rope.colors.length) expect(screen.getByRole("heading", { name: /available colors/i })).toBeInTheDocument();
+    if (rope.weights.length) expect(screen.getByRole("heading", { name: /lengths.*weight/i })).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`Rating .* ${rope.rating}`))).toBeInTheDocument();
+  });
+
+  it("renders the swipeable color gallery on a product with verified per-color photos", () => {
+    render(<ProductPage slug={productSlug(gallery)} />);
+    expect(screen.getAllByRole("button", { name: /^Show / })).toHaveLength(gallery.colorImages!.length);
+    expect(screen.getByRole("heading", { name: /available colors/i })).toBeInTheDocument();
   });
 });
