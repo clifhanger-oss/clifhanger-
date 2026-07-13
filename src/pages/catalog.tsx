@@ -64,11 +64,34 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export function ProductsPage() {
+function CategorySwitcher({ activeCategory }: { activeCategory?: string }) {
   const categories = CATEGORY_ORDER.filter((category) => productsInCategory(category).length);
+  return (
+    <nav aria-label="Switch product category" className="mt-10 -mx-6 overflow-x-auto px-6 pb-2 sm:mx-0 sm:px-0">
+      <ul className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+        {categories.map((category) => {
+          const active = category === activeCategory;
+          return (
+            <li key={category}>
+              <Link
+                href={`/categories/${categorySlug(category)}`}
+                aria-current={active ? "page" : undefined}
+                className={`flex min-h-11 items-center border px-4 py-2 font-mono text-[11px] uppercase tracking-wide transition-colors ${active ? "border-primary bg-primary text-black" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
+              >
+                {category} <span className={`ml-2 ${active ? "text-black/60" : "text-gray-500"}`}>{productsInCategory(category).length}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+export function ProductsPage() {
   useSEO({ title: "Climbing Equipment & Outdoor Gear | Cliffhanger", description: `Browse ${PRODUCTS.length} climbing products in Lebanon: ropes, carabiners, belay devices, helmets, shoes and certified outdoor gear.`, path: "/products" });
   const schema = { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${SITE_URL}/products#webpage`, name: "Cliffhanger climbing equipment catalog", url: `${SITE_URL}/products`, mainEntity: { "@type": "ItemList", numberOfItems: PRODUCTS.length, itemListElement: PRODUCTS.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
-  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger catalog</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">Climbing equipment<br />& outdoor gear</h1><p className="mt-7 max-w-3xl font-mono text-sm leading-relaxed text-gray-300">Browse {PRODUCTS.length} certified climbing and outdoor products selected for climbers in Lebanon. Choose a category or open any product for specifications and an enquiry link.</p><nav aria-label="Product categories" className="mt-12 flex flex-wrap gap-3">{categories.map((category) => <Link key={category} href={`/categories/${categorySlug(category)}`} className="border border-border px-4 py-3 font-mono text-xs uppercase tracking-wide hover:border-primary hover:text-primary">{category} ({productsInCategory(category).length})</Link>)}</nav><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{PRODUCTS.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
+  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger catalog</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">Climbing equipment<br />& outdoor gear</h1><p className="mt-7 max-w-3xl font-mono text-sm leading-relaxed text-gray-300">Browse {PRODUCTS.length} certified climbing and outdoor products selected for climbers in Lebanon. Choose a category or open any product for specifications and an enquiry link.</p><CategorySwitcher /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{PRODUCTS.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
 }
 
 export function CategoryPage({ slug }: { slug: string }) {
@@ -77,7 +100,7 @@ export function CategoryPage({ slug }: { slug: string }) {
   useSEO({ title: category ? `${category} | Climbing Gear | Cliffhanger` : "Category Not Found | Cliffhanger", description: category ? `Browse ${products.length} ${category.toLowerCase()} products from Cliffhanger, Lebanon's climbing equipment specialist.` : "This product category could not be found.", path: `/categories/${slug}`, noindex: !category });
   if (!category) return <Layout><main className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Category not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
   const schema = { "@context": "https://schema.org", "@type": "CollectionPage", name: `${category} | Cliffhanger`, url: `${SITE_URL}/categories/${slug}`, mainEntity: { "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
-  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><Link href="/products" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-primary"><ArrowLeft className="h-4 w-4" /> All gear</Link><p className="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger category</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">{category}</h1><p className="mt-6 max-w-2xl font-mono text-sm leading-relaxed text-gray-300">{products.length} {category.toLowerCase()} products currently listed by Cliffhanger. Review each product page for its manufacturer specifications, certification details, and availability enquiry.</p><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
+  return <Layout><JsonLd value={schema} /><main className="mx-auto max-w-7xl px-6 py-16 md:py-24"><Link href="/products" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-primary"><ArrowLeft className="h-4 w-4" /> All gear</Link><p className="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger category</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">{category}</h1><p className="mt-6 max-w-2xl font-mono text-sm leading-relaxed text-gray-300">{products.length} {category.toLowerCase()} products currently listed by Cliffhanger. Review each product page for its manufacturer specifications, certification details, and availability enquiry.</p><CategorySwitcher activeCategory={category} /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
 }
 
 export function ProductPage({ slug }: { slug: string }) {

@@ -2,13 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Phone, Mail, Instagram, Facebook, ArrowRight, MapPin, Menu, X } from "lucide-react";
 import { MountainBackground } from "@/components/mountain-background";
-import { ProductModal } from "@/components/product-modal";
-import { ColorGallery } from "@/components/color-gallery";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CONTACT } from "@/lib/contact";
-import { PRODUCTS, CATEGORY_ORDER, type Product } from "@/lib/products";
 import { useSEO } from "@/lib/use-seo";
-import { buildProductListJsonLd } from "@/lib/product-jsonld";
 
 // Public assets — served from /public at the site root.
 const logo = "/logo.webp"; // white circular badge (original colors)
@@ -20,18 +16,9 @@ const NAV = [
   { href: "/contact", label: "Contact" },
 ];
 
-// A product belongs to a category if it's the primary category or one of the
-// product's secondary cross-listed categories (e.g. Warp is a Hardware
-// Accessory that's also listed under Pulleys) — no data duplication needed.
-function inCategory(product: Product, cat: string) {
-  return product.category === cat || product.alsoInCategories?.includes(cat) === true;
-}
-
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selected, setSelected] = useState<Product | null>(null);
-  const [activeCat, setActiveCat] = useState<string>(CATEGORY_ORDER[0]);
   const climberRef = useRef<HTMLDivElement>(null);
   const [pastHero, setPastHero] = useState(false);
 
@@ -42,23 +29,6 @@ export default function Home() {
   });
 
   useEffect(() => setMounted(true), []);
-
-  // Structured data for the full catalog — derived live from PRODUCTS so it can
-  // never drift out of sync with the actual categories/counts.
-  useEffect(() => {
-    const id = "product-list-jsonld";
-    let script = document.getElementById(id) as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement("script");
-      script.id = id;
-      script.type = "application/ld+json";
-      document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify(buildProductListJsonLd(PRODUCTS));
-    return () => {
-      document.getElementById(id)?.remove();
-    };
-  }, []);
 
   // Briefly reveal the climber silhouette as the About section scrolls past.
   // Opacity follows a bell curve (peak mid-section) and the climber "ascends".
@@ -386,127 +356,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* CATALOG */}
-          <section id="catalog" className="py-20 md:py-32 px-6 lg:px-12 relative">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-                <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-                  Tactical
-                  <br />
-                  Hardware
-                </h2>
-                <div className="flex items-center gap-4 text-primary font-mono text-xs uppercase glass-card px-4 py-2 border border-border">
-                  <span className="w-3 h-3 bg-primary animate-pulse" />
-                  {PRODUCTS.length} products online
-                </div>
-              </div>
-
-              {/* Category filter — a tap-to-choose block on phone (2-col grid, all 12
-                  categories visible at once, no swipe needed); reverts to inline wrap
-                  from sm: up. */}
-              <div className="mb-12 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-                {CATEGORY_ORDER.map((cat) => {
-                  const count = PRODUCTS.filter((p) => inCategory(p, cat)).length;
-                  if (!count) return null;
-                  const active = cat === activeCat;
-                  return (
-                    <button
-                      key={cat}
-                      type="button"
-                      onClick={() => setActiveCat(cat)}
-                      className={`border px-4 py-3 min-h-11 font-mono text-[11px] uppercase tracking-widest text-center sm:text-left transition-colors active:scale-95 ${active ? "bg-primary text-black border-primary" : "border-border text-gray-300 hover:border-primary hover:text-primary"}`}
-                    >
-                      {cat} <span className={active ? "text-black/60" : "text-gray-500"}>{count}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              <Link href="/products" className="mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-white">Browse all product pages <ArrowRight className="w-4 h-4" /></Link>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {PRODUCTS.filter((p) => inCategory(p, activeCat)).map((product) => {
-                  const hasGallery = !!(product.colorImages && product.colorImages.length > 1);
-
-                  const imageBlock = (
-                    <div className="relative aspect-square overflow-hidden bg-black/70 p-6 border-b border-border">
-                      <div className="absolute top-4 left-4 z-10 pointer-events-none text-gray-400 font-mono text-xs">
-                        {product.id}
-                      </div>
-                      <div className="absolute top-4 right-4 z-10 pointer-events-none max-w-[55%] truncate border border-border px-2 py-1 text-[10px] font-mono text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
-                        {product.status}
-                      </div>
-                      {hasGallery ? (
-                        <ColorGallery images={product.colorImages!} productName={product.name} compact />
-                      ) : (
-                        <img
-                          src={product.image}
-                          alt={`${product.name} — ${product.category}${product.certification ? `, ${product.certification}` : ""}`}
-                          width={720}
-                          height={720}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-contain filter contrast-125 group-hover:scale-110 transition-transform duration-500 ease-out"
-                        />
-                      )}
-                    </div>
-                  );
-
-                  const detailsFooter = (
-                    <div className="p-6 flex flex-col justify-between flex-grow">
-                      <h3 className="text-xl font-bold uppercase tracking-tight mb-4">{product.name}</h3>
-                      <div className="flex items-center justify-between border-t border-border/50 pt-4 mt-auto">
-                        <span className="font-mono text-xs text-gray-400">Rating</span>
-                        <span className="font-mono text-xs text-white">{product.rating}</span>
-                      </div>
-                      <span className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-primary transition-colors">
-                        View details
-                        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
-                      </span>
-                    </div>
-                  );
-
-                  // Gallery products: the image is its own swipeable region (never
-                  // opens the modal, so browsing colors never risks triggering it) —
-                  // only the footer is a button. Everything else keeps the original
-                  // whole-card button, unchanged.
-                  if (hasGallery) {
-                    return (
-                      <div
-                        key={product.id}
-                        className="group flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-within:border-primary transition-colors"
-                      >
-                        {imageBlock}
-                        <button
-                          type="button"
-                          onClick={() => setSelected(product)}
-                          aria-haspopup="dialog"
-                          aria-label={`View ${product.name} details`}
-                          className="text-left flex flex-col justify-between flex-grow active:scale-[0.99] transition-transform"
-                        >
-                          {detailsFooter}
-                        </button>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <button
-                      key={product.id}
-                      type="button"
-                      onClick={() => setSelected(product)}
-                      aria-haspopup="dialog"
-                      aria-label={`View ${product.name} details`}
-                      className="group text-left flex flex-col border border-border glass-card overflow-hidden hover:border-primary focus-visible:border-primary transition-colors active:scale-[0.99]"
-                    >
-                      {imageBlock}
-                      {detailsFooter}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
           {/* CONTACT */}
           <section id="contact" className="py-20 md:py-32 px-6 lg:px-12 relative border-t border-border glass-panel">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -619,7 +468,7 @@ export default function Home() {
 
       {/* Floating WhatsApp button — mobile only, appears once past the hero's own
           CTAs so it doesn't compete with them, hidden while the product modal is open */}
-      {pastHero && !selected && (
+      {pastHero && (
         <a
           href={CONTACT.whatsapp}
           target="_blank"
@@ -631,8 +480,6 @@ export default function Home() {
         </a>
       )}
 
-      {/* Product detail dialog */}
-      <ProductModal product={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

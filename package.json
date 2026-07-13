@@ -6,9 +6,10 @@
   "description": "Cliffhanger — Climbing Equipments & Outdoor Gears. Made for the vertical.",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate:sitemap && tsc -b && vite build && npm run prerender",
+    "build": "npm run generate:sitemap && tsc -b && vite build && npm run prerender && npm run verify:production",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "prerender": "node scripts/prerender-routes.mjs",
+    "verify:production": "node scripts/verify-production.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
