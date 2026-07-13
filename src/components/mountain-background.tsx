@@ -19,15 +19,21 @@ function webglSupported() {
   }
 }
 
-// Static poster for reduced-motion, no-WebGL, or first paint. Pure CSS — no download.
+// Static poster for reduced-motion, no-WebGL, first paint, or a WebGL failure/
+// retry. Pure CSS — no image download, so it paints instantly with zero
+// loading latency on the fallback path that most needs to be fast.
+// (Was briefly hero-climber.webp — the same photo used for the About
+// section's climber reveal further down the page, so on every load it read
+// as that section's content flashing in at the top before the real hero
+// took over. Reverted to the original branded gradient.)
 function StaticPoster() {
   return (
     <div
       data-testid="mountain-static-poster"
-      className="size-full bg-cover bg-[62%_center]"
+      className="size-full"
       style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.08) 100%), url('/images/hero-climber.webp')",
+        background:
+          "radial-gradient(120% 80% at 70% 10%, #12141a 0%, #0a0b0e 45%, #050506 100%)",
       }}
     />
   );

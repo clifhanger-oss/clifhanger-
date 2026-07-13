@@ -36,7 +36,10 @@ describe("MountainBackground", () => {
     render(<MountainBackground />);
 
     await waitFor(() => expect(screen.getByTestId("mountain-static-poster")).toBeInTheDocument());
-    expect(screen.getByTestId("mountain-static-poster")).toHaveStyle({ backgroundImage: expect.stringContaining("hero-climber.webp") });
+    // Pure CSS gradient, not an image — the poster must paint instantly with
+    // zero network latency, and must not reuse the About section's climber
+    // photo (that previously read as the wrong section flashing in on load).
+    expect(screen.getByTestId("mountain-static-poster")).toHaveStyle({ backgroundImage: expect.stringContaining("radial-gradient") });
   });
 
   it("recovers the live scene after a transient WebGL context loss instead of being stranded on the poster", async () => {
