@@ -67,7 +67,7 @@ function ProductCard({ product }: { product: Product }) {
 function CategorySwitcher({ activeCategory }: { activeCategory?: string }) {
   const categories = CATEGORY_ORDER.filter((category) => productsInCategory(category).length);
   return (
-    <nav aria-label="Switch product category" className="mt-10 -mx-6 overflow-x-auto px-6 pb-2 sm:mx-0 sm:px-0">
+    <nav aria-label="Switch product category" className="sticky top-[57px] z-40 mt-10 -mx-6 overflow-x-auto border-y border-border bg-black/95 px-6 py-3 shadow-[0_8px_18px_hsl(0_0%_0%/0.6)] backdrop-blur-md sm:top-[65px] sm:mx-0 sm:px-0">
       <ul className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
         {categories.map((category) => {
           const active = category === activeCategory;
