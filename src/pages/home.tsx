@@ -15,9 +15,9 @@ const logo = "/logo.webp"; // white circular badge (original colors)
 const wordmark = "/logo-wordmark.webp"; // on-dark wordmark (lime CLIFF + white HANGER)
 
 const NAV = [
-  { href: "#about", label: "About" },
-  { href: "#catalog", label: "Gear" },
-  { href: "#contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/products", label: "Gear" },
+  { href: "/contact", label: "Contact" },
 ];
 
 // A product belongs to a category if it's the primary category or one of the
@@ -250,8 +250,8 @@ export default function Home() {
                   with their life. No compromises. No weekend warriors.
                 </p>
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="#catalog"
+              <a
+              href="/products"
                     className="group inline-flex items-center gap-4 bg-primary text-black px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors active:scale-95 transform duration-100"
                   >
                     Explore the Gear
@@ -382,6 +382,7 @@ export default function Home() {
                   Tendon
                 </span>
               </div>
+              <Link href="/partners" className="font-mono text-[10px] uppercase tracking-widest text-gray-400 hover:text-primary">Meet our partners →</Link>
             </div>
           </section>
 
@@ -420,6 +421,7 @@ export default function Home() {
                   );
                 })}
               </div>
+              <Link href="/products" className="mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-white">Browse all product pages <ArrowRight className="w-4 h-4" /></Link>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PRODUCTS.filter((p) => inCategory(p, activeCat)).map((product) => {
@@ -604,6 +606,7 @@ export default function Home() {
                 <li><Link href="/certifications" className="hover:text-white transition-colors inline-block">Certifications</Link></li>
                 <li><Link href="/certifications" className="hover:text-white transition-colors inline-block">CE &amp; UIAA Standards</Link></li>
                 <li><a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-block">Product Enquiries</a></li>
+                <li><Link href="/partners" className="hover:text-white transition-colors inline-block">Official Partners</Link></li>
               </ul>
             </div>
           </div>

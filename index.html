@@ -35,7 +35,10 @@
     <meta name="geo.placename" content="Lebanon" />
     <meta name="keywords" content="climbing equipment Lebanon, climbing gear Lebanon, Edelrid Lebanon, Tendon ropes, carabiners, belay devices, climbing shoes, chalk bags, outdoor gear" />
 
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <!-- Google Search uses this crawler-visible favicon in its result circle. -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- Self-hosted fonts (see @font-face in src/index.css). Preload only the
          latin Bricolage subset — it renders the hero headline, the LCP element,
          so fetching it early shortens LCP. font-src is same-origin now; the

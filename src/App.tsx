@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import { Analytics } from "@vercel/analytics/react";
 import Home from "@/pages/home";
+import { CategoryPage, ProductPage, ProductsPage } from "@/pages/catalog";
+import CompanyPage from "@/pages/company";
 
 // Code-split like MountainScene: the legal pages (+ their pages.json content)
 // are rarely visited, so keep them out of the main chunk every "/" visitor pays for.
@@ -13,6 +15,16 @@ export default function App() {
     <>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/products" component={ProductsPage} />
+        <Route path="/products/:slug">
+          {(params) => <ProductPage slug={params.slug} />}
+        </Route>
+        <Route path="/categories/:slug">
+          {(params) => <CategoryPage slug={params.slug} />}
+        </Route>
+        <Route path="/about"><CompanyPage page="about" /></Route>
+        <Route path="/partners"><CompanyPage page="partners" /></Route>
+        <Route path="/contact"><CompanyPage page="contact" /></Route>
         <Route path="/certifications">
           {() => <Suspense fallback={legalFallback}><LegalPage slug="certifications" /></Suspense>}
         </Route>

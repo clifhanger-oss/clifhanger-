@@ -13,6 +13,13 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+# Bing powers Copilot and is an important discovery path for AI search.
+User-agent: bingbot
+Allow: /
+
 # AI training crawlers — left open (no proprietary/paywalled content on this page)
 User-agent: GPTBot
 Allow: /

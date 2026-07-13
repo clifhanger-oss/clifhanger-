@@ -1,0 +1,8 @@
+{
+  "name": "Cliffhanger — Climbing Equipments & Outdoor Gears",
+  "short_name": "Cliffhanger",
+  "icons": [{ "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone"
+}
