@@ -9,6 +9,7 @@ import {
 
 const siteUrl = "https://www.cliffhangerleb.com";
 const baseHtml = readFileSync(new URL("../dist/index.html", import.meta.url), "utf8");
+const contentPages = JSON.parse(readFileSync(new URL("../src/content/pages.json", import.meta.url), "utf8"));
 
 function escape(value) {
   return String(value)
@@ -81,6 +82,18 @@ function productSchema(product, path) {
   ];
 }
 
+function longFormPageMarkup(page) {
+  const sections = page.sections.map((section) => {
+    const paragraphs = section.body.map((paragraph) => `<p>${escape(paragraph)}</p>`).join("");
+    const bullets = section.bullets?.length
+      ? `<ul>${section.bullets.map((bullet) => `<li>${escape(bullet)}</li>`).join("")}</ul>`
+      : "";
+    return `<section><h2>${escape(section.heading)}</h2>${paragraphs}${bullets}</section>`;
+  }).join("");
+  const disclaimer = page.disclaimer ? `<aside><p>${escape(page.disclaimer)}</p></aside>` : "";
+  return `<main><h1>${escape(page.title)}</h1><p>${escape(page.intro)}</p>${sections}${disclaimer}</main>`;
+}
+
 function writeRoute(path, title, description, body, schemas = []) {
   const url = `${siteUrl}${path}`;
   let document = baseHtml.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`);
@@ -118,16 +131,16 @@ for (const product of products) {
 }
 
 const staticPages = {
-  "/about": ["About Cliffhanger", "Cliffhanger has supplied certified climbing and outdoor equipment in Lebanon since 2003.", "Cliffhanger is a Lebanon-based climbing equipment specialist. Since 2003, we have helped climbers choose certified hardware, ropes, helmets, shoes, and accessories."],
-  "/partners": ["Official Climbing Gear Partners | Cliffhanger", "Meet Cliffhanger's official climbing equipment partners: Edelrid and Tendon.", "Cliffhanger stocks climbing equipment from EDELRID of Germany and TENDON of the Czech Republic."],
-  "/contact": ["Contact Cliffhanger | Climbing Gear Lebanon", "Contact Cliffhanger in Lebanon for climbing equipment availability, product specifications, and gear enquiries.", "Contact Cliffhanger by WhatsApp, phone at 03 276 938, or email Cliffhangerleb@hotmail.com for climbing gear enquiries in Lebanon."],
-  "/certifications": ["Climbing Equipment Certifications | Cliffhanger", "Learn how Cliffhanger presents manufacturer-provided climbing equipment certifications in Lebanon.", "Cliffhanger lists manufacturer-provided certification details on relevant product pages. Contact us for product-specific information."],
-  "/privacy": ["Privacy Policy | Cliffhanger", "Cliffhanger privacy policy.", "Read the Cliffhanger privacy policy or contact us with questions about your data."],
-  "/terms": ["Terms of Service | Cliffhanger", "Cliffhanger terms of service.", "Read the Cliffhanger terms of service for use of this website and product information."],
-  "/returns": ["Returns & Exchanges | Cliffhanger", "Cliffhanger returns and exchanges policy.", "Contact Cliffhanger to discuss a return, exchange, warranty, or product concern."],
+  "/about": ["About Cliffhanger", "Cliffhanger has supplied certified climbing and outdoor equipment in Lebanon since 2003.", "<main><h1>Made for the vertical</h1><p>Cliffhanger is a Lebanon-based climbing equipment specialist. Since 2003, we have helped climbers choose certified hardware, ropes, helmets, shoes, and accessories with clear manufacturer specifications and direct product support.</p><p><a href=\"/products\">Browse climbing gear</a></p></main>"],
+  "/partners": ["Official Climbing Gear Partners | Cliffhanger", "Meet Cliffhanger's official climbing equipment partners: Edelrid and Tendon.", "<main><h1>Official partners</h1><p>Cliffhanger stocks equipment from EDELRID of Germany and TENDON of the Czech Republic. Each product page identifies technical information and manufacturer-provided certification where available.</p><section><h2>Edelrid</h2><p>Climbing and safety equipment represented in Cliffhanger's hardware, PPE, and accessory catalog.</p></section><section><h2>Tendon</h2><p>Rope manufacturer represented in Cliffhanger's climbing rope selection.</p></section><p><a href=\"/products\">Browse climbing gear</a></p></main>"],
+  "/contact": ["Contact Cliffhanger | Climbing Gear Lebanon", "Contact Cliffhanger in Lebanon for climbing equipment availability, product specifications, and gear enquiries.", "<main><h1>Contact Cliffhanger</h1><p>For product availability, technical details, or a climbing gear enquiry, contact the Cliffhanger team. We are based in Lebanon.</p><ul><li><a href=\"https://wa.me/9613276938\">WhatsApp Cliffhanger</a></li><li><a href=\"tel:+9613276938\">Phone: 03 276 938</a></li><li><a href=\"mailto:Cliffhangerleb@hotmail.com\">Email: Cliffhangerleb@hotmail.com</a></li></ul><p><a href=\"/products\">Browse climbing gear</a></p></main>"],
+  "/certifications": ["Climbing Equipment Certifications | Cliffhanger", "Learn how Cliffhanger presents manufacturer-provided climbing equipment certifications in Lebanon.", longFormPageMarkup(contentPages.certifications)],
+  "/privacy": ["Privacy Policy | Cliffhanger", "Cliffhanger privacy policy.", longFormPageMarkup(contentPages.privacy)],
+  "/terms": ["Terms of Service | Cliffhanger", "Cliffhanger terms of service.", longFormPageMarkup(contentPages.terms)],
+  "/returns": ["Returns & Exchanges | Cliffhanger", "Cliffhanger returns and exchanges policy.", longFormPageMarkup(contentPages.returns)],
 };
 for (const [path, [title, description, body]] of Object.entries(staticPages)) {
-  writeRoute(path, title, description, `<main><h1>${escape(title)}</h1><p>${escape(body)}</p></main>`);
+  writeRoute(path, title, description, body);
 }
 
 console.log(`Prerendered ${2 + categories.length + products.length + Object.keys(staticPages).length} crawlable route documents.`);

@@ -71,26 +71,37 @@
     "heading": "What This Website Does Not Collect",
     "body": [
      "This website is a showcase catalogue only. It does not have online checkout or payment processing, does not require you to create an account or log in, and does not contain forms that store your information.",
-     "We do not use analytics or tracking cookies, and we do not run advertising pixels of any kind."
+     "We do not have online checkout, user accounts, data-storing contact forms, advertising pixels, or tracking cookies."
     ],
     "bullets": [
      "No online checkout or payments",
      "No user accounts or login",
      "No data-storing contact forms",
-     "No analytics or tracking cookies",
+     "No online advertising or tracking cookies",
      "No advertising pixels"
     ]
    },
    {
-    "heading": "Google Fonts",
-    "body": [
-     "This website uses Google Fonts to display text in our chosen typefaces. When a page loads, your browser requests these font files from Google's servers (fonts.googleapis.com and fonts.gstatic.com), which means your IP address is transmitted to Google as part of that standard request.",
-     "We do not control how Google handles this connection. If you would like to learn more, we encourage you to review Google's own privacy documentation."
-    ],
-    "bullets": []
-   },
-   {
-    "heading": "Contacting Us (Phone, WhatsApp, Email)",
+   "heading": "Fonts",
+   "body": [
+    "This website serves its font files directly from our own site. Your browser does not need to request fonts from Google to display the chosen typefaces."
+   ],
+   "bullets": []
+  },
+  {
+   "heading": "Anonymous Website Analytics",
+   "body": [
+    "We use Vercel Web Analytics to understand aggregated site traffic, such as page views, referrers, country-level location, browser, operating system, and device type. Vercel states that this service uses anonymized, aggregated data and does not use third-party cookies or retain a visitor identity across websites or days.",
+    "We do not send names, email addresses, phone numbers, payment details, or message contents to our website analytics."
+   ],
+   "bullets": [
+    "Anonymous aggregated traffic statistics",
+    "No advertising pixels",
+    "No third-party tracking cookies"
+   ]
+  },
+  {
+   "heading": "Contacting Us (Phone, WhatsApp, Email)",
     "body": [
      "You can reach us by phone at 03 276 938, via WhatsApp, or by email at Cliffhangerleb@hotmail.com.",
      "If you contact us through any of these channels, we process the contact details you provide (such as your name, phone number, or email address) and the content of your message, solely to respond to your inquiry and assist you. We do not use this information for marketing or share it with third parties beyond what is needed to reply (for example, our email or messaging provider that carries the message)."
