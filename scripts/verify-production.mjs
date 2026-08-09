@@ -21,9 +21,17 @@ const staticPaths = [
   "/terms",
   "/returns",
 ];
-const sitemap = readFileSync(new URL("../public/sitemap.xml", import.meta.url), "utf8");
-const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+const sitemapIndex = readFileSync(new URL("../public/sitemap.xml", import.meta.url), "utf8");
+const sitemapFiles = [...sitemapIndex.matchAll(/<loc>[^<]+\/([^/<]+\.xml)<\/loc>/g)].map((match) => match[1]);
+const sitemapUrls = sitemapFiles.flatMap((filename) => {
+  const sitemap = readFileSync(new URL(`../public/${filename}`, import.meta.url), "utf8");
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+});
 const failures = [];
+
+if (sitemapFiles.length !== 3) {
+  failures.push(`Sitemap index has ${sitemapFiles.length} child sitemaps; expected 3.`);
+}
 
 if (sitemapUrls.length !== staticPaths.length) {
   failures.push(`Sitemap has ${sitemapUrls.length} URLs; expected ${staticPaths.length}.`);
@@ -58,6 +66,7 @@ for (const product of products) {
   const path = productPath(product);
   const document = readFileSync(new URL(`../dist${path}/index.html`, import.meta.url), "utf8");
   if (!document.includes(`"@id":"${siteUrl}${path}#product"`)) failures.push(`Product JSON-LD missing for ${path}.`);
+  if ((document.match(new RegExp(`"@id":"${siteUrl}${path}#product"`, "g")) ?? []).length !== 1) failures.push(`Product JSON-LD must appear exactly once for ${path}.`);
   if (!document.includes("Technical information")) failures.push(`Static technical information missing for ${path}.`);
 }
 
@@ -66,4 +75,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Verified ${staticPaths.length} sitemap/static routes, ${categories.length} category switchers, and ${products.length} Product schemas.`);
+console.log(`Verified sitemap index, ${staticPaths.length} sitemap/static routes, ${categories.length} category switchers, and ${products.length} Product schemas.`);

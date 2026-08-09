@@ -24,6 +24,16 @@ function JsonLd({ value }: { value: object }) {
   useEffect(() => {
     const id = "route-jsonld";
     let script = document.getElementById(id) as HTMLScriptElement | null;
+    const schemaId = "@id" in value ? value["@id"] : undefined;
+    const alreadyPrerendered = schemaId && [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .some((existing) => {
+        try {
+          return JSON.parse(existing.textContent ?? "{}")["@id"] === schemaId;
+        } catch {
+          return false;
+        }
+      });
+    if (alreadyPrerendered) return;
     if (!script) {
       script = document.createElement("script");
       script.id = id;
@@ -178,7 +188,7 @@ export function CategoryPage({ slug }: { slug: string }) {
   const products = category ? productsInCategory(category) : [];
   useSEO({ title: category ? `${category} | Climbing Gear | Cliffhanger` : "Category Not Found | Cliffhanger", description: category ? `Browse ${products.length} ${category.toLowerCase()} products from Cliffhanger, Lebanon's climbing equipment specialist.` : "This product category could not be found.", path: `/categories/${slug}`, noindex: !category });
   if (!category) return <Layout><main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold uppercase">Category not found</h1><Link href="/products" className="mt-8 inline-flex items-center gap-2 text-primary"><ArrowLeft className="h-4 w-4" /> Browse catalog</Link></main></Layout>;
-  const schema = { "@context": "https://schema.org", "@type": "CollectionPage", name: `${category} | Cliffhanger`, url: `${SITE_URL}/categories/${slug}`, mainEntity: { "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
+  const schema = { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${SITE_URL}/categories/${slug}#webpage`, name: `${category} | Cliffhanger`, url: `${SITE_URL}/categories/${slug}`, mainEntity: { "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, position) => ({ "@type": "ListItem", position: position + 1, url: `${SITE_URL}/products/${productSlug(product)}`, name: product.name })) } };
   return <Layout><JsonLd value={schema} /><main id="main" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-16 md:py-24"><Link href="/products" className="inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-primary"><ArrowLeft className="h-4 w-4" /> All gear</Link><p className="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-primary">Cliffhanger category</p><h1 className="mt-4 text-5xl font-bold uppercase tracking-tighter md:text-7xl">{category}</h1><p role="status" aria-live="polite" className="mt-6 max-w-2xl font-mono text-sm leading-relaxed text-gray-300">Showing {products.length} {category.toLowerCase()} products. Review each product page for its manufacturer specifications, certification details, and availability enquiry.</p><CategorySwitcher activeCategory={category} /><div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div></main></Layout>;
 }
 
